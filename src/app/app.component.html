@@ -1,8 +1,9 @@
-<nav>
-  <a routerLink="home">Home</a>
-  <a routerLink="services">Services</a>
-  <a routerLink="about">About</a>
-  <a routerLink="contact">Contact</a>
-  <a routerLink="404">404</a>
-</nav>
-<router-outlet></router-outlet>
+<header>
+  <app-navigation></app-navigation>
+</header>
+<main>
+  <div class="container">
+    <router-outlet></router-outlet>
+  </div>
+</main>
+<app-footer></app-footer>
