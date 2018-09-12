@@ -1,4 +1,4 @@
-import { BrowserModule } from '@angular/platform-browser';
+import { BrowserModule, platformBrowser } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from "@angular/router";
 
@@ -21,7 +21,7 @@ import { ProductCardComponent } from './_partials/product-card/product-card.comp
 import { ProductSectionComponent } from './_partials/product-section/product-section.component';
 
 const appRoutes: Routes = [
-  { path: 'home', component: HomeComponent, data: { title: 'Startseite' }},
+  { path: 'home', component: HomeComponent, data: { title: 'Yuki Tuyet Spa' }},
   { path: 'products', component: ProductsComponent, data: { title: 'Unsere Produkte' }},
   { path: 'about', component: AboutComponent, data: { title: 'Über uns' }},
   { path: 'contact', component: ContactComponent, data: { title: 'Kontakt' }},
@@ -51,7 +51,7 @@ const appRoutes: Routes = [
   ],
   imports: [
     BrowserModule,
-    RouterModule.forRoot(appRoutes, { enableTracing: true})
+    RouterModule.forRoot(appRoutes, { enableTracing: true}),
   ],
   providers: [],
   bootstrap: [AppComponent]
