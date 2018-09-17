@@ -1,0 +1,10 @@
+<div class="row">
+  <div class="col-12 bg-primary p-5">
+    <h4 class="text-white">{{category.name}}</h4>
+  </div>
+</div>
+<div class="row">
+  <div *ngIf="category.subcategories" class="col-12 p-3">
+    <app-sub-category-section *ngFor="let subcategory of category.subcategories" [subcategory]=subcategory></app-sub-category-section>
+  </div>
+</div>
