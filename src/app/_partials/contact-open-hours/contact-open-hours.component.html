@@ -1,3 +1,8 @@
-<p>
-  contact-open-hours works!
+<h1>Öffnungszeiten</h1>
+<p *ngFor="let hour of openHours">
+  <span>
+    <strong>{{ hour.day }}</strong>:
+    <span *ngIf="hour.isClosed">geschlossen</span>
+    <span *ngIf="!hour.isClosed">{{ hour.from }} - {{ hour.to}}</span>
+  </span>
 </p>

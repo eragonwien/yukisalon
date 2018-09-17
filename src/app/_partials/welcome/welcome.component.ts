@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { MainService } from "../../main.service";
 
 @Component({
   selector: 'app-welcome',
@@ -6,10 +7,16 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./welcome.component.css']
 })
 export class WelcomeComponent implements OnInit {
+  
+  @Input() title: String;
+  @Input() text: String;
+  @Input() extraText: String;
 
-  constructor() { }
+
+  constructor(private service: MainService) { }
 
   ngOnInit() {
   }
-
 }
+
+

@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from "@angular/router";
+import { Component, OnInit, Input } from '@angular/core';
+import { MainService } from '../../main.service';
 
 @Component({
   selector: 'app-hero-img',
@@ -7,14 +7,22 @@ import { ActivatedRoute, Router } from "@angular/router";
   styleUrls: ['./hero-img.component.css']
 })
 export class HeroImgComponent implements OnInit {
-  title: String;
-  titleText: String;
+  @Input() title: String;
+  @Input() titleText: String;
+  @Input() imgName: String;
+  bgStyle: any = {}
 
-  constructor(private route: ActivatedRoute, private router: Router) { }
+  constructor(private service: MainService) { }
 
   ngOnInit() {
-    this.title = this.route.snapshot.data['title'];
-    this.titleText = this.route.snapshot.data['titleText'];
+    this.getBgStyle();
   }
 
+  getBgStyle(){
+    if (this.imgName) {
+      this.bgStyle["background-image"]=`url('assets/images/${this.imgName}')`;
+    }
+  }
 }
+
+

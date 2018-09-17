@@ -1,3 +1,6 @@
-<p>
-  featured works!
-</p>
+<div class="container text-center">
+  <h1>Featured</h1>
+  <ul *ngFor="let feature of features">
+    <li>{{ feature.name }}</li>
+  </ul>
+</div>

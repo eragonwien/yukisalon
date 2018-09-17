@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { Product } from '../../models/product';
 
 @Component({
   selector: 'app-featured',
@@ -6,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./featured.component.css']
 })
 export class FeaturedComponent implements OnInit {
+
+  @Input() features: Product[];
 
   constructor() { }
 

@@ -1,3 +1,4 @@
-<app-hero-img></app-hero-img>
-<app-welcome></app-welcome>
-<app-inline-gallery></app-inline-gallery>
+<app-hero-img [title]=title titleText="" imgName=""></app-hero-img>
+<app-welcome *ngIf="aboutSalon" [title]=aboutSalon.title [text]=aboutSalon.text [extraText]=aboutSalon.extraText></app-welcome>
+<app-welcome *ngIf="aboutOwner" [title]=aboutOwner.title [text]=aboutOwner.text [extraText]=aboutOwner.extraText></app-welcome>
+<app-featured [features]=features></app-featured>

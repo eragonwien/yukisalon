@@ -1,21 +1,20 @@
-import { Injectable } from '@angular/core';
+import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
-import { Salon } from './models/salon';
-import { Category, Subcategory } from './models/category';
-import { Product } from './models/product';
+import { Salon } from "./models/salon";
+import { Category, Subcategory } from "./models/category";
+import { Product } from "./models/product";
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: "root"
 })
 export class MainService {
+  dataPathPrefix: string = "../../assets/data/";
+  imagePathPrefix: string = "assets/images/";
 
-  dataPathPrefix: string = '../../assets/data/';
-  imagePathPrefix: string = 'assets/images/'
-
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
   getSalonData() {
-    return this.http.get<Salon>(this.dataPathPrefix + 'data.json');
+    return this.http.get<Salon>(this.dataPathPrefix + "data.json");
   }
 
   getFeatures(categories: Category[], maxFeaturesCount: number): Product[] {
@@ -64,12 +63,12 @@ export class MainService {
     return products;
   }
 
-
   getFeaturedProducts(products: Product[], maxFeaturesCount: number): Product[] {
     let features: Product[] = [];
-
-    for (let i = 0; i < products.length && i < maxFeaturesCount; i++) {
-      features.push(products[i]);  
+    let currentCount: number = 0;
+    for (let i = 0; i < products.length && maxFeaturesCount > currentCount; i++) {
+      features.push(products[i]);
+      currentCount++;
     }
     return features;
   }

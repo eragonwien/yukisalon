@@ -1,2 +1,6 @@
-<app-hero-img></app-hero-img>
-<app-product-section></app-product-section>
+<app-hero-img [title]=title titleText="" imgName=""></app-hero-img>
+<div class="container">
+  <div *ngFor="let category of categories" class="p-5">
+    <app-categorie-section [category]=category></app-categorie-section>
+  </div>
+</div>

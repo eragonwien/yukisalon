@@ -1,0 +1,148 @@
+{
+  "name": "Yuki Tuyet Beauty Salon",
+  "owner": {
+    "name": "Yuki Tuyet",
+    "description": "ist eine professionelle Friseurin mit mehr als 20 Jahren Erfahrung sowohl im Inland als ach im Ausland. Yuki und Ihr Team bieten ihren Kunden ausgezeichnete Dienstleistungen an. Darüber hinauss werden Produkte berühmter Hersteller weltweit verwendet.",
+    "extraInfo": ""
+  },
+  "phone": "0699 10019541",
+  "email": "tuyetvienna@gmail.com",
+  "facebook": "https://www.facebook.com/yukituyetbeautysalon",
+  "address": {
+    "street": "Neubaugasse 73",
+    "plz": "1070",
+    "city": "Wien"
+  },
+  "about": {
+    "text": "Yuki Tuyet Beauty Salon ist Ihr Schönheitszentrum in Wien mit Topservice und Eleganz. Heuzutage spielt das gesamte Äußerliche eine überaus wichtige Rolle. Denn neben Kleidung und Accessoires sind Frisuren sowohl im Beruf als auch im gesellschaftlichen Leben ein wichtiges Element Ihrer Persönlichkeit. Unsere ausführliche Beratung in Schnitt, Farbe, Pflege und Styling geben Ihnen die Sicherheit, dass Ihre Frisur auch daheim schnell und einfach frisiert werden kann.",
+    "extraText": "Wir würden uns freuen Sie in unserem Salon begrüßen zu dürfen."
+  },
+  "openHours": [{
+      "day": "Mo.",
+      "from": "12:00",
+      "to": "19:00",
+      "isClosed": false
+    },
+    {
+      "day": "Di. - Fr.",
+      "from": "09:00",
+      "to": "19:00",
+      "isClosed": false
+    },
+    {
+      "day": "Sa.",
+      "from": "09:00",
+      "to": "16:00",
+      "isClosed": false
+    },
+    {
+      "day": "So.",
+      "from": "",
+      "to": "",
+      "isClosed": true
+    },
+    {
+      "day": "Feiertag",
+      "from": "",
+      "to": "",
+      "isClosed": true
+    }
+  ],
+  "ownerDescription": "Yuki Tuyet ist eine professionelle Friseurin mit mehr als 20 Jahren Erfahrung sowohl im Inland als ach im Ausland. Yuki und Ihr Team bieten ihren Kunden ausgezeichnete Dienstleistungen an. Darüber hinauss werden Produkte berühmter Hersteller weltweit verwendet",
+  "description": "Yuki Tuyet Beauty Salon ist Ihr Schönheitszentrum in Wien mit Topservice und Eleganz. Heuzutage spielt das gesamte Äußerliche eine überaus wichtige Rolle. Denn neben Kleidung und Accessoires sind Frisuren sowohl im Beruf als auch im gesellschaftlichen Leben ein wichtiges Element Ihrer Persönlichkeit. Unsere ausführliche Beratung in Schnitt, Farbe, Pflege und Styling geben Ihnen die Sicherheit, dass Ihre Frisur auch daheim schnell und einfach frisiert werden kann.",
+  "descriptionExtra": "Wir würden uns freuen Sie in unserem Salon begrüßen zu dürfen.",
+  "categories": [
+    {
+      "name": "Friseur",
+      "subcategories": [
+        {
+          "name": "damen",
+          "products": [
+            {
+              "name": "Haarschnitt",
+              "extra": "",
+              "price": "ab €20"
+            },
+            {
+              "name": "HaarKomplett",
+              "extra": "Waschen und Schneiden",
+              "price": "ab €25"
+            },
+            {
+              "name": "Haarefärben",
+              "extra": "",
+              "price": "ab €30"
+            },
+            {
+              "name": "Haareglättung",
+              "extra": "hält 1 Jahr",
+              "price": "ab €60"
+            },
+            {
+              "name": "Haareverlängerung",
+              "extra": "",
+              "price": "ab €150"
+            },
+            {
+              "name": "Dauerwelle",
+              "extra": "",
+              "price": "ab €30"
+            },
+            {
+              "name": "Hochstecken",
+              "extra": "",
+              "price": "ab €20"
+            }
+          ]
+        },
+        {
+          "name": "herren",
+          "products": [
+            {
+              "name": "Trockenschnitt",
+              "extra": "",
+              "price": "€11"
+            },
+            {
+              "name": "Haarkomplett",
+              "extra": "Waschen und Schneiden",
+              "price": "€18"
+            },
+            {
+              "name": "Maschinenschnitt",
+              "extra": "",
+              "price": "€10"
+            }
+          ]
+        },
+        {
+          "name": "kinder",
+          "products": [
+            {
+              "name": "Haarschnitt",
+              "extra": "",
+              "price": "ab €10"
+            }
+          ]
+        }
+      ]
+      
+    },
+    {
+      "name": "Haareentfernung"
+    },
+    {
+      "name": "Kosmetik"
+    },
+    {
+      "name": "Nageldesign"
+    },
+    {
+      "name": "Fußpflege"
+    },
+    {
+      "name": "Permanent Make-up"
+    }
+  ]
+
+}

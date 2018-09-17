@@ -1,6 +1,8 @@
 import { BrowserModule, platformBrowser } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from "@angular/router";
+import { HttpClientModule } from "@angular/common/http";
+import { CollapseModule } from "ngx-bootstrap";
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
@@ -17,8 +19,9 @@ import { ContactOpenHoursComponent } from './_partials/contact-open-hours/contac
 import { WelcomeComponent } from './_partials/welcome/welcome.component';
 import { FeaturedComponent } from './_partials/featured/featured.component';
 import { InlineGalleryComponent } from './_partials/inline-gallery/inline-gallery.component';
-import { ProductCardComponent } from './_partials/product-card/product-card.component';
 import { ProductSectionComponent } from './_partials/product-section/product-section.component';
+import { CategorieSectionComponent } from './_partials/categorie-section/categorie-section.component';
+import { SubCategorySectionComponent } from './_partials/sub-category-section/sub-category-section.component';
 
 const appRoutes: Routes = [
   { path: 'home', component: HomeComponent, data: { title: 'Yuki Tuyet Spa' }},
@@ -46,12 +49,15 @@ const appRoutes: Routes = [
     WelcomeComponent,
     FeaturedComponent,
     InlineGalleryComponent,
-    ProductCardComponent,
     ProductSectionComponent,
+    CategorieSectionComponent,
+    SubCategorySectionComponent,
   ],
   imports: [
     BrowserModule,
     RouterModule.forRoot(appRoutes, { enableTracing: true}),
+    HttpClientModule,
+    CollapseModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]
