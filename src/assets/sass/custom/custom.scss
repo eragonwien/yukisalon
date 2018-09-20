@@ -1,0 +1,6 @@
+@import "../bootwatch/variables";
+
+.nav-scroller .nav-link.active {
+  background-color: $primary;
+  color: $white;
+}

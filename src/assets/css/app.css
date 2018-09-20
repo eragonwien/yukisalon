@@ -9924,4 +9924,10 @@ th {
   color: inherit;
 }
 
+/* line 3, C:/Users/erago/Projects/yukifriseur/src/assets/sass/custom/custom.scss */
+.nav-scroller .nav-link.active {
+  background-color: #1a1a1a;
+  color: #fff;
+}
+
 /*# sourceMappingURL=../css/app.map */
