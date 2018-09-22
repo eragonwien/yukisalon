@@ -1,5 +1,12 @@
 <app-hero-img [title]=title titleText="" imgName=""></app-hero-img>
-<app-welcome [title]=welcomeTitle [text]=welcomeText [extraText]=welcomeExtraText></app-welcome>
-<app-featured [features]=features></app-featured>
-<app-contact-open-hours [openHours]=openHours></app-contact-open-hours>
-
+<div class="container px-5">
+  <section id="home-welcome" class="py-2">
+    <app-welcome [title]=welcomeTitle [text]=welcomeText [extraText]=welcomeExtraText></app-welcome>
+  </section>
+  <section id="home-features" class="py-2">
+    <app-featured [features]=features></app-featured>
+  </section>
+  <section id="home-openhours" class="py-2">
+    <app-contact-open-hours [openHours]=openHours></app-contact-open-hours>
+  </section>
+</div>

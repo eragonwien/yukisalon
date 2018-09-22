@@ -10,18 +10,16 @@ import { AboutComponent } from './about/about.component';
 import { ContactComponent } from './contact/contact.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { ProductsComponent } from './products/products.component';
-import { NavigationComponent } from './navigation/navigation.component';
-import { FooterComponent } from './footer/footer.component';
+import { NavigationComponent } from './_partials/navigation/navigation.component';
+import { FooterComponent } from './_partials/footer/footer.component';
 import { HeroImgComponent } from './_partials/hero-img/hero-img.component';
 import { ContactInfoComponent } from './_partials/contact-info/contact-info.component';
-import { ContactMapComponent } from './_partials/contact-map/contact-map.component';
 import { ContactOpenHoursComponent } from './_partials/contact-open-hours/contact-open-hours.component';
 import { WelcomeComponent } from './_partials/welcome/welcome.component';
 import { FeaturedComponent } from './_partials/featured/featured.component';
 import { InlineGalleryComponent } from './_partials/inline-gallery/inline-gallery.component';
 import { ProductSectionComponent } from './_partials/product-section/product-section.component';
 import { CategorieSectionComponent } from './_partials/categorie-section/categorie-section.component';
-import { SubCategorySectionComponent } from './_partials/sub-category-section/sub-category-section.component';
 
 const appRoutes: Routes = [
   { path: 'home', component: HomeComponent, data: { title: 'Yuki Tuyet Spa' }},
@@ -44,14 +42,12 @@ const appRoutes: Routes = [
     FooterComponent,
     HeroImgComponent,
     ContactInfoComponent,
-    ContactMapComponent,
     ContactOpenHoursComponent,
     WelcomeComponent,
     FeaturedComponent,
     InlineGalleryComponent,
     ProductSectionComponent,
     CategorieSectionComponent,
-    SubCategorySectionComponent,
   ],
   imports: [
     BrowserModule,

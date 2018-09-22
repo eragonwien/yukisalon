@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { OpenHour } from '../../models/open.hour';
+import { OpenHour } from '../../../models/open.hour';
 
 @Component({
   selector: 'app-contact-open-hours',

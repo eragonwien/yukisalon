@@ -1,8 +1,8 @@
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
-import { Salon } from "./models/salon";
-import { Category, Subcategory } from "./models/category";
-import { Product } from "./models/product";
+import { Salon } from "../models/salon";
+import { Category, Subcategory } from "../models/category";
+import { Product } from "../models/product";
 
 @Injectable({
   providedIn: "root"
@@ -67,8 +67,10 @@ export class MainService {
     let features: Product[] = [];
     let currentCount: number = 0;
     for (let i = 0; i < products.length && maxFeaturesCount > currentCount; i++) {
-      features.push(products[i]);
-      currentCount++;
+      if (products[i].isFeatured) {
+        features.push(products[i]);
+        currentCount++;
+      }
     }
     return features;
   }

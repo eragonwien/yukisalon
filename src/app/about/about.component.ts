@@ -1,8 +1,8 @@
 import { Component, OnInit } from "@angular/core";
 import { MainService } from "../main.service";
-import { Salon } from "../models/salon";
-import { About } from "../models/about";
-import { Product } from "../models/product";
+import { Salon } from "../../models/salon";
+import { About } from "../../models/about";
+import { Product } from "../../models/product";
 
 @Component({
   selector: "app-about",

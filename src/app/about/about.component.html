@@ -1,4 +1,6 @@
 <app-hero-img [title]=title titleText="" imgName=""></app-hero-img>
-<app-welcome *ngIf="aboutSalon" [title]=aboutSalon.title [text]=aboutSalon.text [extraText]=aboutSalon.extraText></app-welcome>
-<app-welcome *ngIf="aboutOwner" [title]=aboutOwner.title [text]=aboutOwner.text [extraText]=aboutOwner.extraText></app-welcome>
-<app-featured [features]=features></app-featured>
+<div class="container px-5">
+  <app-welcome *ngIf="aboutSalon" [title]=aboutSalon.title [text]=aboutSalon.text [extraText]=aboutSalon.extraText></app-welcome>
+  <app-welcome *ngIf="aboutOwner" [title]=aboutOwner.title [text]=aboutOwner.text [extraText]=aboutOwner.extraText></app-welcome>
+  <app-featured [features]=features></app-featured>
+</div>

@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { OpenHour } from '../models/open.hour';
+import { OpenHour } from '../../models/open.hour';
 import { MainService } from '../main.service';
-import { Salon } from '../models/salon';
-import { Contact } from '../models/contact';
+import { Salon } from '../../models/salon';
+import { Contact } from '../../models/contact';
 
 @Component({
   selector: 'app-contact',
