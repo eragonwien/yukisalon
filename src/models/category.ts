@@ -2,7 +2,8 @@ import { Product } from "./product";
 
 export interface Category {
   name: string,
-  subcategories: Subcategory[]
+  subcategories: Subcategory[],
+  products: Product[]
 }
 
 export interface Subcategory {
