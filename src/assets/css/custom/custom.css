@@ -4,4 +4,10 @@
   color: #fff;
 }
 
+/* line 8, C:/Users/erago/Projects/yukifriseur/src/assets/sass/custom/custom.scss */
+.row-hoverable:hover {
+  background-color: #1a1a1a;
+  color: white;
+}
+
 /*# sourceMappingURL=../../css/custom/custom.map */
