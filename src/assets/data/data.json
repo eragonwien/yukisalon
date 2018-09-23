@@ -56,74 +56,79 @@
       "name": "Friseur",
       "subcategories": [
         {
-          "name": "damen",
+          "name": "Damen",
           "products": [
             {
               "name": "Haarschnitt",
-              "price": "ab €20"
+              "price": "ab € 20"
             },
             {
               "name": "HaarKomplett",
               "description": "Waschen und Schneiden",
-              "price": "ab €25",
+              "price": "ab € 25",
               "isFeatured": "true"
             },
             {
               "name": "Haarefärben",
               "description": "",
-              "price": "ab €30"
+              "price": "ab € 30"
             },
             {
               "name": "Haareglättung",
               "description": "hält 1 Jahr",
-              "price": "ab €60",
+              "price": "ab € 60",
               "isFeatured": "true"
             },
             {
               "name": "Haareverlängerung",
-              "description": "",
-              "price": "ab €150",
+              "description": "echte Haare",
+              "price": "ab € 150",
               "isFeatured": "true"
             },
             {
               "name": "Dauerwelle",
               "description": "",
-              "price": "ab €30"
+              "price": "ab € 40"
             },
             {
-              "name": "Hochstecken",
+              "name": "Frisur Hochstecken",
               "description": "",
-              "price": "ab €20"
+              "price": "ab € 20"
+            },
+            {
+              "name": "Hochzeitsfrisur mit Make-Up",
+              "description": "",
+              "price": "ab € 60"
             }
           ]
         },
         {
-          "name": "herren",
+          "name": "Herren",
           "products": [
             {
               "name": "Trockenschnitt",
               "description": "",
-              "price": "€11"
+              "price": "€ 11"
             },
             {
               "name": "Haarkomplett",
               "description": "Waschen und Schneiden",
-              "price": "€18"
+              "price": "€ 18"
             },
             {
               "name": "Maschinenschnitt",
               "description": "",
-              "price": "€10"
+              "price": "€ 10"
             }
           ]
         },
         {
-          "name": "kinder",
+          "name": "Kinder",
           "products": [
             {
               "name": "Haarschnitt",
               "description": "",
-              "price": "ab €10"
+              "price": "ab € 10"
             }
           ]
         }
@@ -131,19 +136,242 @@
       
     },
     {
-      "name": "Haareentfernung"
+      "name": "Haareentfernung",
+      "products": [
+        {
+          "name": "Oberlippe",
+          "price": "ab € 30"
+        },
+        {
+          "name": "Gesicht komplett",
+          "price": "ab € 70"
+        },
+        {
+          "name": "Beine komplett",
+          "price": "an € 100"
+        },
+        {
+          "name": "Arme komplett",
+          "price": "ab € 70"
+        },
+        {
+          "name": "Bikinizone",
+          "price": "ab € 35"
+        },
+        {
+          "name": "Achselhöhle",
+          "price": "ab € 40"
+        }
+      ]
     },
     {
-      "name": "Kosmetik"
+      "name": "Kosmetik",
+      "products": [
+        {
+          "name": "Gesichtspflege",
+          "description": "Masken, Peeling und Reinigung",
+          "price": "ab € 40",
+          "isFeatured": ""
+        },
+        {
+          "name": "Kosmetikbehandlung",
+          "description": "",
+          "price": "ab € 25",
+          "isFeatured": ""
+        },
+        {
+          "name": "Gesichtshaar wachsen",
+          "description": "",
+          "price": "ab € 15",
+          "isFeatured": ""
+        }
+      ]
     },
     {
-      "name": "Nageldesign"
+      "name": "Nageldesign",
+      "products": [
+        {
+          "name": "Nagelset Neu (Gel/ Acryl)",
+          "description": "mit French tip, Glizer",
+          "price": "ab € 40",
+          "isFeatured": ""
+        },
+        {
+          "name": "Nachfüllung",
+          "description": "",
+          "price": "ab € 30",
+          "isFeatured": ""
+        },
+        {
+          "name": "Maniküre mit Schellac",
+          "description": "",
+          "price": "€ 25",
+          "isFeatured": ""
+        },
+        {
+          "name": "Maniküre mit Lack",
+          "description": "",
+          "price": "€ 20",
+          "isFeatured": ""
+        },
+        {
+          "name": "Maniküre ohne Lack",
+          "description": "",
+          "price": "€ 18",
+          "isFeatured": ""
+        },
+        {
+          "name": "Nur Lack",
+          "description": "",
+          "price": "€ 10",
+          "isFeatured": ""
+        }
+      ]
     },
     {
-      "name": "Fußpflege"
+      "name": "Fußpflege",
+      "products": [
+        {
+          "name": "Fußpflege mit Massagestühle",
+          "description": "",
+          "price": "€ 24",
+          "isFeatured": ""
+        },
+        {
+          "name": "Fußnagel Schellac oder Gel",
+          "description": "",
+          "price": "€25",
+          "isFeatured": ""
+        },
+        {
+          "name": "Fußpflege mit Lack",
+          "description": "",
+          "price": "€ 28",
+          "isFeatured": ""
+        },
+        {
+          "name": "Fußpflege mit Schellac oder UV-Lack",
+          "description": "",
+          "price": "€40",
+          "isFeatured": ""
+        }
+      ]
     },
     {
-      "name": "Permanent Make-up"
+      "name": "Permanent Make-up",
+      "products":[
+        {
+          "name": "Augenbrauen classic",
+          "description": "",
+          "price": "€ 150",
+          "isFeatured": ""
+        },
+        {
+          "name": "Microblading oder Härchenzeichung",
+          "description": "",
+          "price": "€ 200",
+          "isFeatured": ""
+        },
+        {
+          "name": "Augenbrauen Entfernung",
+          "description": "",
+          "price": "ab € 80",
+          "isFeatured": ""
+        },
+        {
+          "name": "Lidstrich oben und unten",
+          "description": "",
+          "price": "€ 200",
+          "isFeatured": ""
+        },
+        {
+          "name": "Lidstrich nur oben",
+          "description": "",
+          "price": "€ 150",
+          "isFeatured": ""
+        },
+        {
+          "name": "Lidstrich nur unten",
+          "description": "",
+          "price": "€ 120",
+          "isFeatured": ""
+        },
+        {
+          "name": "Lippenkontur",
+          "description": "",
+          "price": "€ 120",
+          "isFeatured": ""
+        },
+        {
+          "name": "Lippenschattierung",
+          "description": "",
+          "price": "€ 200",
+          "isFeatured": ""
+        },
+        {
+          "name": "Beratung, Entfernung, Korrektur",
+          "description": "",
+          "price": "ab € 50",
+          "isFeatured": ""
+        },
+        {
+          "name": "Wimpernverlängerung",
+          "description": "",
+          "price": "ab € 50",
+          "isFeatured": ""
+        },
+        {
+          "name": "Wimpern biegen",
+          "description": "hält 2.5 Monaten",
+          "price": "€ 20",
+          "isFeatured": ""
+        },
+        {
+          "name": "Augenbrauen färben",
+          "description": "",
+          "price": "ab € 5",
+          "isFeatured": ""
+        },
+        {
+          "name": "Wimpern färben",
+          "description": "",
+          "price": "ab € 5",
+          "isFeatured": ""
+        },
+        {
+          "name": "Augenbrauen zupfen",
+          "description": "",
+          "price": "€ 5",
+          "isFeatured": ""
+        },
+        {
+          "name": "Augenbrauen zupfen mit Wachs",
+          "description": "",
+          "price": "€ 8",
+          "isFeatured": ""
+        }
+      ]
+    },
+    {
+      "name": "Massage",
+      "products": [
+        {
+          "name": "Körpermassage 30 Minuten",
+          "price": "€ 25"
+        },
+        {
+          "name": "Körpermassage 1 Stunde",
+          "price": "€ 40"
+        },
+        {
+          "name": "Schultermassage 30 Minuten",
+          "price": "€ 25"
+        },
+        {
+          "name": "Fußmassage 30 Minuten",
+          "price": "€ 25"
+        }
+      ]
     }
   ]
 
