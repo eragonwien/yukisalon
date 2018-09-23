@@ -21,6 +21,7 @@ import { InlineGalleryComponent } from './_partials/inline-gallery/inline-galler
 import { ProductSectionComponent } from './_partials/product-section/product-section.component';
 import { CategorieSectionComponent } from './_partials/categorie-section/categorie-section.component';
 import { PriceListComponent } from './_partials/price-list/price-list.component';
+import { CategoriesCardListComponent } from './_partials/categories-card-list/categories-card-list.component';
 
 const appRoutes: Routes = [
   { path: 'home', component: HomeComponent, data: { title: 'Yuki Tuyet Spa' }},
@@ -50,6 +51,7 @@ const appRoutes: Routes = [
     ProductSectionComponent,
     CategorieSectionComponent,
     PriceListComponent,
+    CategoriesCardListComponent,
   ],
   imports: [
     BrowserModule,
