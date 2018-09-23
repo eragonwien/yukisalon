@@ -3,6 +3,7 @@ import { MainService } from '../main.service';
 import { Salon } from '../../models/salon';
 import { OpenHour } from '../../models/open.hour';
 import { Product } from '../../models/product';
+import { Category } from '../../models/category';
 
 @Component({
   selector: 'app-home',
@@ -15,8 +16,7 @@ export class HomeComponent implements OnInit {
   welcomeText: string;
   welcomeExtraText: string;
   openHours: OpenHour[];
-  features: Product[];
-  featuresCount: number = 3;
+  categories: Category[];
 
   constructor(private mainService: MainService) { }
 
@@ -28,7 +28,7 @@ export class HomeComponent implements OnInit {
         this.welcomeText = salon.about ? salon.about.text : "";
         this.welcomeExtraText = salon.about ? salon.about.extraText : "";
         this.openHours = salon.openHours;
-        this.features = this.mainService.getFeatures(salon.categories, this.featuresCount);
+        this.categories = salon.categories;
       });
   }
 
