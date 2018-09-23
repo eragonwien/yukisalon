@@ -1,6 +1,14 @@
 <app-hero-img [title]=title titleText="" imgName=""></app-hero-img>
 <div class="container px-5">
-  <app-welcome *ngIf="aboutSalon" [title]=aboutSalon.title [text]=aboutSalon.text [extraText]=aboutSalon.extraText></app-welcome>
-  <app-welcome *ngIf="aboutOwner" [title]=aboutOwner.title [text]=aboutOwner.text [extraText]=aboutOwner.extraText></app-welcome>
-  <app-featured [features]=features></app-featured>
+  <section id="about-salon p-3">
+      <app-welcome *ngIf="aboutSalon" [title]=aboutSalon.title [text]=aboutSalon.text [extraText]=aboutSalon.extraText></app-welcome>
+
+  </section>
+  <section id="about-owner">
+      <app-welcome *ngIf="aboutOwner" [title]=aboutOwner.title [text]=aboutOwner.text [extraText]=aboutOwner.extraText></app-welcome>
+
+  </section>
+  <section id="about-categories">
+<app-categories-card-list [categories]=categories></app-categories-card-list>
+  </section>
 </div>
