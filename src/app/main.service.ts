@@ -74,4 +74,8 @@ export class MainService {
     }
     return features;
   }
+
+  getImagePathPrefix() {
+    return this.imagePathPrefix;
+  }
 }
