@@ -8,13 +8,12 @@ import { Product } from "../models/product";
   providedIn: "root"
 })
 export class MainService {
-  dataPathPrefix: string = "../../assets/data/";
   imagePathPrefix: string = "assets/images/";
 
   constructor(private http: HttpClient) {}
 
   getSalonData() {
-    return this.http.get<Salon>(this.dataPathPrefix + "data.json");
+    return this.http.get<Salon>("assets/data/data.json");
   }
 
   getFeatures(categories: Category[], maxFeaturesCount: number): Product[] {
