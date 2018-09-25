@@ -1,7 +1,7 @@
 <div class="row">
   <h3 class="text-center w-100">{{ title ? title : "Preisliste" }}</h3>
 </div>
-<div class="row" *ngFor="let category of categories">
+<div class="row" *ngFor="let category of categories" [attr.id]="'price-list-' + category.name">
   <h4 class="text-white bg-primary w-100 p-3">{{category.name}}</h4>
   <div class="col-12 p-3" *ngFor="let subcategory of category.subcategories">
     <h5 class="text-center">{{subcategory.name}}</h5>

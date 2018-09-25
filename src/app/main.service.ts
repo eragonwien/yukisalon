@@ -9,6 +9,7 @@ import { Product } from "../models/product";
 })
 export class MainService {
   imagePathPrefix: string = "assets/images/";
+  priceListItemIdPrefix: string = "price-list-";
 
   constructor(private http: HttpClient) {}
 

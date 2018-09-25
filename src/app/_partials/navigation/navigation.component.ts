@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { MainService } from '../../main.service';
 
 @Component({
   selector: 'app-navigation',
@@ -7,12 +8,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavigationComponent implements OnInit {
 
+  @Input() logo: string;
+  defaultLogo: string = "logo.jpg";
+
   isCollapsed: boolean;
 
-  constructor() { }
+  constructor(private mainService: MainService) { }
 
   ngOnInit() {
     this.isCollapsed = true;
+    this.logo = this.mainService.getImagePathPrefix() + (this.logo ? this.logo : this.defaultLogo);
   }
 
 }
