@@ -1,4 +1,4 @@
-<app-hero-img [title]=title titleText="" imgName=""></app-hero-img>
+<app-hero-img [title]=title titleText="" imgName="banner2.jpg"></app-hero-img>
 <div class="container px-5">
   <section id="home-welcome" class="py-2">
     <app-welcome [title]=welcomeTitle [text]=welcomeText [extraText]=welcomeExtraText></app-welcome>
@@ -9,7 +9,14 @@
   <section id="home-categories" class="py-2">
     <app-categories-card-list [categories]=categories></app-categories-card-list>
   </section>
-  <section id="home-openhours" class="py-2">
-    <app-contact-open-hours [openHours]=openHours></app-contact-open-hours>
+  <section id="home-contact" class="py-2">
+    <div class="row">
+      <div class="col-12 col-md-6">
+        <app-contact-open-hours [openHours]=openHours></app-contact-open-hours>
+      </div>
+      <div class="col-12 col-md-6">
+        <app-contact-info [contact]=contact></app-contact-info>
+      </div>
+    </div>
   </section>
 </div>
