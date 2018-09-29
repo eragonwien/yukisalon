@@ -1,5 +1,5 @@
 {
-  "name": "Yuki Tuyet Beauty Salon",
+  "name": "Yuki Tuyet Beauty Spa",
   "owner": {
     "name": "Yuki Tuyet",
     "description": "ist eine professionelle Friseurin mit mehr als 20 Jahren Erfahrung sowohl im Inland als ach im Ausland. Yuki und Ihr Team bieten ihren Kunden ausgezeichnete Dienstleistungen an. Darüber hinauss werden Produkte berühmter Hersteller weltweit verwendet.",
@@ -54,6 +54,7 @@
   "categories": [
     {
       "name": "Friseur",
+      "image": "friseur2.jpg",
       "subcategories": [
         {
           "name": "Damen",
@@ -136,7 +137,8 @@
       
     },
     {
-      "name": "Haareentfernung",
+      "name": "Haare Entfernung",
+      "image": "haareentfernung.jpg",
       "products": [
         {
           "name": "Oberlippe",
@@ -166,6 +168,7 @@
     },
     {
       "name": "Kosmetik",
+      "image": "kosmetik.jpg",
       "products": [
         {
           "name": "Gesichtspflege",
@@ -189,6 +192,7 @@
     },
     {
       "name": "Nageldesign",
+      "image": "nageldesign2.jpg",
       "products": [
         {
           "name": "Nagelset Neu (Gel/ Acryl)",
@@ -230,6 +234,7 @@
     },
     {
       "name": "Fußpflege",
+      "image": "fusspflege.jpg",
       "products": [
         {
           "name": "Fußpflege mit Massagestühle",
@@ -258,7 +263,8 @@
       ]
     },
     {
-      "name": "Permanent Make-up",
+      "name": "Permanent Makeup",
+      "image": "permanentmakeup.jpg",
       "products":[
         {
           "name": "Augenbrauen classic",
@@ -354,6 +360,7 @@
     },
     {
       "name": "Massage",
+      "image": "massage.jpg",
       "products": [
         {
           "name": "Körpermassage 30 Minuten",
