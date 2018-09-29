@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { Address } from '../../../models/address';
 
 @Component({
   selector: 'app-footer',
@@ -7,9 +8,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FooterComponent implements OnInit {
 
+  @Input() name: string;
+  @Input() address: Address;
+  addressStr: string;
+
   constructor() { }
 
   ngOnInit() {
+    if (this.address) {
+      this.addressStr = this.address.street + ", " + this.address.plz + " " + this.address.city;
+    }
   }
 
 }

@@ -5,6 +5,7 @@ import { OpenHour } from '../../models/open.hour';
 import { Product } from '../../models/product';
 import { Category } from '../../models/category';
 import { Contact } from '../../models/contact';
+import { Address } from '../../models/address';
 
 @Component({
   selector: 'app-home',
@@ -19,6 +20,7 @@ export class HomeComponent implements OnInit {
   contact: Contact;
   openHours: OpenHour[];
   categories: Category[];
+  address: Address;
 
   constructor(private mainService: MainService) { }
 

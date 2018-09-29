@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { setTheme } from 'ngx-bootstrap/utils';
+import { Salon } from '../models/salon';
 
 @Component({
   selector: 'app-root',
@@ -8,6 +9,8 @@ import { setTheme } from 'ngx-bootstrap/utils';
 })
 export class AppComponent {
   title = 'yukifriseur';
+  salon: Salon;
+
   constructor() {
     setTheme('bs4');
   }

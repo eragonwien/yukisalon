@@ -3,6 +3,7 @@ import { MainService } from "../main.service";
 import { Salon } from "../../models/salon";
 import { About } from "../../models/about";
 import { Category } from "../../models/category";
+import { Address } from "../../models/address";
 
 @Component({
   selector: "app-about",
@@ -14,6 +15,8 @@ export class AboutComponent implements OnInit {
   aboutSalon: About;
   aboutOwner: About;
   categories: Category[];
+  salonName: string;
+  salonAddress: Address;
 
   constructor(private mainService: MainService) {}
 
@@ -35,6 +38,8 @@ export class AboutComponent implements OnInit {
         extraText: salon.owner.extraInfo
       };
       this.categories = salon.categories;
+      this.salonName = salon.name;
+      this.salonAddress = salon.address;
     });
   }
 }
