@@ -5,12 +5,15 @@
 // Variables ===================================================================
 
 $web-font-path: "https://fonts.googleapis.com/css?family=Nunito+Sans:400,600" !default;
+$mosterat-font-path: "https://fonts.googleapis.com/css?family=Montserrat";
 @import url($web-font-path);
+@import	url($mosterat-font-path);
+@import "variables";
 
 // Navbar ======================================================================
 
 .navbar {
-  font-size: $font-size-sm;
+  font-size: $font-size-base;
   text-transform: uppercase;
   font-weight: 600;
 
@@ -27,7 +30,7 @@ $web-font-path: "https://fonts.googleapis.com/css?family=Nunito+Sans:400,600" !d
 }
 
 .bg-primary {
-  background-color: $gray-900 !important;
+  background-color: $primary !important;
 }
 
 .bg-light {

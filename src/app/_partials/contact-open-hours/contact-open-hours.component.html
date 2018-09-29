@@ -1,8 +1,11 @@
-<h2>Öffnungszeiten</h2>
-<p *ngFor="let hour of openHours">
-  <span>
-    <strong>{{ hour.day }}</strong>:
-    <span *ngIf="hour.isClosed">geschlossen</span>
-    <span *ngIf="!hour.isClosed">{{ hour.from }} - {{ hour.to}}</span>
-  </span>
-</p>
+<div class="p-3">
+  <h3 class="text-primary">Öffnungszeiten</h3>
+  <p *ngFor="let hour of openHours">
+    <span class="text-primary">
+      <strong>{{ hour.day }}</strong>:
+      <span *ngIf="hour.isClosed">geschlossen</span>
+      <span *ngIf="!hour.isClosed">{{ hour.from }} - {{ hour.to}}</span>
+    </span>
+  </p>
+
+</div>
