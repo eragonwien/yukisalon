@@ -4,6 +4,7 @@ import { Salon } from '../../models/salon';
 import { OpenHour } from '../../models/open.hour';
 import { Product } from '../../models/product';
 import { Category } from '../../models/category';
+import { Contact } from '../../models/contact';
 
 @Component({
   selector: 'app-home',
@@ -15,6 +16,7 @@ export class HomeComponent implements OnInit {
   welcomeTitle: string;
   welcomeText: string;
   welcomeExtraText: string;
+  contact: Contact;
   openHours: OpenHour[];
   categories: Category[];
 
@@ -29,6 +31,15 @@ export class HomeComponent implements OnInit {
         this.welcomeExtraText = salon.about ? salon.about.extraText : "";
         this.openHours = salon.openHours;
         this.categories = salon.categories;
+        this.contact = {
+          name: salon.name,
+          address: salon.address,
+          email: salon.email,
+          facebook: salon.facebook,
+          openHours: salon.openHours,
+          owner: salon.owner,
+          phone: salon.phone
+        };
       });
   }
 
