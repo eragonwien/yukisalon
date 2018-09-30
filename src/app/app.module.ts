@@ -24,11 +24,10 @@ import { PriceListComponent } from './_partials/price-list/price-list.component'
 import { CategoriesCardListComponent } from './_partials/categories-card-list/categories-card-list.component';
 
 const appRoutes: Routes = [
-  { path: 'home', component: HomeComponent, data: { title: 'Yuki Tuyet Spa' }},
+  { path: '', component: HomeComponent, data: { title: 'Yuki Tuyet Spa' }},
   { path: 'products', component: ProductsComponent, data: { title: 'Unsere Produkte' }},
   { path: 'about', component: AboutComponent, data: { title: 'Über uns' }},
   { path: 'contact', component: ContactComponent, data: { title: 'Kontakt' }},
-  { path: '', redirectTo: '/home', pathMatch: 'full'},
   { path: '**', component: PageNotFoundComponent, data: { title: 'Seite nicht gefunden' }}
 ];
 
