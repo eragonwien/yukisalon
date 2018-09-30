@@ -22,6 +22,8 @@ import { ProductSectionComponent } from './_partials/product-section/product-sec
 import { CategorieSectionComponent } from './_partials/categorie-section/categorie-section.component';
 import { PriceListComponent } from './_partials/price-list/price-list.component';
 import { CategoriesCardListComponent } from './_partials/categories-card-list/categories-card-list.component';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
 
 const appRoutes: Routes = [
   { path: '', component: HomeComponent, data: { title: 'Yuki Tuyet Spa' }},
@@ -56,7 +58,8 @@ const appRoutes: Routes = [
     BrowserModule,
     RouterModule.forRoot(appRoutes, { enableTracing: true}),
     HttpClientModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
   providers: [],
   bootstrap: [AppComponent]
