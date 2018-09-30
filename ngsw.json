@@ -1,0 +1,97 @@
+{
+  "configVersion": 1,
+  "index": "/yukisalon/index.html",
+  "assetGroups": [
+    {
+      "name": "app",
+      "installMode": "prefetch",
+      "updateMode": "prefetch",
+      "urls": [
+        "/yukisalon/favicon.ico",
+        "/yukisalon/index.html",
+        "/yukisalon/main.707c0d26919551837433.js",
+        "/yukisalon/polyfills.2f4a59095805af02bd79.js",
+        "/yukisalon/runtime.a66f828dca56eeb90e02.js",
+        "/yukisalon/styles.b84208f3f172dba25566.css"
+      ],
+      "patterns": []
+    },
+    {
+      "name": "assets",
+      "installMode": "lazy",
+      "updateMode": "prefetch",
+      "urls": [
+        "/yukisalon/assets/css/app.css",
+        "/yukisalon/assets/css/app.map",
+        "/yukisalon/assets/data/data.json",
+        "/yukisalon/assets/images/_massage.jpg",
+        "/yukisalon/assets/images/banner.jpg",
+        "/yukisalon/assets/images/banner2.jpg",
+        "/yukisalon/assets/images/friseur.jpg",
+        "/yukisalon/assets/images/friseur2.jpg",
+        "/yukisalon/assets/images/fusspflege.jpg",
+        "/yukisalon/assets/images/haareentfernung.jpg",
+        "/yukisalon/assets/images/haarglattung1.jpg",
+        "/yukisalon/assets/images/kosmetik.jpg",
+        "/yukisalon/assets/images/logo.ico",
+        "/yukisalon/assets/images/logo.jpg",
+        "/yukisalon/assets/images/logo.png",
+        "/yukisalon/assets/images/massage.jpg",
+        "/yukisalon/assets/images/my-profil.png",
+        "/yukisalon/assets/images/nageldesign.jpg",
+        "/yukisalon/assets/images/nageldesign2.jpg",
+        "/yukisalon/assets/images/owner.jpg",
+        "/yukisalon/assets/images/permanentmakeup.jpg"
+      ],
+      "patterns": []
+    }
+  ],
+  "dataGroups": [],
+  "hashTable": {
+    "/yukisalon/assets/css/app.css": "24df0ae88ed8c9c8fc30bd290ebd35e4d9b5c03a",
+    "/yukisalon/assets/css/app.map": "0a149d03c43d9d8a04c36f9f5baa3b96222e0bdb",
+    "/yukisalon/assets/data/data.json": "45495f10d92a5f555e0cd88f116c69e3e6b2f955",
+    "/yukisalon/assets/images/_massage.jpg": "a64ac066a9c4666e2aeb28166be43670ff132558",
+    "/yukisalon/assets/images/banner.jpg": "e1928652ab793fb5ae39a24f159391fb20058e15",
+    "/yukisalon/assets/images/banner2.jpg": "64002229f4d870d46ecf2abeca149ca652958a71",
+    "/yukisalon/assets/images/friseur.jpg": "f6621b0928dabc34793db11d807c51f098fb822c",
+    "/yukisalon/assets/images/friseur2.jpg": "7a6c7d3e4b973a2d9d3e4df7893deb111a288159",
+    "/yukisalon/assets/images/fusspflege.jpg": "98b01e0219102a03e43b6b8dbc1bd5736dbb5ec3",
+    "/yukisalon/assets/images/haareentfernung.jpg": "13b25c119db5a19f8e375755985c3e5b14c1afc6",
+    "/yukisalon/assets/images/haarglattung1.jpg": "1b8cb17014222ac24fbee03005def1188d2e4cb3",
+    "/yukisalon/assets/images/kosmetik.jpg": "d525bb0ad1c6a0e883ce34040e1d89317c78204c",
+    "/yukisalon/assets/images/logo.ico": "3e0a617016b4124b2fc436d3ac60e48744dd8b4d",
+    "/yukisalon/assets/images/logo.jpg": "27d3c9d1719ca6c6631c334e51f2b727a8c0dd1b",
+    "/yukisalon/assets/images/logo.png": "3526d8bc4bedf56319c2bd1d3da54e43fad460fe",
+    "/yukisalon/assets/images/massage.jpg": "9ba17c892318be033e52d2828115658f0f638780",
+    "/yukisalon/assets/images/my-profil.png": "0b07b9cd6b1d40c06de7e2db19796c77d38cfa00",
+    "/yukisalon/assets/images/nageldesign.jpg": "f66fc928942f91193b65cd7e16b53316f3b8d739",
+    "/yukisalon/assets/images/nageldesign2.jpg": "a9bae1714526fbce5b4bf8f90260ead82851f023",
+    "/yukisalon/assets/images/owner.jpg": "9efcc9b35afe7d574f8b0d3f1f9d9aaec50354cb",
+    "/yukisalon/assets/images/permanentmakeup.jpg": "a76cc4d04541fc89e5b922034a13928c8f3622f3",
+    "/yukisalon/favicon.ico": "3e0a617016b4124b2fc436d3ac60e48744dd8b4d",
+    "/yukisalon/index.html": "86b069e420ccbced59400d4c3e0f33d508564a3d",
+    "/yukisalon/main.707c0d26919551837433.js": "6449aaa2f0e568e5e35b366bb0f64d4340cc80b3",
+    "/yukisalon/polyfills.2f4a59095805af02bd79.js": "8949bb1b1e302dda246f6ed9c2da703270360b1f",
+    "/yukisalon/runtime.a66f828dca56eeb90e02.js": "078e320cc6fdaf355836c3b1c52b059cdd33fc7e",
+    "/yukisalon/styles.b84208f3f172dba25566.css": "060d59205a543cb36fce55af24b06475ae248ae4"
+  },
+  "navigationUrls": [
+    {
+      "positive": true,
+      "regex": "^\\/.*$"
+    },
+    {
+      "positive": false,
+      "regex": "^\\/(?:.+\\/)?[^/]*\\.[^/]*$"
+    },
+    {
+      "positive": false,
+      "regex": "^\\/(?:.+\\/)?[^/]*__[^/]*$"
+    },
+    {
+      "positive": false,
+      "regex": "^\\/(?:.+\\/)?[^/]*__[^/]*\\/.*$"
+    }
+  ]
+}
