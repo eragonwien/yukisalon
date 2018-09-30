@@ -2,7 +2,7 @@ import { BrowserModule, platformBrowser } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from "@angular/router";
 import { HttpClientModule } from "@angular/common/http";
-import { CollapseModule } from "ngx-bootstrap";
+import { FontAwesomeModule } from "@fortawesome/angular-fontawesome";
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
@@ -57,7 +57,7 @@ const appRoutes: Routes = [
     BrowserModule,
     RouterModule.forRoot(appRoutes, { enableTracing: true}),
     HttpClientModule,
-    CollapseModule.forRoot()
+    FontAwesomeModule
   ],
   providers: [],
   bootstrap: [AppComponent]

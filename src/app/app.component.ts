@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { setTheme } from 'ngx-bootstrap/utils';
 import { Salon } from '../models/salon';
 
 @Component({
@@ -12,6 +11,5 @@ export class AppComponent {
   salon: Salon;
 
   constructor() {
-    setTheme('bs4');
   }
 }
