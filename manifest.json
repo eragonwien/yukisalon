@@ -1,8 +1,8 @@
 {
   "name": "Yuki Tuyet Beauty Spa",
   "short_name": "Yuki Spa",
-  "theme_color": "#1976d2",
-  "background_color": "#1976d2",
+  "theme_color": "#e83e8c",
+  "background_color": "#e83e8c",
   "display": "standalone",
   "scope": "/",
   "start_url": "index.html",
