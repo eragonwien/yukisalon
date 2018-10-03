@@ -23,7 +23,9 @@
               "src/assets/css",
               "src/assets/images",
               "src/assets/data",
-              "src/manifest.json"
+              "src/assets/icons",
+              "src/manifest.json",
+              "src/offline.html"
             ],
             "styles": [
               "src/styles.css"
@@ -84,7 +86,9 @@
               "src/assets/css",
               "src/assets/images",
               "src/assets/data",
-              "src/manifest.json"
+              "src/assets/icons",
+              "src/manifest.json",
+              "src/offline.html"
             ]
           }
         },
