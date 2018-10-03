@@ -10,7 +10,7 @@ export class ProductSectionComponent implements OnInit {
 
   @Input() product: Product;
   imagePathPrefix: string = "assets/images/";
-  imageAlt: string = "banner.jpg";
+  imageAlt: string = "jpeg/banner.jpeg";
 
   constructor() { }
 

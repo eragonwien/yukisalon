@@ -14,7 +14,7 @@ export class CategoriesCardListComponent implements OnInit {
   @Input() title: string;
   
   imagePathPrefix: string;
-  defaultImage: string = "banner.jpg";
+  defaultImage: string = "jpeg/banner.jpeg";
 
   constructor(private mainService: MainService, private router: Router) { }
 

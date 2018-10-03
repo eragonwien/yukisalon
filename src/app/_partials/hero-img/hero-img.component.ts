@@ -11,7 +11,7 @@ export class HeroImgComponent implements OnInit {
   @Input() titleText: String;
   @Input() imgName: String;
   bgStyle: any = {}
-  defaultImg: string = "banner2.jpg";
+  defaultImg: string = "jpeg/banner.jpeg";
 
   constructor(private service: MainService) { }
 

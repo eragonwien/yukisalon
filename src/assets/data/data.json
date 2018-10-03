@@ -168,7 +168,7 @@
     },
     {
       "name": "Kosmetik",
-      "image": "kosmetik.jpg",
+      "image": "jpeg/kosmetik.jpeg",
       "products": [
         {
           "name": "Gesichtspflege",
@@ -192,7 +192,7 @@
     },
     {
       "name": "Nageldesign",
-      "image": "nageldesign2.jpg",
+      "image": "jpeg/nageldesign.jpeg",
       "products": [
         {
           "name": "Nagelset Neu (Gel/ Acryl)",
@@ -234,7 +234,7 @@
     },
     {
       "name": "Fußpflege",
-      "image": "fusspflege.jpg",
+      "image": "jpeg/fusspflege.jpeg",
       "products": [
         {
           "name": "Fußpflege mit Massagestühle",
@@ -264,7 +264,7 @@
     },
     {
       "name": "Permanent Makeup",
-      "image": "permanentmakeup.jpg",
+      "image": "jpeg/permanentmakeup.jpeg",
       "products":[
         {
           "name": "Augenbrauen classic",
@@ -360,7 +360,7 @@
     },
     {
       "name": "Massage",
-      "image": "massage.jpg",
+      "image": "jpeg/massage.jpeg",
       "products": [
         {
           "name": "Körpermassage 30 Minuten",
