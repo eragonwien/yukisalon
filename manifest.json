@@ -4,46 +4,46 @@
   "theme_color": "#e83e8c",
   "background_color": "white",
   "display": "standalone",
-  "scope": ".",
+  "scope": "/yukisalon/",
   "start_url": "./index.html",
   "icons": [
     {
-      "src": "./assets/icons/logo-72x72.jpeg",
+      "src": "assets/icons/logo-72x72.jpeg",
       "sizes": "72x72",
       "type": "image/jpeg"
     },
     {
-      "src": "./assets/icons/logo-96x96.jpeg",
+      "src": "assets/icons/logo-96x96.jpeg",
       "sizes": "96x96",
       "type": "image/jpeg"
     },
     {
-      "src": "./assets/icons/logo-128x128.jpeg",
+      "src": "assets/icons/logo-128x128.jpeg",
       "sizes": "128x128",
       "type": "image/jpeg"
     },
     {
-      "src": "./assets/icons/logo-144x144.jpeg",
+      "src": "assets/icons/logo-144x144.jpeg",
       "sizes": "144x144",
       "type": "image/jpeg"
     },
     {
-      "src": "./assets/icons/logo-152x152.jpeg",
+      "src": "assets/icons/logo-152x152.jpeg",
       "sizes": "152x152",
       "type": "image/jpeg"
     },
     {
-      "src": "./assets/icons/logo-192x192.jpeg",
+      "src": "assets/icons/logo-192x192.jpeg",
       "sizes": "192x192",
       "type": "image/jpeg"
     },
     {
-      "src": "./assets/icons/logo-384x384.jpeg",
+      "src": "assets/icons/logo-384x384.jpeg",
       "sizes": "384x384",
       "type": "image/jpeg"
     },
     {
-      "src": "./assets/icons/logo-512x512.jpeg",
+      "src": "assets/icons/logo-512x512.jpeg",
       "sizes": "512x512",
       "type": "image/jpeg"
     }
