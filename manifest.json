@@ -4,7 +4,7 @@
   "theme_color": "#e83e8c",
   "background_color": "white",
   "display": "standalone",
-  "scope": "/yukisalon/",
+  "scope": ".",
   "start_url": "./index.html",
   "icons": [
     {
