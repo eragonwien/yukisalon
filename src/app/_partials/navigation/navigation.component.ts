@@ -9,7 +9,7 @@ import { MainService } from '../../main.service';
 export class NavigationComponent implements OnInit {
 
   @Input() logo: string;
-  defaultLogo: string = "logo.jpg";
+  defaultLogo: string = "jpeg/logo.jpeg";
 
   isCollapsed: boolean;
 
