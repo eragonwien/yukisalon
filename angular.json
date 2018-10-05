@@ -21,7 +21,7 @@
             "assets": [
               "src/favicon.ico",
               "src/assets/css",
-              "src/assets/images",
+              "src/assets/images/jpeg",
               "src/assets/data",
               "src/assets/icons",
               "src/manifest.json",
@@ -84,7 +84,7 @@
             "assets": [
               "src/favicon.ico",
               "src/assets/css",
-              "src/assets/images",
+              "src/assets/images/jpeg",
               "src/assets/data",
               "src/assets/icons",
               "src/manifest.json",
