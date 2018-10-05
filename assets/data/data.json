@@ -54,7 +54,7 @@
   "categories": [
     {
       "name": "Friseur",
-      "image": "friseur2.jpg",
+      "image": "jpeg/friseur.jpeg",
       "subcategories": [
         {
           "name": "Damen",
@@ -138,7 +138,7 @@
     },
     {
       "name": "Haare Entfernung",
-      "image": "haareentfernung.jpg",
+      "image": "jpeg/haareentfernung.jpeg",
       "products": [
         {
           "name": "Oberlippe",
