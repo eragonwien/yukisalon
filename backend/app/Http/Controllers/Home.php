@@ -8,6 +8,6 @@ class Home extends Controller
 {
     public function index()
     {
-        return "Herllo World";
+        return view('welcome');
     }
 }
