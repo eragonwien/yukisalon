@@ -23,6 +23,10 @@ namespace yukisalon.Models
         public virtual DbSet<Product> Product { get; set; }
         public virtual DbSet<Salon> Salon { get; set; }
 
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+        }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Address>(entity =>
@@ -97,6 +101,7 @@ namespace yukisalon.Models
             modelBuilder.Entity<Salon>(entity =>
             {
                 entity.HasOne(d => d.Contact);
+
                 entity.HasOne(d => d.Owner);
             });
         }
