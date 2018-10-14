@@ -25,10 +25,10 @@ namespace yukisalon.Controllers
         public Salon GetSalon()
         {
             var salon = _context.Salon
-                .Include(s => s.Contact)
-                .Include(s => s.Owner)
+                .Include(s => s.Contact).ThenInclude(c => c.OpenHour)
+                .Include(s => s.User)
+                .Include(s => s.Category)
                 .First();
-
 
             return salon;
         }

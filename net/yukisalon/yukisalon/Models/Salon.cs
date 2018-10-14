@@ -8,16 +8,17 @@ namespace yukisalon.Models
         public Salon()
         {
             Category = new HashSet<Category>();
+            Contact = new HashSet<Contact>();
+            User = new HashSet<User>();
         }
 
         public int Id { get; set; }
-        public int ContactId { get; set; }
-        public int OwnerId { get; set; }
+        public string Name { get; set; }
         public string Description { get; set; }
         public string ExtraInfo { get; set; }
 
-        public Contact Contact { get; set; }
-        public Owner Owner { get; set; }
         public ICollection<Category> Category { get; set; }
+        public ICollection<Contact> Contact { get; set; }
+        public ICollection<User> User { get; set; }
     }
 }

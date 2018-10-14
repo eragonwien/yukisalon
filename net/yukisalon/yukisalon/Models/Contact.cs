@@ -11,13 +11,15 @@ namespace yukisalon.Models
         }
 
         public int Id { get; set; }
-        public int AddressId { get; set; }
-        public string Name { get; set; }
+        public int SalonId { get; set; }
+        public string Address1 { get; set; }
+        public string Address2 { get; set; }
+        public string Plz { get; set; }
+        public string City { get; set; }
         public string Phone { get; set; }
         public string Facebook { get; set; }
         public string Email { get; set; }
 
-        public Address Address { get; set; }
         public ICollection<OpenHour> OpenHour { get; set; }
     }
 }

@@ -15,73 +15,46 @@ namespace yukisalon.Models
         {
         }
 
-        public virtual DbSet<Address> Address { get; set; }
         public virtual DbSet<Category> Category { get; set; }
         public virtual DbSet<Contact> Contact { get; set; }
         public virtual DbSet<OpenHour> OpenHour { get; set; }
-        public virtual DbSet<Owner> Owner { get; set; }
         public virtual DbSet<Product> Product { get; set; }
         public virtual DbSet<Salon> Salon { get; set; }
-
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-        }
+        public virtual DbSet<User> User { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Address>(entity =>
-            {
-                entity.Property(e => e.Plz)
-                    .HasColumnName("PLZ")
-                    .HasMaxLength(30);
-            });
-
             modelBuilder.Entity<Category>(entity =>
             {
-                entity.HasOne(d => d.Salon)
-                    .WithMany(p => p.Category)
-                    .HasForeignKey(d => d.SalonId);
-
-                entity.HasOne(d => d.Subcategory)
-                    .WithMany(p => p.InverseSubcategory)
-                    .HasForeignKey(d => d.SubcategoryId)
-                    .HasConstraintName("FK_Category_SubCategory_SubcategoryId");
             });
 
             modelBuilder.Entity<Contact>(entity =>
             {
-                entity.HasIndex(e => e.Name)
-                    .HasName("UQ__Contact__737584F6DFC8BF44")
-                    .IsUnique();
+                entity.Property(e => e.Address1).HasMaxLength(50);
+
+                entity.Property(e => e.Address2).HasMaxLength(50);
+
+                entity.Property(e => e.City).HasMaxLength(30);
 
                 entity.Property(e => e.Email).HasMaxLength(50);
 
                 entity.Property(e => e.Facebook).HasMaxLength(50);
 
-                entity.Property(e => e.Name)
-                    .IsRequired()
-                    .HasMaxLength(50);
+                entity.Property(e => e.Phone).HasMaxLength(20);
 
-                entity.Property(e => e.Phone).HasMaxLength(50);
-
-                entity.HasOne(d => d.Address)
-                    .WithMany(p => p.Contact)
-                    .HasForeignKey(d => d.AddressId)
-                    .OnDelete(DeleteBehavior.ClientSetNull);
+                entity.Property(e => e.Plz)
+                    .HasColumnName("PLZ")
+                    .HasMaxLength(30);
             });
 
             modelBuilder.Entity<OpenHour>(entity =>
             {
-                entity.Property(e => e.Close).HasMaxLength(10);
+                entity.Property(e => e.Close).HasMaxLength(5);
 
-                entity.Property(e => e.Day).HasMaxLength(30);
+                entity.Property(e => e.Day).HasMaxLength(10);
 
-                entity.Property(e => e.Open).HasMaxLength(10);
+                entity.Property(e => e.Open).HasMaxLength(5);
 
-                entity.HasOne(d => d.Contact)
-                    .WithMany(p => p.OpenHour)
-                    .HasForeignKey(d => d.ContactId)
-                    .OnDelete(DeleteBehavior.ClientSetNull);
             });
 
             modelBuilder.Entity<Product>(entity =>
@@ -92,17 +65,23 @@ namespace yukisalon.Models
 
                 entity.Property(e => e.Price).HasColumnType("money");
 
-                entity.HasOne(d => d.Category)
-                    .WithMany(p => p.Product)
-                    .HasForeignKey(d => d.CategoryId)
-                    .OnDelete(DeleteBehavior.ClientSetNull);
             });
 
             modelBuilder.Entity<Salon>(entity =>
             {
-                entity.HasOne(d => d.Contact);
+                entity.HasIndex(e => e.Name)
+                    .HasName("UQ__Salon__737584F6840A7544")
+                    .IsUnique();
 
-                entity.HasOne(d => d.Owner);
+                entity.Property(e => e.Name)
+                    .IsRequired()
+                    .HasMaxLength(30);
+            });
+
+            modelBuilder.Entity<User>(entity =>
+            {
+                entity.Property(e => e.Name).HasMaxLength(30);
+
             });
         }
     }
