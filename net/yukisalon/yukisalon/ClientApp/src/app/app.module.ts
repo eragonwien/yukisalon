@@ -9,6 +9,15 @@ import { NavMenuComponent } from './nav-menu/nav-menu.component';
 import { HomeComponent } from './home/home.component';
 import { CounterComponent } from './counter/counter.component';
 import { FetchDataComponent } from './fetch-data/fetch-data.component';
+import { ContactComponent } from './contact/contact.component';
+import { LoaderComponent } from './shared/loader/loader.component';
+import { NavbarComponent } from './shared/navbar/navbar.component';
+import { BannerComponent } from './shared/banner/banner.component';
+import { OpenHoursComponent } from './contact/partials/open-hours/open-hours.component';
+import { InfoComponent } from './contact/partials/info/info.component';
+import { ProductComponent } from './product/product.component';
+import { CategoryComponent } from './product/partials/category/category.component';
+import { FeaturesComponent } from './product/partials/features/features.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +25,16 @@ import { FetchDataComponent } from './fetch-data/fetch-data.component';
     NavMenuComponent,
     HomeComponent,
     CounterComponent,
-    FetchDataComponent
+    FetchDataComponent,
+    ContactComponent,
+    LoaderComponent,
+    NavbarComponent,
+    BannerComponent,
+    OpenHoursComponent,
+    InfoComponent,
+    ProductComponent,
+    CategoryComponent,
+    FeaturesComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -26,6 +44,8 @@ import { FetchDataComponent } from './fetch-data/fetch-data.component';
       { path: '', component: HomeComponent, pathMatch: 'full' },
       { path: 'counter', component: CounterComponent },
       { path: 'fetch-data', component: FetchDataComponent },
+      { path: 'kontakt', component: ContactComponent },
+      { path: 'dienstleistung', component: ProductComponent }
     ])
   ],
   providers: [],
