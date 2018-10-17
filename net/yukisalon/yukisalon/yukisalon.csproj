@@ -20,8 +20,47 @@
 
   <ItemGroup>
     <!-- Don't publish the SPA source files, but do show them in the project files list -->
+    <Compile Remove="ClientApp\src\assets\NewFolder - Copy %282%29\**" />
+    <Compile Remove="ClientApp\src\assets\NewFolder - Copy\**" />
+    <Compile Remove="ClientApp\src\assets\NewFolder\**" />
+    <Compile Remove="ClientApp\src\NewFolder\**" />
     <Content Remove="$(SpaRoot)**" />
+    <Content Remove="ClientApp\src\assets\NewFolder - Copy %282%29\**" />
+    <Content Remove="ClientApp\src\assets\NewFolder - Copy\**" />
+    <Content Remove="ClientApp\src\assets\NewFolder\**" />
+    <Content Remove="ClientApp\src\NewFolder\**" />
     <None Include="$(SpaRoot)**" Exclude="$(SpaRoot)node_modules\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Remove="ClientApp\src\assets\NewFolder - Copy %282%29\**" />
+    <EmbeddedResource Remove="ClientApp\src\assets\NewFolder - Copy\**" />
+    <EmbeddedResource Remove="ClientApp\src\assets\NewFolder\**" />
+    <EmbeddedResource Remove="ClientApp\src\NewFolder\**" />
+    <None Remove="ClientApp\src\assets\NewFolder - Copy %282%29\**" />
+    <None Remove="ClientApp\src\assets\NewFolder - Copy\**" />
+    <None Remove="ClientApp\src\assets\NewFolder\**" />
+    <None Remove="ClientApp\src\NewFolder\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="ClientApp\src\app\models\Contact.ts" />
+    <None Remove="ClientApp\src\app\models\Salon.ts" />
+    <None Remove="ClientApp\src\app\models\User.ts" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="ClientApp\src\app\shared\" />
+    <Folder Include="ClientApp\src\assets\css\" />
+    <Folder Include="ClientApp\src\assets\icons\" />
+    <Folder Include="ClientApp\src\assets\images\" />
+    <Folder Include="ClientApp\src\assets\sass\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <TypeScriptCompile Include="ClientApp\src\app\models\Contact.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\models\Salon.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\models\User.ts" />
   </ItemGroup>
 
   <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">
