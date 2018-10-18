@@ -21,6 +21,7 @@ namespace yukisalon.Models
             CreateCategories(context);
             CreateSubCategories(context);
             CreateProducts(context);
+            CreateWelcome(context);
         }
 
         private static void CreateSalon(YUKISALONDEVContext context)
@@ -60,12 +61,12 @@ namespace yukisalon.Models
             Salon salon = context.Salon.First();
             Contact contact = new Contact()
             {
+                SalonId = salon.Id,
                 Address1 = "Neubaugasse 73",
                 Plz = "1070",
                 City = "Wien",
                 Email = "tuyetvienna@gmail.com",
-                Phone = "0699 10019541",
-                SalonId = salon.Id
+                Phone = "0699 10019541"
             };
             context.Contact.Add(contact);
             context.SaveChanges();
@@ -150,6 +151,24 @@ namespace yukisalon.Models
             };
 
             context.Product.Add(haareSchneiden);
+            context.SaveChanges();
+        }
+
+        private static void CreateWelcome(YUKISALONDEVContext context)
+        {
+            if (!context.Salon.Any())
+            {
+                return;
+            }
+            Salon salon = context.Salon.First();
+            Welcome welcome = new Welcome
+            {
+                SalonId = salon.Id,
+                Title = "Welcome",
+                Text1 = "TEXT1",
+                Text2 = "TEXT2"
+            };
+            context.Welcome.Add(welcome);
             context.SaveChanges();
         }
     }

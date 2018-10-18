@@ -2,7 +2,7 @@
 use [YUKISALONDEV];
 GO
 
-drop table if exists [Product], [Category], [OpenHour], [Contact], [User], [Salon];
+drop table if exists [Product], [Category], [User], [Welcome], [OpenHour], [Contact], [Salon];
 GO
 
 CREATE TABLE [Salon] (
@@ -14,20 +14,9 @@ CREATE TABLE [Salon] (
 );
 GO
 
-CREATE TABLE [User] (
-    [Id] int NOT NULL IDENTITY,
-    [SalonId] int NOT NULL,
-    [Name] nvarchar(30),
-    [Description] nvarchar(max),
-    [ExtraInfo] nvarchar(max),
-    CONSTRAINT [PK_User] PRIMARY KEY ([Id]),
-	CONSTRAINT [FK_User_Salon_SalonId] FOREIGN KEY ([SalonId]) REFERENCES [Salon] ([Id])
-);
-GO
-
 CREATE TABLE [Contact] (
     [Id] int NOT NULL IDENTITY,
-    [SalonId] int NOT NULL,
+	[SalonId] INT NOT NULL,
 	[Address1] nvarchar(50),
 	[Address2] nvarchar(50),
 	[PLZ] nvarchar(30),
@@ -51,6 +40,32 @@ CREATE TABLE [OpenHour] (
 );
 GO
 
+CREATE TABLE [Welcome] (
+    [Id] int NOT NULL IDENTITY,
+	[SalonId] INT NOT NULL,
+    [Title] nvarchar(max),
+    [Text1] nvarchar(max),
+    [Text2] nvarchar(max),
+    CONSTRAINT [PK_Welcome] PRIMARY KEY ([Id]),
+	CONSTRAINT [FK_Welcome_Salon_SalonId] FOREIGN KEY ([SalonId]) REFERENCES [Salon] ([Id])
+);
+GO
+
+
+
+CREATE TABLE [User] (
+    [Id] int NOT NULL IDENTITY,
+    [SalonId] int NOT NULL,
+    [Name] nvarchar(30),
+    [Description] nvarchar(max),
+    [ExtraInfo] nvarchar(max),
+    CONSTRAINT [PK_User] PRIMARY KEY ([Id]),
+	CONSTRAINT [FK_User_Salon_SalonId] FOREIGN KEY ([SalonId]) REFERENCES [Salon] ([Id])
+);
+GO
+
+
+
 CREATE TABLE [Category] (
     [Id] int NOT NULL IDENTITY,
     [SalonId] int,
@@ -58,7 +73,7 @@ CREATE TABLE [Category] (
 	[Name] nvarchar(max),
 	[Image] nvarchar(max),
     CONSTRAINT [PK_Category] PRIMARY KEY ([Id]),
-	CONSTRAINT [FK_Category_SubCategory_SubcategoryId] FOREIGN KEY ([ParentId]) REFERENCES [Category] ([Id]),
+	CONSTRAINT [FK_Category_Parent_ParentId] FOREIGN KEY ([ParentId]) REFERENCES [Category] ([Id]),
 	CONSTRAINT [FK_Category_Salon_SalonId] FOREIGN KEY ([SalonId]) REFERENCES [Salon] ([Id])
 );
 GO
@@ -77,3 +92,7 @@ CREATE TABLE [Product] (
 	CONSTRAINT [FK_Product_Category_CategoryId] FOREIGN KEY ([CategoryId]) REFERENCES [Category] ([Id])
 );
 GO
+
+
+
+

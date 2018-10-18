@@ -1,4 +1,7 @@
 use [YUKISALONDEV];
 GO 
 
-SELECT * from [OpenHour];
+SELECT * from [Contact];
+SELECT * from [Category];
+SELECT * from [User];
+SELECT * from [Salon];

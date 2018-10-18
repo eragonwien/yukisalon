@@ -13,22 +13,29 @@ namespace yukisalon.Controllers
     [ApiController]
     public class SalonController : ControllerBase
     {
-        private readonly YUKISALONDEVContext _context;
+        private readonly YUKISALONDEVContext context;
 
         public SalonController(YUKISALONDEVContext context)
         {
-            _context = context;
+            this.context = context;
         }
 
         // GET: api/Salon
         [HttpGet]
         public Salon GetSalon()
         {
-            var salon = _context.Salon
+            var salon = context.Salon
+                .Include(s => s.Welcome)
                 .Include(s => s.Contact).ThenInclude(c => c.OpenHour)
                 .Include(s => s.User)
-                .Include(s => s.Category)
                 .First();
+
+            context.Entry(salon)
+                .Collection<Category>(s => s.Category)
+                .Query()
+                .Where(c => c.ParentId == null)
+                .Include(c => c.SubCategory)
+                .Load();
 
             return salon;
         }
@@ -125,7 +132,7 @@ namespace yukisalon.Controllers
 
         private bool SalonExists(int id)
         {
-            return _context.Salon.Any(e => e.Id == id);
+            return context.Salon.Any(e => e.Id == id);
         }
     }
 }

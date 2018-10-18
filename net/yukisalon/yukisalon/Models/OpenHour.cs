@@ -10,5 +10,7 @@ namespace yukisalon.Models
         public string Day { get; set; }
         public string Open { get; set; }
         public string Close { get; set; }
+
+        public Contact Contact { get; set; }
     }
 }

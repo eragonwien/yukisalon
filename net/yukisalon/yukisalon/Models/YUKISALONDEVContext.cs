@@ -21,11 +21,20 @@ namespace yukisalon.Models
         public virtual DbSet<Product> Product { get; set; }
         public virtual DbSet<Salon> Salon { get; set; }
         public virtual DbSet<User> User { get; set; }
+        public virtual DbSet<Welcome> Welcome { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Category>(entity =>
             {
+                entity.HasOne(d => d.Parent)
+                    .WithMany(p => p.SubCategory)
+                    .HasForeignKey(d => d.ParentId)
+                    .HasConstraintName("FK_Category_Parent_ParentId");
+
+                entity.HasOne(d => d.Salon)
+                    .WithMany(p => p.Category)
+                    .HasForeignKey(d => d.SalonId);
             });
 
             modelBuilder.Entity<Contact>(entity =>
@@ -45,6 +54,11 @@ namespace yukisalon.Models
                 entity.Property(e => e.Plz)
                     .HasColumnName("PLZ")
                     .HasMaxLength(30);
+
+                entity.HasOne(d => d.Salon)
+                    .WithMany(p => p.Contact)
+                    .HasForeignKey(d => d.SalonId)
+                    .OnDelete(DeleteBehavior.ClientSetNull);
             });
 
             modelBuilder.Entity<OpenHour>(entity =>
@@ -55,6 +69,10 @@ namespace yukisalon.Models
 
                 entity.Property(e => e.Open).HasMaxLength(5);
 
+                entity.HasOne(d => d.Contact)
+                    .WithMany(p => p.OpenHour)
+                    .HasForeignKey(d => d.ContactId)
+                    .OnDelete(DeleteBehavior.ClientSetNull);
             });
 
             modelBuilder.Entity<Product>(entity =>
@@ -65,12 +83,16 @@ namespace yukisalon.Models
 
                 entity.Property(e => e.Price).HasColumnType("money");
 
+                entity.HasOne(d => d.Category)
+                    .WithMany(p => p.Product)
+                    .HasForeignKey(d => d.CategoryId)
+                    .OnDelete(DeleteBehavior.ClientSetNull);
             });
 
             modelBuilder.Entity<Salon>(entity =>
             {
                 entity.HasIndex(e => e.Name)
-                    .HasName("UQ__Salon__737584F6840A7544")
+                    .HasName("UQ__Salon__737584F6AD45CFAA")
                     .IsUnique();
 
                 entity.Property(e => e.Name)
@@ -82,6 +104,18 @@ namespace yukisalon.Models
             {
                 entity.Property(e => e.Name).HasMaxLength(30);
 
+                entity.HasOne(d => d.Salon)
+                    .WithMany(p => p.User)
+                    .HasForeignKey(d => d.SalonId)
+                    .OnDelete(DeleteBehavior.ClientSetNull);
+            });
+
+            modelBuilder.Entity<Welcome>(entity =>
+            {
+                entity.HasOne(d => d.Salon)
+                    .WithMany(p => p.Welcome)
+                    .HasForeignKey(d => d.SalonId)
+                    .OnDelete(DeleteBehavior.ClientSetNull);
             });
         }
     }
