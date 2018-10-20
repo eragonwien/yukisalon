@@ -54,11 +54,6 @@ namespace yukisalon.Models
                 entity.Property(e => e.Plz)
                     .HasColumnName("PLZ")
                     .HasMaxLength(30);
-
-                entity.HasOne(d => d.Salon)
-                    .WithMany(p => p.Contact)
-                    .HasForeignKey(d => d.SalonId)
-                    .OnDelete(DeleteBehavior.ClientSetNull);
             });
 
             modelBuilder.Entity<OpenHour>(entity =>
@@ -103,19 +98,10 @@ namespace yukisalon.Models
             modelBuilder.Entity<User>(entity =>
             {
                 entity.Property(e => e.Name).HasMaxLength(30);
-
-                entity.HasOne(d => d.Salon)
-                    .WithMany(p => p.User)
-                    .HasForeignKey(d => d.SalonId)
-                    .OnDelete(DeleteBehavior.ClientSetNull);
             });
 
             modelBuilder.Entity<Welcome>(entity =>
             {
-                entity.HasOne(d => d.Salon)
-                    .WithMany(p => p.Welcome)
-                    .HasForeignKey(d => d.SalonId)
-                    .OnDelete(DeleteBehavior.ClientSetNull);
             });
         }
     }

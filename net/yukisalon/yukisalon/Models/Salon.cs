@@ -8,9 +8,6 @@ namespace yukisalon.Models
         public Salon()
         {
             Category = new HashSet<Category>();
-            Contact = new HashSet<Contact>();
-            User = new HashSet<User>();
-            Welcome = new HashSet<Welcome>();
         }
 
         public int Id { get; set; }
@@ -19,8 +16,8 @@ namespace yukisalon.Models
         public string ExtraInfo { get; set; }
 
         public ICollection<Category> Category { get; set; }
-        public ICollection<Contact> Contact { get; set; }
-        public ICollection<User> User { get; set; }
-        public ICollection<Welcome> Welcome { get; set; }
+        public Contact Contact { get; set; }
+        public User User { get; set; }
+        public Welcome Welcome { get; set; }
     }
 }

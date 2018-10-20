@@ -18,6 +18,7 @@ import { InfoComponent } from './contact/partials/info/info.component';
 import { ProductComponent } from './product/product.component';
 import { CategoryComponent } from './product/partials/category/category.component';
 import { FeaturesComponent } from './product/partials/features/features.component';
+import { FooterComponent } from './shared/footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { FeaturesComponent } from './product/partials/features/features.componen
     InfoComponent,
     ProductComponent,
     CategoryComponent,
-    FeaturesComponent
+    FeaturesComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),

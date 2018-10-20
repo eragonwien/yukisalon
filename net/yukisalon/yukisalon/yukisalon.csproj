@@ -47,9 +47,11 @@
     <None Remove="ClientApp\src\app\models\Contact.ts" />
     <None Remove="ClientApp\src\app\models\Salon.ts" />
     <None Remove="ClientApp\src\app\models\User.ts" />
+    <None Remove="ClientApp\src\app\models\Welcome.ts" />
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="ClientApp\src\app\services\" />
     <Folder Include="ClientApp\src\app\shared\" />
     <Folder Include="ClientApp\src\assets\css\" />
     <Folder Include="ClientApp\src\assets\icons\" />
@@ -61,6 +63,7 @@
     <TypeScriptCompile Include="ClientApp\src\app\models\Contact.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\models\Salon.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\models\User.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\models\Welcome.ts" />
   </ItemGroup>
 
   <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">

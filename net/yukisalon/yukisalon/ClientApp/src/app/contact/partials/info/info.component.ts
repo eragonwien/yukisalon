@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { Contact } from "../../../models/Contact";
 
 @Component({
   selector: 'app-info',
@@ -7,9 +8,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class InfoComponent implements OnInit {
 
+  @Input() contact: Contact;
+  // faFacebook = faFacebook;
+  // faEmail = faEnvelope;
+  // faPhone = faPhone;
+  // faLocation = faMapMarkerAlt;
+
   constructor() { }
 
   ngOnInit() {
+    
   }
-
 }

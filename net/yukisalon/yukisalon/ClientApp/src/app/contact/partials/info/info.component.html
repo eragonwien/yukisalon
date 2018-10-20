@@ -1,3 +1,20 @@
-<p>
-  info works!
-</p>
+<div *ngIf="contact" class="text-primary p-3">
+  <h3 class="text-primary">{{ contact.name }}</h3>
+  <p></p>
+  <p>
+    <!-- <fa-icon [icon]="faLocation" size="lg" class="mr-2"></fa-icon> -->
+    {{ contact.address1 }} {{ contact.address2 }}, {{ contact.plz }} {{ contact.city }}
+  </p>
+  <p *ngIf="contact.phone">
+    <!-- <fa-icon [icon]="faPhone" size="lg" class="mr-2"></fa-icon> -->
+    {{ contact.phone }}
+  </p>
+  <p *ngIf="contact.email">
+    <!-- <fa-icon [icon]="faEmail" size="lg" class="mr-2"></fa-icon> -->
+    {{ contact.email }}
+  </p>
+  <p>
+    <!-- <fa-icon [icon]="faFacebook" size="lg" class="mr-2"></fa-icon> -->
+    <a [href]="contact.facebook">{{ contact.facebook }}</a>
+  </p>
+</div>
