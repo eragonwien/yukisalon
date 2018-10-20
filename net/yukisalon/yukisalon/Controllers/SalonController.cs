@@ -28,15 +28,11 @@ namespace yukisalon.Controllers
                 .Include(s => s.Welcome)
                 .Include(s => s.Contact).ThenInclude(c => c.OpenHour)
                 .Include(s => s.User)
+                .Include(s => s.Category).ThenInclude(c => c.SubCategory)
                 .First();
 
-            context.Entry(salon)
-                .Collection<Category>(s => s.Category)
-                .Query()
-                .Where(c => c.ParentId == null)
-                .Include(c => c.SubCategory)
-                .Load();
-
+            salon.Category = salon.Category.Where(c => c.ParentId == null).ToList();
+            
             return salon;
         }
 

@@ -119,12 +119,13 @@ namespace yukisalon.Models
                 return;
             }
 
-            Category category = context.Category.First();
+            Category parentCategory = context.Category.First();
 
             Category friseurHerren = new Category()
             {
                 Name = "Herren",
-                ParentId = category.Id
+                ParentId = parentCategory.Id,
+                SalonId = parentCategory.SalonId
             };
 
             context.Category.Add(friseurHerren);
