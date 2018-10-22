@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Contact } from "../models/Contact";
+import { Contact, OpenHour } from "../models/Contact";
 import { Salon } from "../models/Salon";
 import { SalonService } from "../services/salon.service";
 
@@ -12,13 +12,14 @@ import { SalonService } from "../services/salon.service";
 export class ContactComponent implements OnInit {
 
   contact: Contact;
+  openHours: OpenHour[];
 
   constructor(private salonService: SalonService) { }
 
   ngOnInit() {
     this.salonService.getSalon().subscribe((salon: Salon) => {
       this.contact = salon.contact;
-      console.log(salon.contact);
+      this.openHours = this.contact.openHour;
     });
   }
 

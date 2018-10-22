@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { OpenHour, Contact } from "../../../models/Contact";
 
 @Component({
   selector: 'app-open-hours',
@@ -6,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./open-hours.component.css']
 })
 export class OpenHoursComponent implements OnInit {
+
+  @Input() openHours: OpenHour[];
 
   constructor() { }
 

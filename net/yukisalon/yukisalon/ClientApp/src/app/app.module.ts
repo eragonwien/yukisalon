@@ -44,8 +44,8 @@ import { FooterComponent } from './shared/footer/footer.component';
     FormsModule,
     RouterModule.forRoot([
       { path: '', component: HomeComponent, pathMatch: 'full' },
-      { path: 'counter', component: CounterComponent },
-      { path: 'fetch-data', component: FetchDataComponent },
+      // { path: 'counter', component: CounterComponent },
+      // { path: 'fetch-data', component: FetchDataComponent },
       { path: 'kontakt', component: ContactComponent },
       { path: 'dienstleistung', component: ProductComponent }
     ])
