@@ -9,10 +9,6 @@ import { Contact } from "../../../models/Contact";
 export class InfoComponent implements OnInit {
 
   @Input() contact: Contact;
-  // faFacebook = faFacebook;
-  // faEmail = faEnvelope;
-  // faPhone = faPhone;
-  // faLocation = faMapMarkerAlt;
 
   constructor() { }
 
