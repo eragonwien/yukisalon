@@ -9,7 +9,7 @@ export interface Salon {
   description: string,
   extraInfo: string,
   contact: Contact,
-  categories: Category[],
+  category: Category[],
   user: User,
   welcome: Welcome
 }
