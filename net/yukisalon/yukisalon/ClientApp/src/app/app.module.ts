@@ -7,7 +7,6 @@ import { RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
 import { HomeComponent } from './home/home.component';
-import { CounterComponent } from './counter/counter.component';
 import { FetchDataComponent } from './fetch-data/fetch-data.component';
 import { ContactComponent } from './contact/contact.component';
 import { LoaderComponent } from './shared/loader/loader.component';
@@ -17,6 +16,7 @@ import { OpenHoursComponent } from './contact/partials/open-hours/open-hours.com
 import { InfoComponent } from './contact/partials/info/info.component';
 import { ProductComponent } from './product/product.component';
 import { CategoryComponent } from './product/partials/category/category.component';
+import { PriceListComponent } from './product/partials/price-list/price-list.component';
 import { FeaturesComponent } from './product/partials/features/features.component';
 import { FooterComponent } from './shared/footer/footer.component';
 
@@ -25,7 +25,6 @@ import { FooterComponent } from './shared/footer/footer.component';
     AppComponent,
     NavMenuComponent,
     HomeComponent,
-    CounterComponent,
     FetchDataComponent,
     ContactComponent,
     LoaderComponent,
@@ -36,7 +35,8 @@ import { FooterComponent } from './shared/footer/footer.component';
     ProductComponent,
     CategoryComponent,
     FeaturesComponent,
-    FooterComponent
+    FooterComponent,
+    PriceListComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
