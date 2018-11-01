@@ -1,0 +1,27 @@
+<app-banner [title]=title titleText="" imgName="banner.jpeg"></app-banner>
+<div class="container">
+  <section id="home-welcome" class="py-2" *ngIf="welcome">
+    <div class="row">
+      <div class="col-12 text-primary">
+        <h2 class="text-primary text-center">{{ welcome.title }}</h2>
+        <p>{{ welcome.text1 }}</p>
+        <p>{{ welcome.text2 }}</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="home-categories" class="py-2" *ngIf="categories">
+    <app-category [categories]=categories></app-category>
+  </section>
+
+  <section id="home-contact" class="py-2" *ngIf="contacts">
+    <div *ngFor="let contact of contacts" class="row">
+      <div class="col-12 col-sm-6">
+        <app-open-hours [openHours]=contact.openHour></app-open-hours>
+      </div>
+      <div class="col-12 col-sm-6">
+        <app-info [contact]=contact></app-info>
+      </div>
+    </div>
+  </section>
+</div>

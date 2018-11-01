@@ -1,0 +1,28 @@
+/* line 3, C:/Users/erago/Projects/yukifriseur/net/yukisalon/yukisalon/ClientApp/src/assets/sass/custom/custom.scss */
+.nav-scroller .nav-link.active {
+  color: #e83e8c;
+  border-bottom: 5px solid #e83e8c;
+}
+
+/* line 8, C:/Users/erago/Projects/yukifriseur/net/yukisalon/yukisalon/ClientApp/src/assets/sass/custom/custom.scss */
+.row-hoverable:hover {
+  background-color: #e83e8c;
+  color: white;
+}
+
+/* line 13, C:/Users/erago/Projects/yukifriseur/net/yukisalon/yukisalon/ClientApp/src/assets/sass/custom/custom.scss */
+.text-shadow {
+  text-shadow: 1px 1px black;
+}
+
+/* line 17, C:/Users/erago/Projects/yukifriseur/net/yukisalon/yukisalon/ClientApp/src/assets/sass/custom/custom.scss */
+.text-primary {
+  color: #6f42c1;
+}
+
+/* line 21, C:/Users/erago/Projects/yukifriseur/net/yukisalon/yukisalon/ClientApp/src/assets/sass/custom/custom.scss */
+.shadow {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+/*# sourceMappingURL=../../css/custom/custom.map */

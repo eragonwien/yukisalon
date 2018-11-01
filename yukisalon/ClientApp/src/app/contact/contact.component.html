@@ -1,0 +1,11 @@
+<app-banner title="Kontakt"></app-banner>
+<div class="container">
+  <div *ngFor="let contact of contacts" class="row">
+    <div class="col-12 col-sm-6">
+      <app-open-hours [openHours]=contact.openHour></app-open-hours>
+    </div>
+    <div class="col-12 col-sm-6">
+      <app-info [contact]=contact></app-info>
+    </div>
+  </div>
+</div>
