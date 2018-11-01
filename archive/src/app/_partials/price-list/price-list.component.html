@@ -1,0 +1,19 @@
+<div class="row">
+  <h3 class="text-center w-100">{{ title ? title : "Preisliste" }}</h3>
+</div>
+<div class="row" *ngFor="let category of categories" [attr.id]="'price-list-' + category.name">
+  <h4 class="text-white bg-primary w-100 p-3">{{category.name}}</h4>
+  <div class="col-12 p-3" *ngFor="let subcategory of category.subcategories">
+    <h5 class="text-center">{{subcategory.name}}</h5>
+    <div class="row row-hoverable" *ngFor="let product of subcategory.products">
+      <div class="col-8">{{product.name}}</div>
+      <div class="col-4 text-right">{{product.price}}</div>
+    </div>
+  </div>
+  <div class="col-12 p-3">
+    <div class="row row-hoverable" *ngFor="let product of category.products">
+      <div class="col-7 col-sm-8">{{product.name}}</div>
+      <div class="col-5 col-sm-4 text-right">{{product.price}}</div>
+    </div>
+  </div>
+</div>

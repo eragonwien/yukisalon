@@ -1,0 +1,22 @@
+<div class="row">
+  <div class="col-12 border-bottom border-primary">
+    <h2 class="text-primary">{{category.name}}</h2>
+  </div>
+</div>
+<div class="row">
+  <div *ngIf="category.products" class="col-12">
+    <app-product-section *ngFor="let product of category.products" [product]=product></app-product-section>
+  </div>
+  <div *ngFor="let subcategory of category.subcategories" class="col-12">
+    <div class="row">
+      <div class="col-12">
+        <h3 class="text-primary">{{subcategory.name}}</h3>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12 col-md-6 col-lg-4 py-2" *ngFor="let product of subcategory.products">
+        <app-product-section [product]=product></app-product-section>
+      </div>
+    </div>
+  </div>
+</div>
