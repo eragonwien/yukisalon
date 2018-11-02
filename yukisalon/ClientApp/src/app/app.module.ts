@@ -20,6 +20,7 @@ import { PriceListComponent } from './product/partials/price-list/price-list.com
 import { FeaturesComponent } from './product/partials/features/features.component';
 import { ProductCardComponent } from './product/partials/product-card/product-card.component';
 import { FooterComponent } from './shared/footer/footer.component';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import { FooterComponent } from './shared/footer/footer.component';
     FeaturesComponent,
     FooterComponent,
     PriceListComponent,
-    ProductCardComponent
+    ProductCardComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -46,7 +48,7 @@ import { FooterComponent } from './shared/footer/footer.component';
     FormsModule,
     RouterModule.forRoot([
       { path: '', component: HomeComponent, pathMatch: 'full' },
-      // { path: 'counter', component: CounterComponent },
+      { path: 'login', component: LoginComponent },
       // { path: 'fetch-data', component: FetchDataComponent },
       { path: 'kontakt', component: ContactComponent },
       { path: 'dienstleistung', component: ProductComponent }
