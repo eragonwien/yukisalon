@@ -44,7 +44,7 @@ namespace yukisalon
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie(option =>
             {
                 option.SlidingExpiration = true;
-                option.Cookie.HttpOnly = true;
+                option.Cookie.HttpOnly = false;
                 option.Events.OnRedirectToLogin = context =>
                 {
                     context.Response.StatusCode = 401;
@@ -69,6 +69,7 @@ namespace yukisalon
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseSpaStaticFiles();
+            app.UseAuthentication();
 
             app.UseMvc(routes =>
             {
@@ -90,7 +91,6 @@ namespace yukisalon
                 }
             });
 
-            app.UseAuthentication();
         }
     }
 }
