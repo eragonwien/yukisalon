@@ -4,6 +4,8 @@ using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using yukisalon.Models;
@@ -19,28 +21,43 @@ namespace yukisalon.Controllers
             this.context = context;
         }
 
-        public async Task<IActionResult> Login(LoginViewModel loginModel)
+        [HttpPost]
+        [AllowAnonymous]
+        public async Task<IActionResult> Login([FromBody]LoginViewModel loginModel)
         {
-            if (ModelState.IsValid && IsUserValid(loginModel.Email, loginModel.Password))
+            try
             {
-                var user = context.User.Where(u => u.Email.Equals(loginModel.Email)).Single();
-                var userRole = context.Role.Where(r => r.Id.Equals(user.RoleId)).Single().Title;
-
-                var claims = new List<Claim>
+                if (ModelState.IsValid && IsUserValid(loginModel.Email, loginModel.Password))
                 {
-                    new Claim(ClaimTypes.Email, user.Email),
-                    new Claim(ClaimTypes.Name, user.Name),
-                    new Claim(ClaimTypes.Role, userRole)
-                };
+                    var user = context.User.Where(u => u.Email.Equals(loginModel.Email)).Single();
+                    var userRole = context.Role.Where(r => r.Id.Equals(user.RoleId)).Single().Title;
 
-                var userIdentity = new ClaimsIdentity(claims, Properties.Resources.LoginClaimIdentity);
-                var principal = new ClaimsPrincipal(userIdentity);
-                var authProperties = new AuthenticationProperties { IsPersistent = true };
-                await HttpContext.SignInAsync(principal, authProperties);
+                    var claims = new List<Claim>
+                    {
+                        new Claim(ClaimTypes.Email, user.Email),
+                        new Claim(ClaimTypes.Name, user.Name),
+                        new Claim(ClaimTypes.Role, userRole)
+                    };
 
-                return Ok();
+                    var userIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
+                    var principal = new ClaimsPrincipal(userIdentity);
+                    var authProperties = new AuthenticationProperties { IsPersistent = true };
+                    await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, principal, authProperties);
+
+                    return Ok();
+                }
+            }
+            catch (Exception ex)
+            {
+
             }
 
+            return Unauthorized();
+        }
+
+        [Authorize]
+        public IActionResult Test()
+        {
             return Unauthorized();
         }
 
