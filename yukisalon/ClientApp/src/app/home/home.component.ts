@@ -20,7 +20,7 @@ export class HomeComponent {
   constructor(private salonService: SalonService) {}
 
   ngOnInit(): void {
-    this.salonService.getSalon().subscribe((salon: Salon) => {
+    this.salonService.Salon.subscribe((salon: Salon) => {
       this.welcome = salon.welcome[0]; // first
       this.contacts = salon.contact;
       this.categories = salon.category;
