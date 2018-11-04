@@ -1,0 +1,9 @@
+@import "../vendor/bootstrap/bootstrap";
+
+.ng-valid[required], .ng-valid.required  {
+  @extend .is-valid;
+}
+
+.ng-invalid:not(.ng-untouched, form)  {
+  @extend .is-invalid;
+}
