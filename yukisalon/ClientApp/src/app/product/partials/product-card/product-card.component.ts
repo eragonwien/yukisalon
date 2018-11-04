@@ -16,7 +16,7 @@ export class ProductCardComponent implements OnInit {
   constructor(private salonService: SalonService) { }
 
   ngOnInit() {
-    this.imagePathPrefix = this.salonService.getImagePathPrefix();
+    this.imagePathPrefix = this.salonService.ImagePathPrefix;
   }
 
 }
