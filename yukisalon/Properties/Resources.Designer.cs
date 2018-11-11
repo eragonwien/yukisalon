@@ -61,11 +61,38 @@ namespace yukisalon.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 20.
+        /// </summary>
+        public static string CookieMaxAgeMinutes {
+            get {
+                return ResourceManager.GetString("CookieMaxAgeMinutes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 5.
+        /// </summary>
+        public static string DefaultLockoutTimeSpan {
+            get {
+                return ResourceManager.GetString("DefaultLockoutTimeSpan", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to LoginClaimIdentity.
         /// </summary>
         public static string LoginClaimIdentity {
             get {
                 return ResourceManager.GetString("LoginClaimIdentity", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 3.
+        /// </summary>
+        public static string MaxFailedAccessAttempts {
+            get {
+                return ResourceManager.GetString("MaxFailedAccessAttempts", resourceCulture);
             }
         }
     }
