@@ -19,6 +19,6 @@ export class CategoryComponent implements OnInit {
 
   navigateToPriceList(target?: string) {
     target = "price-list-" + target;
-    this.router.navigate(['dienstleistung'], {fragment: target});
+    this.router.navigate(['services'], {fragment: target});
   }
 }
