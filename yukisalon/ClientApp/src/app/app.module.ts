@@ -21,6 +21,10 @@ import { FooterComponent } from './shared/footer/footer.component';
 import { LoginComponent } from './login/login.component';
 import { AddWithCredentialsHttpInterceptorService } from './services/add-with-credentials-http-interceptor.service';
 import { UnauthorizedHttpInterceptorService } from './services/unauthorized-http-interceptor.service';
+import { MaintenanceComponent } from './maintenance/maintenance.component';
+import { SalonService } from './services/salon.service';
+import { access } from 'fs';
+import { AccountService } from './services/account.service';
 
 @NgModule({
   declarations: [
@@ -38,7 +42,8 @@ import { UnauthorizedHttpInterceptorService } from './services/unauthorized-http
     FooterComponent,
     PriceListComponent,
     ProductCardComponent,
-    LoginComponent
+    LoginComponent,
+    MaintenanceComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -49,10 +54,13 @@ import { UnauthorizedHttpInterceptorService } from './services/unauthorized-http
       { path: '', component: HomeComponent, pathMatch: 'full' },
       { path: 'login', component: LoginComponent },
       { path: 'kontakt', component: ContactComponent },
-      { path: 'dienstleistung', component: ProductComponent }
+      { path: 'services', component: ProductComponent },
+      { path: 'maintenance', component: MaintenanceComponent }
     ])
   ],
   providers: [
+    SalonService,
+    AccountService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AddWithCredentialsHttpInterceptorService, 
@@ -61,7 +69,8 @@ import { UnauthorizedHttpInterceptorService } from './services/unauthorized-http
     {
       provide: HTTP_INTERCEPTORS,
       useClass: UnauthorizedHttpInterceptorService, 
-      multi: true
+      multi: true,
+      deps: [SalonService]
     }
   ],
   bootstrap: [AppComponent]

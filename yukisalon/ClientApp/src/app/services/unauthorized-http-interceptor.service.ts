@@ -3,16 +3,18 @@ import { HttpInterceptor, HttpRequest, HttpHandler, HttpEvent, HttpResponse, Htt
 import { Observable } from 'rxjs/Observable';
 import "rxjs/add/operator/catch";
 import 'rxjs/add/observable/throw';
-import { Router } from '@angular/router';
+import { SalonService } from './salon.service';
 
 @Injectable()
 export class UnauthorizedHttpInterceptorService implements HttpInterceptor {
 
-  constructor(private router: Router) { }
+  constructor(private salonService: SalonService) { }
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     return next.handle(request).catch(err => {
-      this.router.navigate(['login']);
+      if (err instanceof HttpErrorResponse) {
+        this.salonService.handleHttpError(err);
+      }
       return Observable.throw(err);
     });
   }
