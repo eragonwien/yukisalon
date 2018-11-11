@@ -23,7 +23,7 @@ namespace yukisalon.Controllers
 
         // GET: api/Salon
         [HttpGet]
-        [AllowAnonymous]
+        [Authorize]
         public async Task<IActionResult> GetSalon()
         {
             var salonList = await context.Salon.ToListAsync();

@@ -27,9 +27,9 @@ namespace yukisalon.Controllers
         {
             try
             {
-                if (ModelState.IsValid && IsUserValid(loginModel.Email, loginModel.Password))
+                if (ModelState.IsValid)
                 {
-                    var user = context.User.Where(u => u.Email.Equals(loginModel.Email)).Single();
+                    var user = context.User.Where(u => u.Email.Equals(loginModel.Email) && u.Password.Equals(loginModel.Password)).Single();
                     var userRole = context.Role.Where(r => r.Id.Equals(user.RoleId)).Single().Title;
 
                     var claims = new List<Claim>
@@ -41,7 +41,12 @@ namespace yukisalon.Controllers
 
                     var userIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
                     var principal = new ClaimsPrincipal(userIdentity);
-                    var authProperties = new AuthenticationProperties { IsPersistent = true };
+                    var authProperties = new AuthenticationProperties
+                    {
+                        IsPersistent = false,
+                        ExpiresUtc = DateTime.Now.AddMinutes(Convert.ToDouble(Properties.Resources.CookieMaxAgeMinutes))
+                    };
+
                     await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, principal, authProperties);
 
                     return Ok();
@@ -59,11 +64,6 @@ namespace yukisalon.Controllers
         public IActionResult Test()
         {
             return Unauthorized();
-        }
-
-        private bool IsUserValid(string email, string password)
-        {
-            return true;
         }
     }
 }
