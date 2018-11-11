@@ -12,7 +12,7 @@ import { Category } from '../models/Product';
 })
 export class HomeComponent {
 
-  title: string;
+  title: string = "Yuki Tuyet Beauty Salon";
   welcome: Welcome;
   contacts: Contact[];
   categories: Category[];
