@@ -5,8 +5,6 @@ import { Router } from '@angular/router';
 @Injectable()
 export class SalonService {
 
-  private returnUrl: string;
-
   constructor(private http: HttpClient, private router: Router) { }
 
   get BaseUrl() { return window.location.origin; }
@@ -14,7 +12,6 @@ export class SalonService {
   get ImagePathPrefix() { return "assets/images/"; }
   get Salon() { return this.http.get(this.BaseUrl + "/api/Salon/0") }
   get SalonList() { return this.http.get(this.BaseUrl + "/api/Salon") }
-  get ReturnUrl() { return this.returnUrl; };
 
   handleHttpError(error: HttpErrorResponse) {
     if (error.status === 401) {
@@ -23,7 +20,6 @@ export class SalonService {
   }
 
   handle401Error() {
-    this.returnUrl = this.router.url;
-    this.router.navigate(['login']);
+    this.router.navigate(['login'], { queryParams: { returnUrl: this.router.url }});
   }
 }

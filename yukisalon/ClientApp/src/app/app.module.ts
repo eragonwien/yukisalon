@@ -23,7 +23,6 @@ import { AddWithCredentialsHttpInterceptorService } from './services/add-with-cr
 import { UnauthorizedHttpInterceptorService } from './services/unauthorized-http-interceptor.service';
 import { MaintenanceComponent } from './maintenance/maintenance.component';
 import { SalonService } from './services/salon.service';
-import { access } from 'fs';
 import { AccountService } from './services/account.service';
 
 @NgModule({

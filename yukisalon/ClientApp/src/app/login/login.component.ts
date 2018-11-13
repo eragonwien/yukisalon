@@ -3,6 +3,7 @@ import { LoginUser } from '../models/User';
 import { AccountService } from '../services/account.service';
 import { SalonService } from '../services/salon.service';
 import { NgForm } from "@angular/forms";
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -14,7 +15,7 @@ export class LoginComponent implements OnInit {
 
   loginUser: LoginUser;
 
-  constructor(private accountService: AccountService) { }
+  constructor(private accountService: AccountService, private salonService: SalonService, private router: Router, private route: ActivatedRoute) { }
 
   ngOnInit() {
     this.loginUser = new LoginUser();
@@ -31,8 +32,7 @@ export class LoginComponent implements OnInit {
   }
 
   handleLogin(response) {
-    this.accountService.Test.subscribe((res) => {
-      console.log(res);
-    });
+    let returnUrl = this.route.snapshot.paramMap.get('returnUrl');
+    this.router.navigate(['maintenance']); 
   }
 }
