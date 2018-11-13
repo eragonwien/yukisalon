@@ -11,6 +11,7 @@ import { Salon } from '../models/Salon';
 export class MaintenanceComponent implements OnInit {
 
   salonList: Salon[];
+  salon: Salon;
 
   constructor(private salonService: SalonService) { }
 
@@ -24,4 +25,8 @@ export class MaintenanceComponent implements OnInit {
     });
   }
 
+
+  onSalonPicked(salon: Salon) {
+    this.salon = salon;
+  }
 }

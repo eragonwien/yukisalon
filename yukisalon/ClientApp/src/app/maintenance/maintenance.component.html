@@ -1,3 +1,22 @@
-<p>
-  maintenance works!
-</p>
+<div class="container">
+  <div *ngIf="salonList && !salon">
+    <div *ngIf="salonList.length > 0">
+      <h3 class="text-center">Salon auswählen</h3>
+      <div class="card-columns">
+        <div class="card bg-light" *ngFor="let salon of salonList" (click)="onSalonPicked(salon)" style="cursor: pointer;">
+          <div class="card-body text-center">
+            <p class="card-text">{{ salon.name }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div *ngIf="salonList.length === 0">
+      <h3 class="text-center">Kein Salon angelegt</h3>
+    </div>
+  </div>
+
+  <div *ngIf="salon">
+    <h3 class="text-center">{{ salon.name }}</h3>
+  </div>
+</div>
