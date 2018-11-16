@@ -24,6 +24,9 @@ import { UnauthorizedHttpInterceptorService } from './services/unauthorized-http
 import { MaintenanceComponent } from './maintenance/maintenance.component';
 import { SalonService } from './services/salon.service';
 import { AccountService } from './services/account.service';
+import { MaintenanceMenuComponent } from './maintenance/menu/menu.component';
+import { SalonInfoComponent } from './maintenance/salon-info/salon-info.component';
+import { MaintenanceIndexComponent } from './maintenance/index/index.component';
 
 @NgModule({
   declarations: [
@@ -42,7 +45,10 @@ import { AccountService } from './services/account.service';
     PriceListComponent,
     ProductCardComponent,
     LoginComponent,
-    MaintenanceComponent
+    MaintenanceComponent,
+    MaintenanceMenuComponent,
+    SalonInfoComponent,
+    MaintenanceIndexComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -52,9 +58,15 @@ import { AccountService } from './services/account.service';
     RouterModule.forRoot([
       { path: '', component: HomeComponent, pathMatch: 'full' },
       { path: 'login', component: LoginComponent },
-      { path: 'kontakt', component: ContactComponent },
+      { path: 'contact', component: ContactComponent },
       { path: 'services', component: ProductComponent },
-      { path: 'maintenance', component: MaintenanceComponent }
+      { path: 'maintenance', component: MaintenanceComponent, children: [
+        { path: '', component: MaintenanceIndexComponent },
+        { path: 'menu', component: MaintenanceMenuComponent },
+        { path: 'salon', component: SalonInfoComponent },
+        { path: 'contact', component: SalonInfoComponent },
+        { path: 'user', component: SalonInfoComponent },
+      ]}
     ])
   ],
   providers: [
