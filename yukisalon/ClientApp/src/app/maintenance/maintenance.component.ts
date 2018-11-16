@@ -10,23 +10,8 @@ import { Salon } from '../models/Salon';
 })
 export class MaintenanceComponent implements OnInit {
 
-  salonList: Salon[];
-  salon: Salon;
-
-  constructor(private salonService: SalonService) { }
+  constructor() { }
 
   ngOnInit() {
-    this.loadSalonList();
-  }
-
-  loadSalonList() {
-    this.salonService.SalonList.subscribe((results: Salon[]) => {
-      this.salonList = results;
-    });
-  }
-
-
-  onSalonPicked(salon: Salon) {
-    this.salon = salon;
   }
 }
