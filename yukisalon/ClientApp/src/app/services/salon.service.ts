@@ -10,8 +10,12 @@ export class SalonService {
   get BaseUrl() { return window.location.origin; }
   get imagePath() { return this.BaseUrl + "/assets/images/"; }
   get ImagePathPrefix() { return "assets/images/"; }
-  get Salon() { return this.http.get(this.BaseUrl + "/api/Salon/0") }
+  get Salon() { return this.getSalonById(0) }
   get SalonList() { return this.http.get(this.BaseUrl + "/api/Salon") }
+
+  getSalonById(id: number) {
+    return this.http.get(this.BaseUrl + "/api/Salon/" + id);
+  }
 
   handleHttpError(error: HttpErrorResponse) {
     if (error.status === 401) {
