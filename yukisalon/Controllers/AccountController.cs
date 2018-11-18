@@ -52,9 +52,9 @@ namespace yukisalon.Controllers
                     return Ok();
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-
+                return Unauthorized();
             }
 
             return Unauthorized();

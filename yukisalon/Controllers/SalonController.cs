@@ -47,7 +47,7 @@ namespace yukisalon.Controllers
                 {
                     id = context.Salon.Where(s => s.IsActive.HasValue && s.IsActive.Value).Single().Id;
                 }
-                catch (Exception ex)
+                catch (Exception)
                 {
                     return NotFound();
                 };
@@ -110,7 +110,7 @@ namespace yukisalon.Controllers
                     throw;
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 throw;
             }
