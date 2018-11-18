@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from "@angular/common/http";
 import { Router } from '@angular/router';
+import { Salon, EditSalonInfoModel } from '../models/Salon';
 
 @Injectable()
 export class SalonService {
@@ -25,5 +26,11 @@ export class SalonService {
 
   handle401Error() {
     this.router.navigate(['login'], { queryParams: { returnUrl: this.router.url }});
+  }
+
+  editSalonInfo(salon: Salon) {
+    let url = this.BaseUrl + "/api/Salon/" + salon.id;
+    let model = new EditSalonInfoModel(salon);
+    return this.http.put(url, model, { observe: 'response' });
   }
 }
