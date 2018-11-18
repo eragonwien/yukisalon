@@ -21,7 +21,7 @@ export class HomeComponent {
 
   ngOnInit(): void {
     this.salonService.Salon.subscribe((salon: Salon) => {
-      this.welcome = salon.welcome[0]; // first
+      this.welcome = salon.welcome;
       this.contacts = salon.contact;
       this.categories = salon.category;
       this.title = salon.name;
