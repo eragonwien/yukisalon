@@ -130,9 +130,8 @@ namespace yukisalon.Models
             modelBuilder.Entity<Welcome>(entity =>
             {
                 entity.HasOne(d => d.Salon)
-                    .WithMany(p => p.Welcome)
-                    .HasForeignKey(d => d.SalonId)
-                    .OnDelete(DeleteBehavior.ClientSetNull);
+                    .WithOne(p => p.Welcome)
+                    .HasForeignKey<Welcome>(d => d.SalonId);
             });
         }
     }
