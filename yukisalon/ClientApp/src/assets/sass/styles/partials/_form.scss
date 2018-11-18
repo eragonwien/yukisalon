@@ -1,6 +1,6 @@
 @import "../vendor/bootstrap/bootstrap";
 
-.ng-valid[required], .ng-valid.required  {
+.ng-valid[required].ng-touched, .ng-valid.required.ng-touched  {
   @extend .is-valid;
 }
 

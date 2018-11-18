@@ -1426,76 +1426,76 @@ select.form-control-lg:not([size]):not([multiple]), .input-group-lg > select.for
   background-color: rgba(40, 167, 69, 0.8);
   border-radius: .2rem; }
 
-.was-validated .form-control:valid, .form-control.is-valid, .form-control.ng-valid[required], .form-control.ng-valid.required, .was-validated
+.was-validated .form-control:valid, .form-control.is-valid, .form-control.ng-valid.ng-touched[required], .form-control.ng-valid.required.ng-touched, .was-validated
 .custom-select:valid,
 .custom-select.is-valid,
-.custom-select.ng-valid[required],
-.custom-select.ng-valid.required {
+.custom-select.ng-valid.ng-touched[required],
+.custom-select.ng-valid.required.ng-touched {
   border-color: #28a745; }
-  .was-validated .form-control:valid:focus, .form-control.is-valid:focus, .form-control.ng-valid:focus[required], .form-control.ng-valid.required:focus, .was-validated
+  .was-validated .form-control:valid:focus, .form-control.is-valid:focus, .form-control.ng-valid.ng-touched:focus[required], .form-control.ng-valid.required.ng-touched:focus, .was-validated
   .custom-select:valid:focus,
   .custom-select.is-valid:focus,
-  .custom-select.ng-valid:focus[required],
-  .custom-select.ng-valid.required:focus {
+  .custom-select.ng-valid.ng-touched:focus[required],
+  .custom-select.ng-valid.required.ng-touched:focus {
     border-color: #28a745;
     box-shadow: 0 0 0 0.2rem rgba(40, 167, 69, 0.25); }
   .was-validated .form-control:valid ~ .valid-feedback,
-  .was-validated .form-control:valid ~ .valid-tooltip, .form-control.is-valid ~ .valid-feedback, .form-control.ng-valid[required] ~ .valid-feedback, .form-control.ng-valid.required ~ .valid-feedback,
+  .was-validated .form-control:valid ~ .valid-tooltip, .form-control.is-valid ~ .valid-feedback, .form-control.ng-valid.ng-touched[required] ~ .valid-feedback, .form-control.ng-valid.required.ng-touched ~ .valid-feedback,
   .form-control.is-valid ~ .valid-tooltip,
-  .form-control.ng-valid[required] ~ .valid-tooltip,
-  .form-control.ng-valid.required ~ .valid-tooltip, .was-validated
+  .form-control.ng-valid.ng-touched[required] ~ .valid-tooltip,
+  .form-control.ng-valid.required.ng-touched ~ .valid-tooltip, .was-validated
   .custom-select:valid ~ .valid-feedback,
   .was-validated
   .custom-select:valid ~ .valid-tooltip,
   .custom-select.is-valid ~ .valid-feedback,
-  .custom-select.ng-valid[required] ~ .valid-feedback,
-  .custom-select.ng-valid.required ~ .valid-feedback,
+  .custom-select.ng-valid.ng-touched[required] ~ .valid-feedback,
+  .custom-select.ng-valid.required.ng-touched ~ .valid-feedback,
   .custom-select.is-valid ~ .valid-tooltip,
-  .custom-select.ng-valid[required] ~ .valid-tooltip,
-  .custom-select.ng-valid.required ~ .valid-tooltip {
+  .custom-select.ng-valid.ng-touched[required] ~ .valid-tooltip,
+  .custom-select.ng-valid.required.ng-touched ~ .valid-tooltip {
     display: block; }
 
-.was-validated .form-check-input:valid ~ .form-check-label, .form-check-input.is-valid ~ .form-check-label, .form-check-input.ng-valid[required] ~ .form-check-label, .form-check-input.ng-valid.required ~ .form-check-label {
+.was-validated .form-check-input:valid ~ .form-check-label, .form-check-input.is-valid ~ .form-check-label, .form-check-input.ng-valid.ng-touched[required] ~ .form-check-label, .form-check-input.ng-valid.required.ng-touched ~ .form-check-label {
   color: #28a745; }
 
 .was-validated .form-check-input:valid ~ .valid-feedback,
-.was-validated .form-check-input:valid ~ .valid-tooltip, .form-check-input.is-valid ~ .valid-feedback, .form-check-input.ng-valid[required] ~ .valid-feedback, .form-check-input.ng-valid.required ~ .valid-feedback,
+.was-validated .form-check-input:valid ~ .valid-tooltip, .form-check-input.is-valid ~ .valid-feedback, .form-check-input.ng-valid.ng-touched[required] ~ .valid-feedback, .form-check-input.ng-valid.required.ng-touched ~ .valid-feedback,
 .form-check-input.is-valid ~ .valid-tooltip,
-.form-check-input.ng-valid[required] ~ .valid-tooltip,
-.form-check-input.ng-valid.required ~ .valid-tooltip {
+.form-check-input.ng-valid.ng-touched[required] ~ .valid-tooltip,
+.form-check-input.ng-valid.required.ng-touched ~ .valid-tooltip {
   display: block; }
 
-.was-validated .custom-control-input:valid ~ .custom-control-label, .custom-control-input.is-valid ~ .custom-control-label, .custom-control-input.ng-valid[required] ~ .custom-control-label, .custom-control-input.ng-valid.required ~ .custom-control-label {
+.was-validated .custom-control-input:valid ~ .custom-control-label, .custom-control-input.is-valid ~ .custom-control-label, .custom-control-input.ng-valid.ng-touched[required] ~ .custom-control-label, .custom-control-input.ng-valid.required.ng-touched ~ .custom-control-label {
   color: #28a745; }
-  .was-validated .custom-control-input:valid ~ .custom-control-label::before, .custom-control-input.is-valid ~ .custom-control-label::before, .custom-control-input.ng-valid[required] ~ .custom-control-label::before, .custom-control-input.ng-valid.required ~ .custom-control-label::before {
+  .was-validated .custom-control-input:valid ~ .custom-control-label::before, .custom-control-input.is-valid ~ .custom-control-label::before, .custom-control-input.ng-valid.ng-touched[required] ~ .custom-control-label::before, .custom-control-input.ng-valid.required.ng-touched ~ .custom-control-label::before {
     background-color: #71dd8a; }
 
 .was-validated .custom-control-input:valid ~ .valid-feedback,
-.was-validated .custom-control-input:valid ~ .valid-tooltip, .custom-control-input.is-valid ~ .valid-feedback, .custom-control-input.ng-valid[required] ~ .valid-feedback, .custom-control-input.ng-valid.required ~ .valid-feedback,
+.was-validated .custom-control-input:valid ~ .valid-tooltip, .custom-control-input.is-valid ~ .valid-feedback, .custom-control-input.ng-valid.ng-touched[required] ~ .valid-feedback, .custom-control-input.ng-valid.required.ng-touched ~ .valid-feedback,
 .custom-control-input.is-valid ~ .valid-tooltip,
-.custom-control-input.ng-valid[required] ~ .valid-tooltip,
-.custom-control-input.ng-valid.required ~ .valid-tooltip {
+.custom-control-input.ng-valid.ng-touched[required] ~ .valid-tooltip,
+.custom-control-input.ng-valid.required.ng-touched ~ .valid-tooltip {
   display: block; }
 
-.was-validated .custom-control-input:valid:checked ~ .custom-control-label::before, .custom-control-input.is-valid:checked ~ .custom-control-label::before, .custom-control-input.ng-valid:checked[required] ~ .custom-control-label::before, .custom-control-input.ng-valid.required:checked ~ .custom-control-label::before {
+.was-validated .custom-control-input:valid:checked ~ .custom-control-label::before, .custom-control-input.is-valid:checked ~ .custom-control-label::before, .custom-control-input.ng-valid.ng-touched:checked[required] ~ .custom-control-label::before, .custom-control-input.ng-valid.required.ng-touched:checked ~ .custom-control-label::before {
   background-color: #34ce57; }
 
-.was-validated .custom-control-input:valid:focus ~ .custom-control-label::before, .custom-control-input.is-valid:focus ~ .custom-control-label::before, .custom-control-input.ng-valid:focus[required] ~ .custom-control-label::before, .custom-control-input.ng-valid.required:focus ~ .custom-control-label::before {
+.was-validated .custom-control-input:valid:focus ~ .custom-control-label::before, .custom-control-input.is-valid:focus ~ .custom-control-label::before, .custom-control-input.ng-valid.ng-touched:focus[required] ~ .custom-control-label::before, .custom-control-input.ng-valid.required.ng-touched:focus ~ .custom-control-label::before {
   box-shadow: 0 0 0 1px #fff, 0 0 0 0.2rem rgba(40, 167, 69, 0.25); }
 
-.was-validated .custom-file-input:valid ~ .custom-file-label, .custom-file-input.is-valid ~ .custom-file-label, .custom-file-input.ng-valid[required] ~ .custom-file-label, .custom-file-input.ng-valid.required ~ .custom-file-label {
+.was-validated .custom-file-input:valid ~ .custom-file-label, .custom-file-input.is-valid ~ .custom-file-label, .custom-file-input.ng-valid.ng-touched[required] ~ .custom-file-label, .custom-file-input.ng-valid.required.ng-touched ~ .custom-file-label {
   border-color: #28a745; }
-  .was-validated .custom-file-input:valid ~ .custom-file-label::before, .custom-file-input.is-valid ~ .custom-file-label::before, .custom-file-input.ng-valid[required] ~ .custom-file-label::before, .custom-file-input.ng-valid.required ~ .custom-file-label::before {
+  .was-validated .custom-file-input:valid ~ .custom-file-label::before, .custom-file-input.is-valid ~ .custom-file-label::before, .custom-file-input.ng-valid.ng-touched[required] ~ .custom-file-label::before, .custom-file-input.ng-valid.required.ng-touched ~ .custom-file-label::before {
     border-color: inherit; }
 
 .was-validated .custom-file-input:valid ~ .valid-feedback,
-.was-validated .custom-file-input:valid ~ .valid-tooltip, .custom-file-input.is-valid ~ .valid-feedback, .custom-file-input.ng-valid[required] ~ .valid-feedback, .custom-file-input.ng-valid.required ~ .valid-feedback,
+.was-validated .custom-file-input:valid ~ .valid-tooltip, .custom-file-input.is-valid ~ .valid-feedback, .custom-file-input.ng-valid.ng-touched[required] ~ .valid-feedback, .custom-file-input.ng-valid.required.ng-touched ~ .valid-feedback,
 .custom-file-input.is-valid ~ .valid-tooltip,
-.custom-file-input.ng-valid[required] ~ .valid-tooltip,
-.custom-file-input.ng-valid.required ~ .valid-tooltip {
+.custom-file-input.ng-valid.ng-touched[required] ~ .valid-tooltip,
+.custom-file-input.ng-valid.required.ng-touched ~ .valid-tooltip {
   display: block; }
 
-.was-validated .custom-file-input:valid:focus ~ .custom-file-label, .custom-file-input.is-valid:focus ~ .custom-file-label, .custom-file-input.ng-valid:focus[required] ~ .custom-file-label, .custom-file-input.ng-valid.required:focus ~ .custom-file-label {
+.was-validated .custom-file-input:valid:focus ~ .custom-file-label, .custom-file-input.is-valid:focus ~ .custom-file-label, .custom-file-input.ng-valid.ng-touched:focus[required] ~ .custom-file-label, .custom-file-input.ng-valid.required.ng-touched:focus ~ .custom-file-label {
   box-shadow: 0 0 0 0.2rem rgba(40, 167, 69, 0.25); }
 
 .invalid-feedback {
@@ -7507,76 +7507,76 @@ select.form-control-lg:not([size]):not([multiple]), .input-group-lg > select.for
   background-color: rgba(40, 167, 69, 0.8);
   border-radius: .2rem; }
 
-.was-validated .form-control:valid, .form-control.is-valid, .form-control.ng-valid[required], .form-control.ng-valid.required, .was-validated
+.was-validated .form-control:valid, .form-control.is-valid, .form-control.ng-valid.ng-touched[required], .form-control.ng-valid.required.ng-touched, .was-validated
 .custom-select:valid,
 .custom-select.is-valid,
-.custom-select.ng-valid[required],
-.custom-select.ng-valid.required {
+.custom-select.ng-valid.ng-touched[required],
+.custom-select.ng-valid.required.ng-touched {
   border-color: #28a745; }
-  .was-validated .form-control:valid:focus, .form-control.is-valid:focus, .form-control.ng-valid:focus[required], .form-control.ng-valid.required:focus, .was-validated
+  .was-validated .form-control:valid:focus, .form-control.is-valid:focus, .form-control.ng-valid.ng-touched:focus[required], .form-control.ng-valid.required.ng-touched:focus, .was-validated
   .custom-select:valid:focus,
   .custom-select.is-valid:focus,
-  .custom-select.ng-valid:focus[required],
-  .custom-select.ng-valid.required:focus {
+  .custom-select.ng-valid.ng-touched:focus[required],
+  .custom-select.ng-valid.required.ng-touched:focus {
     border-color: #28a745;
     box-shadow: 0 0 0 0.2rem rgba(40, 167, 69, 0.25); }
   .was-validated .form-control:valid ~ .valid-feedback,
-  .was-validated .form-control:valid ~ .valid-tooltip, .form-control.is-valid ~ .valid-feedback, .form-control.ng-valid[required] ~ .valid-feedback, .form-control.ng-valid.required ~ .valid-feedback,
+  .was-validated .form-control:valid ~ .valid-tooltip, .form-control.is-valid ~ .valid-feedback, .form-control.ng-valid.ng-touched[required] ~ .valid-feedback, .form-control.ng-valid.required.ng-touched ~ .valid-feedback,
   .form-control.is-valid ~ .valid-tooltip,
-  .form-control.ng-valid[required] ~ .valid-tooltip,
-  .form-control.ng-valid.required ~ .valid-tooltip, .was-validated
+  .form-control.ng-valid.ng-touched[required] ~ .valid-tooltip,
+  .form-control.ng-valid.required.ng-touched ~ .valid-tooltip, .was-validated
   .custom-select:valid ~ .valid-feedback,
   .was-validated
   .custom-select:valid ~ .valid-tooltip,
   .custom-select.is-valid ~ .valid-feedback,
-  .custom-select.ng-valid[required] ~ .valid-feedback,
-  .custom-select.ng-valid.required ~ .valid-feedback,
+  .custom-select.ng-valid.ng-touched[required] ~ .valid-feedback,
+  .custom-select.ng-valid.required.ng-touched ~ .valid-feedback,
   .custom-select.is-valid ~ .valid-tooltip,
-  .custom-select.ng-valid[required] ~ .valid-tooltip,
-  .custom-select.ng-valid.required ~ .valid-tooltip {
+  .custom-select.ng-valid.ng-touched[required] ~ .valid-tooltip,
+  .custom-select.ng-valid.required.ng-touched ~ .valid-tooltip {
     display: block; }
 
-.was-validated .form-check-input:valid ~ .form-check-label, .form-check-input.is-valid ~ .form-check-label, .form-check-input.ng-valid[required] ~ .form-check-label, .form-check-input.ng-valid.required ~ .form-check-label {
+.was-validated .form-check-input:valid ~ .form-check-label, .form-check-input.is-valid ~ .form-check-label, .form-check-input.ng-valid.ng-touched[required] ~ .form-check-label, .form-check-input.ng-valid.required.ng-touched ~ .form-check-label {
   color: #28a745; }
 
 .was-validated .form-check-input:valid ~ .valid-feedback,
-.was-validated .form-check-input:valid ~ .valid-tooltip, .form-check-input.is-valid ~ .valid-feedback, .form-check-input.ng-valid[required] ~ .valid-feedback, .form-check-input.ng-valid.required ~ .valid-feedback,
+.was-validated .form-check-input:valid ~ .valid-tooltip, .form-check-input.is-valid ~ .valid-feedback, .form-check-input.ng-valid.ng-touched[required] ~ .valid-feedback, .form-check-input.ng-valid.required.ng-touched ~ .valid-feedback,
 .form-check-input.is-valid ~ .valid-tooltip,
-.form-check-input.ng-valid[required] ~ .valid-tooltip,
-.form-check-input.ng-valid.required ~ .valid-tooltip {
+.form-check-input.ng-valid.ng-touched[required] ~ .valid-tooltip,
+.form-check-input.ng-valid.required.ng-touched ~ .valid-tooltip {
   display: block; }
 
-.was-validated .custom-control-input:valid ~ .custom-control-label, .custom-control-input.is-valid ~ .custom-control-label, .custom-control-input.ng-valid[required] ~ .custom-control-label, .custom-control-input.ng-valid.required ~ .custom-control-label {
+.was-validated .custom-control-input:valid ~ .custom-control-label, .custom-control-input.is-valid ~ .custom-control-label, .custom-control-input.ng-valid.ng-touched[required] ~ .custom-control-label, .custom-control-input.ng-valid.required.ng-touched ~ .custom-control-label {
   color: #28a745; }
-  .was-validated .custom-control-input:valid ~ .custom-control-label::before, .custom-control-input.is-valid ~ .custom-control-label::before, .custom-control-input.ng-valid[required] ~ .custom-control-label::before, .custom-control-input.ng-valid.required ~ .custom-control-label::before {
+  .was-validated .custom-control-input:valid ~ .custom-control-label::before, .custom-control-input.is-valid ~ .custom-control-label::before, .custom-control-input.ng-valid.ng-touched[required] ~ .custom-control-label::before, .custom-control-input.ng-valid.required.ng-touched ~ .custom-control-label::before {
     background-color: #71dd8a; }
 
 .was-validated .custom-control-input:valid ~ .valid-feedback,
-.was-validated .custom-control-input:valid ~ .valid-tooltip, .custom-control-input.is-valid ~ .valid-feedback, .custom-control-input.ng-valid[required] ~ .valid-feedback, .custom-control-input.ng-valid.required ~ .valid-feedback,
+.was-validated .custom-control-input:valid ~ .valid-tooltip, .custom-control-input.is-valid ~ .valid-feedback, .custom-control-input.ng-valid.ng-touched[required] ~ .valid-feedback, .custom-control-input.ng-valid.required.ng-touched ~ .valid-feedback,
 .custom-control-input.is-valid ~ .valid-tooltip,
-.custom-control-input.ng-valid[required] ~ .valid-tooltip,
-.custom-control-input.ng-valid.required ~ .valid-tooltip {
+.custom-control-input.ng-valid.ng-touched[required] ~ .valid-tooltip,
+.custom-control-input.ng-valid.required.ng-touched ~ .valid-tooltip {
   display: block; }
 
-.was-validated .custom-control-input:valid:checked ~ .custom-control-label::before, .custom-control-input.is-valid:checked ~ .custom-control-label::before, .custom-control-input.ng-valid:checked[required] ~ .custom-control-label::before, .custom-control-input.ng-valid.required:checked ~ .custom-control-label::before {
+.was-validated .custom-control-input:valid:checked ~ .custom-control-label::before, .custom-control-input.is-valid:checked ~ .custom-control-label::before, .custom-control-input.ng-valid.ng-touched:checked[required] ~ .custom-control-label::before, .custom-control-input.ng-valid.required.ng-touched:checked ~ .custom-control-label::before {
   background-color: #34ce57; }
 
-.was-validated .custom-control-input:valid:focus ~ .custom-control-label::before, .custom-control-input.is-valid:focus ~ .custom-control-label::before, .custom-control-input.ng-valid:focus[required] ~ .custom-control-label::before, .custom-control-input.ng-valid.required:focus ~ .custom-control-label::before {
+.was-validated .custom-control-input:valid:focus ~ .custom-control-label::before, .custom-control-input.is-valid:focus ~ .custom-control-label::before, .custom-control-input.ng-valid.ng-touched:focus[required] ~ .custom-control-label::before, .custom-control-input.ng-valid.required.ng-touched:focus ~ .custom-control-label::before {
   box-shadow: 0 0 0 1px #fff, 0 0 0 0.2rem rgba(40, 167, 69, 0.25); }
 
-.was-validated .custom-file-input:valid ~ .custom-file-label, .custom-file-input.is-valid ~ .custom-file-label, .custom-file-input.ng-valid[required] ~ .custom-file-label, .custom-file-input.ng-valid.required ~ .custom-file-label {
+.was-validated .custom-file-input:valid ~ .custom-file-label, .custom-file-input.is-valid ~ .custom-file-label, .custom-file-input.ng-valid.ng-touched[required] ~ .custom-file-label, .custom-file-input.ng-valid.required.ng-touched ~ .custom-file-label {
   border-color: #28a745; }
-  .was-validated .custom-file-input:valid ~ .custom-file-label::before, .custom-file-input.is-valid ~ .custom-file-label::before, .custom-file-input.ng-valid[required] ~ .custom-file-label::before, .custom-file-input.ng-valid.required ~ .custom-file-label::before {
+  .was-validated .custom-file-input:valid ~ .custom-file-label::before, .custom-file-input.is-valid ~ .custom-file-label::before, .custom-file-input.ng-valid.ng-touched[required] ~ .custom-file-label::before, .custom-file-input.ng-valid.required.ng-touched ~ .custom-file-label::before {
     border-color: inherit; }
 
 .was-validated .custom-file-input:valid ~ .valid-feedback,
-.was-validated .custom-file-input:valid ~ .valid-tooltip, .custom-file-input.is-valid ~ .valid-feedback, .custom-file-input.ng-valid[required] ~ .valid-feedback, .custom-file-input.ng-valid.required ~ .valid-feedback,
+.was-validated .custom-file-input:valid ~ .valid-tooltip, .custom-file-input.is-valid ~ .valid-feedback, .custom-file-input.ng-valid.ng-touched[required] ~ .valid-feedback, .custom-file-input.ng-valid.required.ng-touched ~ .valid-feedback,
 .custom-file-input.is-valid ~ .valid-tooltip,
-.custom-file-input.ng-valid[required] ~ .valid-tooltip,
-.custom-file-input.ng-valid.required ~ .valid-tooltip {
+.custom-file-input.ng-valid.ng-touched[required] ~ .valid-tooltip,
+.custom-file-input.ng-valid.required.ng-touched ~ .valid-tooltip {
   display: block; }
 
-.was-validated .custom-file-input:valid:focus ~ .custom-file-label, .custom-file-input.is-valid:focus ~ .custom-file-label, .custom-file-input.ng-valid:focus[required] ~ .custom-file-label, .custom-file-input.ng-valid.required:focus ~ .custom-file-label {
+.was-validated .custom-file-input:valid:focus ~ .custom-file-label, .custom-file-input.is-valid:focus ~ .custom-file-label, .custom-file-input.ng-valid.ng-touched:focus[required] ~ .custom-file-label, .custom-file-input.ng-valid.required.ng-touched:focus ~ .custom-file-label {
   box-shadow: 0 0 0 0.2rem rgba(40, 167, 69, 0.25); }
 
 .invalid-feedback {
