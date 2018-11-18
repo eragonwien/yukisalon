@@ -1,3 +1,72 @@
-<p>
-  salon-info works!
-</p>
+<div class="container" *ngIf="salon">
+  <form (ngSubmit)="onSubmit(editForm)" #editForm="ngForm">
+    <fieldset>
+
+      <!-- Name -->
+      <div class="form-group row">
+        <label for="name-input" class="col-12">Name</label>
+        <div class="col-12">
+          <input type="text" class="form-control" name="name" id="name-input" placeholder="Salon Name" [(ngModel)]="salon.name"
+            required>
+        </div>
+      </div>
+
+      <!-- Description -->
+      <div class="form-group row">
+        <label for="description-input" class="col-12">Beschreibung 1</label>
+        <div class="col-12">
+          <textarea type="text" class="form-control" name="description" id="description-input" placeholder="Beschreibung"
+            [(ngModel)]="salon.description" required></textarea>
+        </div>
+      </div>
+
+      <!-- Extra Info -->
+      <div class="form-group row">
+        <label for="extra-info-input" class="col-12">Beschreibung 2</label>
+        <div class="col-12">
+          <textarea type="text" class="form-control" name="extraInfo" id="extra-info-input" placeholder="Beschreibung 2"
+            [(ngModel)]="salon.extraInfo"></textarea>
+        </div>
+      </div>
+
+      <!-- Aktiviert -->
+      <div class="form-group">
+        <div class="form-check">
+          <label class="form-check-label">
+            <input type="checkbox" class="form-check-input" name="isActive" id="is-active-input" [(ngModel)]="salon.isActive">Aktiviert
+          </label>
+        </div>
+      </div>
+
+      <!-- Wilkommen Text Kopfzeile -->
+      <div class="form-group row">
+        <label for="name-input" class="col-12">Willkommen Titel</label>
+        <div class="col-12">
+          <input type="text" class="form-control" name="welcome.title" id="welcome-title-input" placeholder="Wilkommen Titel"
+            [(ngModel)]="salon.welcome.title" required>
+        </div>
+      </div>
+
+      <!-- Wilkommen Text Körpertext 1 -->
+      <div class="form-group row">
+        <label for="welcome-text1-input" class="col-12">Willkommen Text 1</label>
+        <div class="col-12">
+          <textarea type="text" class="form-control" name="welcome.text1" id="welcome-text1-input" placeholder="Wilkommen Text 1"
+            [(ngModel)]="salon.welcome.text1"></textarea>
+        </div>
+      </div>
+
+      <!-- Wilkommen Text Körpertext 2 -->
+      <div class="form-group row">
+        <label for="welcome-text2-input" class="col-12">Willkommen Text 2</label>
+        <div class="col-12">
+          <textarea type="text" class="form-control" name="welcome.text2" id="welcome-text2-input" placeholder="Wilkommen Text 2"
+            [(ngModel)]="salon.welcome.text2"></textarea>
+        </div>
+      </div>
+
+      <input type="submit" class="btn btn-primary" value="Speichern">
+    </fieldset>
+  </form>
+
+</div>
