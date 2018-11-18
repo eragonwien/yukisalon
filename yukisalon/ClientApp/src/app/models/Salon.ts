@@ -11,6 +11,24 @@ export class Salon {
   contact: Contact[];
   category: Category[];
   user: User[];
-  welcome: Welcome[];
+  welcome: Welcome;
   isActive: boolean
+}
+
+export class EditSalonInfoModel {
+  id: number;
+  name: string;
+  description: string;
+  extraInfo: string;
+  isActive: boolean;
+  welcome: Welcome;
+
+  constructor(salon: Salon) {
+    this.id = salon.id;
+    this.name = salon.name;
+    this.description = salon.description;
+    this.extraInfo = salon.extraInfo;
+    this.isActive = salon.isActive;
+    this.welcome = salon.welcome;
+  }
 }
