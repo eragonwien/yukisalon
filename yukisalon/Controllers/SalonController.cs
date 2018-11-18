@@ -12,6 +12,7 @@ namespace yukisalon.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class SalonController : ControllerBase
     {
         private readonly YUKISALONDEVContext context;
@@ -23,7 +24,6 @@ namespace yukisalon.Controllers
 
         // GET: api/Salon
         [HttpGet]
-        [Authorize]
         public async Task<IActionResult> GetSalon()
         {
             var salonList = await context.Salon.ToListAsync();
@@ -47,7 +47,7 @@ namespace yukisalon.Controllers
                 {
                     id = context.Salon.Where(s => s.IsActive.HasValue && s.IsActive.Value).Single().Id;
                 }
-                catch (Exception) 
+                catch (Exception ex)
                 {
                     return NotFound();
                 };
@@ -79,40 +79,53 @@ namespace yukisalon.Controllers
             return Ok(salon);
         }
 
-        //// PUT: api/Salon/5
-        //[HttpPut("{id}")]
-        //public async Task<IActionResult> PutSalon([FromRoute] int id, [FromBody] Salon salon)
-        //{
-        //    if (!ModelState.IsValid)
-        //    {
-        //        return BadRequest(ModelState);
-        //    }
+        // PUT: api/Salon/5
+        [HttpPut("{id}")]
+        public async Task<IActionResult> PutSalon([FromRoute] int id, [FromBody] Salon salon)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
 
-        //    if (id != salon.Id)
-        //    {
-        //        return BadRequest();
-        //    }
+            if (id != salon.Id)
+            {
+                return BadRequest();
+            }
 
-        //    _context.Entry(salon).State = EntityState.Modified;
 
-        //    try
-        //    {
-        //        await _context.SaveChangesAsync();
-        //    }
-        //    catch (DbUpdateConcurrencyException)
-        //    {
-        //        if (!SalonExists(id))
-        //        {
-        //            return NotFound();
-        //        }
-        //        else
-        //        {
-        //            throw;
-        //        }
-        //    }
+            try
+            {
+                SetModelForModification(salon);
+                await context.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!SalonExists(id))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
 
-        //    return NoContent();
-        //}
+            return NoContent();
+        }
+
+        private void SetModelForModification(Salon salon)
+        {
+            context.Entry(salon).Property(s => s.Name).IsModified = true;
+            context.Entry(salon).Property(s => s.Description).IsModified = true;
+            context.Entry(salon).Property(s => s.ExtraInfo).IsModified = true;
+            context.Entry(salon).Property(s => s.IsActive).IsModified = true;
+            context.Entry(salon.Welcome).State = EntityState.Modified;
+        }
 
         //// POST: api/Salon
         //[HttpPost]
