@@ -6,10 +6,18 @@
       </a>
     </div>
     <div class="nav-scroller col-12 col-md-8 text-center">
-      <div class="nav d-flex justify-content-center align-self-stretch">
+      <div class="nav d-flex justify-content-center align-self-stretch" *ngIf="!isMaintenance()">
         <a class="nav-link" routerLink="services" routerLinkActive="active">Services</a>
         <a class="nav-link" routerLink="contact" routerLinkActive="active">Kontakt</a>
         <a class="nav-link" routerLink="maintenance" routerLinkActive="active">Maintenance</a>
+      </div>
+      <div class="nav d-flex justify-content-center align-self-stretch" *ngIf="isMaintenance()">
+        <a class="nav-link" routerLink="maintenance/home" routerLinkActive="active">Home</a>
+        <a class="nav-link" routerLink="maintenance/salon" routerLinkActive="active">Salon</a>
+        <a class="nav-link" routerLink="maintenance/contact" routerLinkActive="active">Kontakt</a>
+        <a class="nav-link" routerLink="maintenance/user" routerLinkActive="active">Benutzer</a>
+        <a class="nav-link" routerLink="maintenance/login" routerLinkActive="active" *ngIf="!isUserLoggedIn()">Einloggen</a>
+        <a class="nav-link" routerLink="maintenance/logout" routerLinkActive="active" *ngIf="isUserLoggedIn()">Ausloggen</a>
       </div>
     </div>
   </div>

@@ -8,7 +8,6 @@ import { Category } from '../models/Product';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  providers: [SalonService]
 })
 export class HomeComponent {
 

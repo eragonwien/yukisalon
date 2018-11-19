@@ -27,6 +27,7 @@ import { AccountService } from './services/account.service';
 import { MaintenanceMenuComponent } from './maintenance/menu/menu.component';
 import { SalonInfoComponent } from './maintenance/salon-info/salon-info.component';
 import { MaintenanceIndexComponent } from './maintenance/index/index.component';
+import { SharedModule } from './shared.module';
 
 @NgModule({
   declarations: [
@@ -52,38 +53,25 @@ import { MaintenanceIndexComponent } from './maintenance/index/index.component';
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
+    SharedModule.forRoot(),
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
     RouterModule.forRoot([
       { path: '', component: HomeComponent, pathMatch: 'full' },
-      { path: 'login', component: LoginComponent },
       { path: 'contact', component: ContactComponent },
       { path: 'services', component: ProductComponent },
       { path: 'maintenance', component: MaintenanceComponent, children: [
-        { path: '', component: MaintenanceIndexComponent },
-        { path: 'menu', component: MaintenanceMenuComponent },
+        { path: '', redirectTo: 'home', pathMatch: 'full' },
+        { path: 'home', component: MaintenanceIndexComponent },
+        { path: 'login', component: LoginComponent },
         { path: 'salon', component: SalonInfoComponent },
         { path: 'contact', component: SalonInfoComponent },
         { path: 'user', component: SalonInfoComponent },
       ]}
     ])
   ],
-  providers: [
-    SalonService,
-    AccountService,
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: AddWithCredentialsHttpInterceptorService, 
-      multi: true
-    },
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: UnauthorizedHttpInterceptorService, 
-      multi: true,
-      deps: [SalonService]
-    }
-  ],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

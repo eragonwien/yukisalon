@@ -7,7 +7,6 @@ import { SalonService } from "../services/salon.service";
   selector: 'app-contact',
   templateUrl: './contact.component.html',
   styleUrls: ['./contact.component.css'],
-  providers: [SalonService]
 })
 export class ContactComponent implements OnInit {
 

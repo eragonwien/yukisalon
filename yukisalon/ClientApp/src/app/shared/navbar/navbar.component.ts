@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { AccountService } from '../../services/account.service';
 
 @Component({
   selector: 'app-navbar',
@@ -6,9 +8,16 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit {
-  constructor() { }
+  constructor(private router:Router, private accountService: AccountService) { }
 
   ngOnInit() {
   }
 
+  isMaintenance() {
+    return this.router.url.startsWith('/maintenance');
+  }
+
+  isUserLoggedIn() {
+    return this.accountService.isUserLoggedIn;
+  }
 }

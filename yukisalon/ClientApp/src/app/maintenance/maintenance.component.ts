@@ -6,7 +6,6 @@ import { Salon } from '../models/Salon';
   selector: 'app-maintenance',
   templateUrl: './maintenance.component.html',
   styleUrls: ['./maintenance.component.css'],
-  providers: [SalonService]
 })
 export class MaintenanceComponent implements OnInit {
 

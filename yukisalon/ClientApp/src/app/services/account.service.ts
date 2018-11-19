@@ -6,6 +6,8 @@ import { SalonService } from './salon.service';
 @Injectable()
 export class AccountService {
 
+  isUserLoggedIn: boolean;
+
   constructor(private salonService: SalonService, private http: HttpClient) { }
 
   login(user: LoginUser) {

@@ -7,7 +7,6 @@ import { Salon } from '../models/Salon';
   selector: 'app-product',
   templateUrl: './product.component.html',
   styleUrls: ['./product.component.css'],
-  providers: [SalonService]
 })
 export class ProductComponent implements OnInit {
 

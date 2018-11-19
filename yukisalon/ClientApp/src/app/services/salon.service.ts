@@ -6,6 +6,8 @@ import { Salon, EditSalonInfoModel } from '../models/Salon';
 @Injectable()
 export class SalonService {
 
+  pickedSalonId: number;
+
   constructor(private http: HttpClient, private router: Router) { }
 
   get BaseUrl() { return window.location.origin; }
@@ -25,7 +27,7 @@ export class SalonService {
   }
 
   handle401Error() {
-    this.router.navigate(['login'], { queryParams: { returnUrl: this.router.url }});
+    this.router.navigate(['maintenance/login'], { queryParams: { returnUrl: this.router.url }});
   }
 
   editSalonInfo(salon: Salon) {

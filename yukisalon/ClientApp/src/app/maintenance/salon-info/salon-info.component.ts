@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { SalonService } from '../../services/salon.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Salon } from '../../models/Salon';
 import { NgForm } from '@angular/forms';
 
@@ -13,14 +13,17 @@ export class SalonInfoComponent implements OnInit {
 
   salon: Salon;
 
-  constructor(private salonService: SalonService, private route: ActivatedRoute) { }
+  constructor(private salonService: SalonService, private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit() {
     this.loadSalonInfo();
   }
 
   loadSalonInfo() {
-    let salonId = Number(this.route.snapshot.paramMap.get('id'));
+    let salonId = this.salonService.pickedSalonId;
+    if (!salonId) {
+      return this.returnToIndex();
+    }
     this.salonService.getSalonById(salonId).subscribe((salon: Salon) => {
       this.salon = salon;
     });
@@ -32,5 +35,9 @@ export class SalonInfoComponent implements OnInit {
         console.log(response);
       });
     }
+  }
+
+  returnToIndex() {
+    this.router.navigate(['maintenance']);
   }
 }

@@ -9,7 +9,6 @@ import { Router, ActivatedRoute } from '@angular/router';
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css'],
-  providers: [AccountService, SalonService]
 })
 export class LoginComponent implements OnInit {
 
@@ -18,6 +17,7 @@ export class LoginComponent implements OnInit {
   constructor(private accountService: AccountService, private salonService: SalonService, private router: Router, private route: ActivatedRoute) { }
 
   ngOnInit() {
+    this.accountService.isUserLoggedIn = false;
     this.loginUser = new LoginUser();
   }
 
@@ -32,6 +32,7 @@ export class LoginComponent implements OnInit {
   }
 
   handleLogin(response) {
+    this.accountService.isUserLoggedIn = true;
     let returnUrl = this.route.snapshot.paramMap.get('returnUrl');
     this.router.navigate(['maintenance']); 
   }
