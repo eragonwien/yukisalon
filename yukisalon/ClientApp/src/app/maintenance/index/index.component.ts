@@ -32,7 +32,7 @@ export class MaintenanceIndexComponent implements OnInit {
 
   onSalonPicked(salon: Salon) {
     this.salon = salon;
-    this.salonService.pickedSalonId = salon.id;
+    this.salonService.currentSalonId = salon.id;
   }
 
   loadMenuList() {
@@ -44,13 +44,10 @@ export class MaintenanceIndexComponent implements OnInit {
   }
 
   onMenuPicked(menu: MaintenanceMenu) {
-    let navExtras: NavigationExtras = {
-      queryParams: { 'id' : this.salon.id }
-    };
-    this.router.navigate([menu.url], navExtras);
+    this.router.navigate([menu.url]);
   }
 
   resetPickedSalon() {
-    this.salonService.pickedSalonId = undefined;
+    this.salonService.currentSalonId = undefined;
   }
 }

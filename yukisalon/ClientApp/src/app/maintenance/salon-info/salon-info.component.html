@@ -1,24 +1,24 @@
 <div class="container" *ngIf="salon">
   <form (ngSubmit)="onSubmit(editForm)" #editForm="ngForm">
     <fieldset>
-
-      <!-- Name -->
-      <div class="form-group row">
-        <label for="name-input" class="col-12">Name</label>
-        <div class="col-12">
+      <div class="form-row">
+        <!-- Name -->
+        <div class="form-group col-12 col-md-6">
+          <label for="name-input">Name</label>
           <input type="text" class="form-control" name="name" id="name-input" placeholder="Salon Name" [(ngModel)]="salon.name"
             required>
         </div>
-      </div>
 
-      <!-- Description -->
-      <div class="form-group row">
-        <label for="description-input" class="col-12">Beschreibung 1</label>
-        <div class="col-12">
+        <!-- Description -->
+        <div class="form-group col-12 col-md-6">
+          <label for="description-input">Beschreibung 1</label>
           <textarea type="text" class="form-control" name="description" id="description-input" placeholder="Beschreibung"
             [(ngModel)]="salon.description" required></textarea>
         </div>
       </div>
+
+
+
 
       <!-- Extra Info -->
       <div class="form-group row">

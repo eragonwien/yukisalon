@@ -6,7 +6,7 @@ import { SalonService } from './salon.service';
 @Injectable()
 export class AccountService {
 
-  isUserLoggedIn: boolean;
+  private isLoggedIn: boolean;
 
   constructor(private salonService: SalonService, private http: HttpClient) { }
 
@@ -19,5 +19,15 @@ export class AccountService {
     return this.http.post(url, data, { observe: 'response' });
   }
 
-  get Test() { return this.http.post(this.salonService.BaseUrl + "/Account/Test", null) }
+  get isUserLoggedIn() { 
+    if (this.isLoggedIn == undefined || this.isLoggedIn == null) {
+      this.isLoggedIn = localStorage.getItem('isUserLoggedIn') == 'true';
+    }
+    return this.isLoggedIn;
+  }
+
+  set isUserLoggedIn(loggedIn: boolean) {
+    this.isLoggedIn = loggedIn;
+    localStorage.setItem('isUserLoggedIn', this.isLoggedIn.toString());
+  }
 }

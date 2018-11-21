@@ -28,7 +28,6 @@ export class SharedModule {
           provide: HTTP_INTERCEPTORS,
           useClass: UnauthorizedHttpInterceptorService, 
           multi: true,
-          deps: [SalonService]
         }
       ]
     };

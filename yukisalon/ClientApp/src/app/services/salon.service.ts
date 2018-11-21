@@ -6,7 +6,7 @@ import { Salon, EditSalonInfoModel } from '../models/Salon';
 @Injectable()
 export class SalonService {
 
-  pickedSalonId: number;
+  private currentId: number;
 
   constructor(private http: HttpClient, private router: Router) { }
 
@@ -15,6 +15,19 @@ export class SalonService {
   get ImagePathPrefix() { return "assets/images/"; }
   get Salon() { return this.getSalonById(0) }
   get SalonList() { return this.http.get(this.BaseUrl + "/api/Salon") }
+  get currentSalonId() {
+    if (!this.currentId) {
+      this.currentId = Number(localStorage.getItem('currentSalonId'));
+    } 
+    return this.currentId;
+  }
+
+  set currentSalonId(id: number) {
+    if (id) {
+      this.currentId = id;
+      localStorage.setItem('currentSalonId', id.toString());
+    }
+  }
 
   getSalonById(id: number) {
     return this.http.get(this.BaseUrl + "/api/Salon/" + id);

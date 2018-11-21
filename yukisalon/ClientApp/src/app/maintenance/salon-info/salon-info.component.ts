@@ -20,10 +20,7 @@ export class SalonInfoComponent implements OnInit {
   }
 
   loadSalonInfo() {
-    let salonId = this.salonService.pickedSalonId;
-    if (!salonId) {
-      return this.returnToIndex();
-    }
+    let salonId = this.salonService.currentSalonId;
     this.salonService.getSalonById(salonId).subscribe((salon: Salon) => {
       this.salon = salon;
     });
