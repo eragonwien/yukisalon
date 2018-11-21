@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 
 import { AppComponent } from './app.component';
@@ -19,12 +19,7 @@ import { FeaturesComponent } from './product/partials/features/features.componen
 import { ProductCardComponent } from './product/partials/product-card/product-card.component';
 import { FooterComponent } from './shared/footer/footer.component';
 import { LoginComponent } from './login/login.component';
-import { AddWithCredentialsHttpInterceptorService } from './services/add-with-credentials-http-interceptor.service';
-import { UnauthorizedHttpInterceptorService } from './services/unauthorized-http-interceptor.service';
 import { MaintenanceComponent } from './maintenance/maintenance.component';
-import { SalonService } from './services/salon.service';
-import { AccountService } from './services/account.service';
-import { MaintenanceMenuComponent } from './maintenance/menu/menu.component';
 import { SalonInfoComponent } from './maintenance/salon-info/salon-info.component';
 import { MaintenanceIndexComponent } from './maintenance/index/index.component';
 import { SharedModule } from './shared.module';
@@ -47,7 +42,6 @@ import { SharedModule } from './shared.module';
     ProductCardComponent,
     LoginComponent,
     MaintenanceComponent,
-    MaintenanceMenuComponent,
     SalonInfoComponent,
     MaintenanceIndexComponent
   ],
