@@ -2,13 +2,14 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from "@angular/common/http";
 import { LoginUser } from '../models/User';
 import { SalonService } from './salon.service';
+import { Router } from '@angular/router';
 
 @Injectable()
 export class AccountService {
 
   private isLoggedIn: boolean;
 
-  constructor(private salonService: SalonService, private http: HttpClient) { }
+  constructor(private salonService: SalonService, private http: HttpClient, private router: Router) { }
 
   login(user: LoginUser) {
     let data = {
@@ -17,6 +18,14 @@ export class AccountService {
     };
     let url = this.salonService.BaseUrl + "/Account/Login";
     return this.http.post(url, data, { observe: 'response' });
+  }
+
+  logout() {
+
+  }
+
+  redirectToLogin() {
+    this.router.navigate(['maintenance/login']);
   }
 
   get isUserLoggedIn() { 

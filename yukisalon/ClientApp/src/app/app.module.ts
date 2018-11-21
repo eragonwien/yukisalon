@@ -23,6 +23,7 @@ import { MaintenanceComponent } from './maintenance/maintenance.component';
 import { SalonInfoComponent } from './maintenance/salon-info/salon-info.component';
 import { MaintenanceIndexComponent } from './maintenance/index/index.component';
 import { SharedModule } from './shared.module';
+import { LogoutComponent } from './logout/logout.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +44,8 @@ import { SharedModule } from './shared.module';
     LoginComponent,
     MaintenanceComponent,
     SalonInfoComponent,
-    MaintenanceIndexComponent
+    MaintenanceIndexComponent,
+    LogoutComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -59,6 +61,7 @@ import { SharedModule } from './shared.module';
         { path: '', redirectTo: 'home', pathMatch: 'full' },
         { path: 'home', component: MaintenanceIndexComponent },
         { path: 'login', component: LoginComponent },
+        { path: 'logout', component: LogoutComponent },
         { path: 'salon', component: SalonInfoComponent },
         { path: 'contact', component: SalonInfoComponent },
         { path: 'user', component: SalonInfoComponent },

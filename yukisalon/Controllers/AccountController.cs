@@ -61,9 +61,10 @@ namespace yukisalon.Controllers
         }
 
         [Authorize]
-        public IActionResult Test()
+        public async Task<IActionResult> Logout()
         {
-            return Unauthorized();
+            await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+            return Ok();
         }
     }
 }
