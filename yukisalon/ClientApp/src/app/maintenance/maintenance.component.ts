@@ -1,6 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { SalonService } from '../services/salon.service';
-import { Salon } from '../models/Salon';
 
 @Component({
   selector: 'app-maintenance',
