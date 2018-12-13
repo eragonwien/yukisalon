@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Salon } from '../../models/Salon';
 import { NgForm } from '@angular/forms';
 import { HttpErrorResponse } from '@angular/common/http';
+import { AlertMessage } from '../../models/alertMessage';
 
 @Component({
   selector: 'app-salon-info',
@@ -13,8 +14,15 @@ import { HttpErrorResponse } from '@angular/common/http';
 export class SalonInfoComponent implements OnInit {
 
   salon: Salon;
+  
+  formDivId: string = 'edit-salon-form';
+  alerts: AlertMessage[] = [];
+  alertTimeout: number = 10 * 1000;
+  alertDismissible : boolean = true;
+  successMessage: string = 'Änderung gespeichert';
+  errorMessage: string = 'Fehler';
 
-  constructor(private salonService: SalonService, private route: ActivatedRoute, private router: Router) { }
+  constructor(private salonService: SalonService, private route: ActivatedRoute) { }
 
   ngOnInit() {
     this.loadSalonInfo();
@@ -30,19 +38,26 @@ export class SalonInfoComponent implements OnInit {
   onSubmit(form: NgForm) {
     if (form.valid) {
       this.salonService.editSalonInfo(this.salon).subscribe((response) => {
-        console.log(response);
-      });
+        this.showAlertMessage(null, true);
+      }, this.handleError);
     }
-  }
-
-  returnToIndex() {
-    this.router.navigate(['maintenance']);
   }
 
   handleError(error: HttpErrorResponse) {
     if (error.status === 404) {
-      return this.returnToIndex();
+      return this.salonService.returnToMaintenanceIndex();
     }
-    alert(error.message);
+    let errorText = error.status + ' : ' + error.statusText;
+    this.showAlertMessage(errorText, false);
+  }
+
+  showAlertMessage(message: string, isSuccess: boolean) {
+    this.alerts.push({
+      type: isSuccess ? 'success' : 'danger',
+      header: isSuccess ? this.successMessage : this.errorMessage,
+      message: message,
+      timeout: this.alertTimeout
+    });
+    this.salonService.scrollToViewById(this.formDivId);
   }
 }
