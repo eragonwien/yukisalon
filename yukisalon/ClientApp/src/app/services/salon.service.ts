@@ -48,4 +48,12 @@ export class SalonService {
     let model = new EditSalonInfoModel(salon);
     return this.http.put(url, model, { observe: 'response' });
   }
+
+  returnToMaintenanceIndex(){
+    return this.router.navigate(['maintenance']);
+  }
+
+  scrollToViewById(divId: string) {
+    document.getElementById(divId).scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
 }
