@@ -4,6 +4,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 
+import { AlertModule } from "ngx-bootstrap/alert";
+import { AccordionModule } from "ngx-bootstrap/accordion";
+
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { ContactComponent } from './contact/contact.component';
@@ -45,7 +48,7 @@ import { LogoutComponent } from './logout/logout.component';
     MaintenanceComponent,
     SalonInfoComponent,
     MaintenanceIndexComponent,
-    LogoutComponent
+    LogoutComponent,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -66,7 +69,9 @@ import { LogoutComponent } from './logout/logout.component';
         { path: 'contact', component: SalonInfoComponent },
         { path: 'user', component: SalonInfoComponent },
       ]}
-    ])
+    ]),
+    AlertModule.forRoot(),
+    AccordionModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]
