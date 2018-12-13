@@ -1,4 +1,4 @@
-export class MaintenanceMenu {
+export class MaintenanceMenuOption {
   name: string;
   url: string;
 }
