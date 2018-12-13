@@ -1,8 +1,8 @@
-<div class="container">
+<div class="container-fluid">
   <div class="row justify-content-center align-items-center">
     <div class="col-12 col-md-4 text-center">
       <a routerLink="">
-        <img class="w-50" src="assets/icons/logo-512x512.png" alt="Logo">
+        <img src="assets/icons/logo-512x512.png" alt="Logo" width="100">
       </a>
     </div>
     <div class="nav-scroller col-12 col-md-8 text-center">
@@ -12,7 +12,7 @@
         <a class="nav-link" routerLink="maintenance" routerLinkActive="active">Maintenance</a>
       </div>
       <div class="nav d-flex justify-content-center align-self-stretch" *ngIf="isMaintenance()">
-        <a class="nav-link" routerLink="maintenance/home" routerLinkActive="active">Home</a>
+        <a class="nav-link" routerLink="maintenance/home" routerLinkActive="active"  *ngIf="isUserLoggedIn()">Home</a>
         <a class="nav-link" routerLink="maintenance/salon" routerLinkActive="active" *ngIf="isUserLoggedIn()">Salon</a>
         <a class="nav-link" routerLink="maintenance/contact" routerLinkActive="active" *ngIf="isUserLoggedIn()">Kontakt</a>
         <a class="nav-link" routerLink="maintenance/user" routerLinkActive="active" *ngIf="isUserLoggedIn()">Benutzer</a>
