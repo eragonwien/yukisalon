@@ -27,6 +27,9 @@ import { SalonInfoComponent } from './maintenance/salon-info/salon-info.componen
 import { MaintenanceIndexComponent } from './maintenance/index/index.component';
 import { SharedModule } from './shared.module';
 import { LogoutComponent } from './logout/logout.component';
+import { MaintenanceMenuComponent } from './maintenance/maintenance-menu/maintenance-menu.component';
+import { EditSalonProductComponent } from './maintenance/edit-salon-product/edit-salon-product.component';
+import { EditSalonUserComponent } from './maintenance/edit-salon-user/edit-salon-user.component';
 
 @NgModule({
   declarations: [
@@ -49,6 +52,9 @@ import { LogoutComponent } from './logout/logout.component';
     SalonInfoComponent,
     MaintenanceIndexComponent,
     LogoutComponent,
+    MaintenanceMenuComponent,
+    EditSalonProductComponent,
+    EditSalonUserComponent,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -65,9 +71,10 @@ import { LogoutComponent } from './logout/logout.component';
         { path: 'home', component: MaintenanceIndexComponent },
         { path: 'login', component: LoginComponent },
         { path: 'logout', component: LogoutComponent },
+        { path: 'menu', component: MaintenanceMenuComponent },
         { path: 'salon', component: SalonInfoComponent },
-        { path: 'contact', component: SalonInfoComponent },
-        { path: 'user', component: SalonInfoComponent },
+        { path: 'product', component: EditSalonProductComponent },
+        { path: 'user', component: EditSalonUserComponent },
       ]}
     ]),
     AlertModule.forRoot(),
