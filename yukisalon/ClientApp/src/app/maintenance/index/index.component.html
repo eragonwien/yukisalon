@@ -1,40 +1,24 @@
 <div class="container-fluid">
-  <div *ngIf="!salon">
-    <div *ngIf="salonList">
-      <div class="card bg-light">
-        <div class="card-body">
-          <h3 class="card-title text-center">Salon auswählen</h3>
-          <!-- Salon auswählen-->
-          <div class="card-columns" *ngIf="salonList.length > 0">
-            <div class="card bg-primary" *ngFor="let salon of salonList" (click)="onSalonPicked(salon)" style="cursor: pointer;">
-              <div class="card-body text-center text-white">
-                <p class="card-text">{{ salon.name }}</p>
-              </div>
-            </div>
-          </div>
-          <!-- Kein Salon vorhanden-->
-          <div *ngIf="salonList.length === 0">
-            <h3 class="text-center text-muted">Kein Salon angelegt</h3>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div *ngIf="!salonList">
-      <h3 class="text-center text-muted">wird geladen...</h3>
-    </div>
-  </div>
-
-  <div *ngIf="salon">
+  <div *ngIf="salonList">
     <div class="card bg-light">
       <div class="card-body">
-        <div class="card-columns">
-          <div class="card bg-primary" *ngFor="let option of maintenanceMenu">
-            <div class="card-body text-center text-white" (click)="onMenuOptionPicked(option)">
-              <p class="card-text">{{ option.name }}</p>
+        <h3 class="card-title text-center">Salon auswählen</h3>
+        <!-- Salon auswählen-->
+        <div class="card-columns" *ngIf="salonList.length > 0">
+          <div class="card bg-primary" *ngFor="let salon of salonList" (click)="onSalonPicked(salon)" style="cursor: pointer;">
+            <div class="card-body text-center text-white">
+              <p class="card-text">{{ salon.name }}</p>
             </div>
           </div>
         </div>
+        <!-- Kein Salon vorhanden-->
+        <div *ngIf="salonList.length === 0">
+          <h3 class="text-center text-muted">Kein Salon angelegt</h3>
+        </div>
       </div>
     </div>
+  </div>
+  <div *ngIf="!salonList">
+    <h3 class="text-center text-muted">wird geladen...</h3>
   </div>
 </div>
