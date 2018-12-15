@@ -107,6 +107,13 @@ namespace yukisalon.Controllers
             try
             {
                 Contact removeContact = await context.Contact.Where(c => c.Id == id).SingleOrDefaultAsync();
+                int salonContactCount = await context.Contact.Where(c => c.SalonId == removeContact.SalonId).CountAsync();
+
+                if (salonContactCount == 1)
+                {
+                    return BadRequest("Ein Salon muss mindesten ein Kontakt haben.");
+                }
+
                 if (removeContact != null)
                 {
                     context.Contact.Remove(removeContact);

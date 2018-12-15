@@ -11,6 +11,7 @@ import { ActivatedRoute } from '@angular/router';
 export class EditSalonInfoComponent extends MaintenanceBaseEditFormComponent implements OnInit {
 
   oneAtATime: boolean = true;
+  
   constructor(public salonService: SalonService, public route: ActivatedRoute) {
     super(salonService, route);
   }

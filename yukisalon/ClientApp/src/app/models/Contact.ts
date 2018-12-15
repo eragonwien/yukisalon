@@ -7,6 +7,7 @@ export class OpenHour {
 
 export class Contact {
   id: number;
+  salonId: number;
   address1: string;
   address2: string;
   plz: string;

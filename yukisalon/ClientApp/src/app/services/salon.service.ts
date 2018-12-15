@@ -46,15 +46,23 @@ export class SalonService {
 
   editSalonInfo(salon: Salon) {
     let url = this.BaseUrl + "/api/Salon/" + salon.id;
-    
     let model = new EditSalonInfoModel(salon);
     return this.http.put(url, model, { observe: 'response' });
   }
 
   editSalonContact(contact: Contact) {
     let url = this.BaseUrl + "/api/Contact/" + contact.id;
-    
     return this.http.put(url, contact, { observe: 'response' });
+  }
+
+  createSalonContact(contact: Contact) {
+    let url = this.BaseUrl + "/api/Contact";
+    return this.http.post(url, contact, { observe: 'response' });
+  }
+
+  removeSalonContact(contact: Contact) {
+    let url = this.BaseUrl + "/api/Contact/" + contact.id;
+    return this.http.delete(url, { observe: 'response' });
   }
 
   returnToMaintenanceIndex(){

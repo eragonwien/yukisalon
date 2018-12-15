@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace yukisalon.Models
 {
@@ -11,7 +12,11 @@ namespace yukisalon.Models
         }
 
         public int Id { get; set; }
+
+        [Required]
         public int SalonId { get; set; }
+
+        [Required]
         public string Address1 { get; set; }
         public string Address2 { get; set; }
         public string Plz { get; set; }

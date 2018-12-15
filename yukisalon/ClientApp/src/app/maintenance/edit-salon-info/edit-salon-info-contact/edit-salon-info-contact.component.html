@@ -1,17 +1,18 @@
+<div *ngFor="let alert of alerts">
+  <alert [type]="alert.type" [dismissible]="alertDismissible" [dismissOnTimeout]="alert.timeout">
+    <strong *ngIf="alert.header">{{ alert.header }} </strong>{{ alert.message }}</alert>
+</div>
 <div *ngIf="salon && salon.contact && !pickedContact">
   <div class="list-group">
     <p *ngFor="let contact of salon.contact" class="list-group-item list-group-item-action" (click)="onContactPicked(contact)">
-      {{ contact.address1 }} {{ contact.address2 ? '(' + contact.address2 + ')' : '' }}, {{ contact.plz }} {{ contact.city }}
+      {{ contact.address1 }} {{ contact.address2 ? '(' + contact.address2 + ')' : '' }}, {{ contact.plz }} {{
+      contact.city }}
     </p>
     <p class="list-group-item list-group-item-action" (click)="openCreateNewContact()">Neue Kontakt anlegen</p>
   </div>
 </div>
 
 <div *ngIf="salon && salon.contact && pickedContact">
-  <div *ngFor="let alert of alerts">
-    <alert [type]="alert.type" [dismissible]="alertDismissible" [dismissOnTimeout]="alert.timeout">
-      <strong *ngIf="alert.header">{{ alert.header }} </strong>{{ alert.message }}</alert>
-  </div>
   <!-- Addresse bearbeitung -->
   <form (ngSubmit)="onSubmit(editSalonForm)" #editSalonForm="ngForm" id="edit-salon-contact-form">
     <fieldset>
@@ -67,7 +68,8 @@
       <div class="form-row">
         <div class="form-group col-12">
           <input type="submit" class="btn btn-primary" value="Speichern">
-          <input type="button" class="btn btn-secondary" value="Löschen">
+          <input type="button" class="btn btn-secondary" value="Löschen" (click)="onRemove()">
+          <input type="button" class="btn" value="Abbrechen" (click)="onClose()">
         </div>
       </div>
     </fieldset>

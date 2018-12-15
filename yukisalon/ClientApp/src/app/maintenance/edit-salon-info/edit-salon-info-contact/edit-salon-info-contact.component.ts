@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, ChangeDetectorRef } from '@angular/core';
 import { Salon } from '../../../models/Salon';
 import { MaintenanceBaseEditFormComponent } from '../../maintenance-base-edit-form/maintenance-base-edit-form.component';
 import { SalonService } from '../../../services/salon.service';
@@ -14,9 +14,12 @@ import { NgForm } from '@angular/forms';
 export class EditSalonInfoContactComponent extends MaintenanceBaseEditFormComponent implements OnInit {
 
   @Input() salon: Salon;
-  pickedContact: Contact;
 
-  constructor(public salonService: SalonService, public route: ActivatedRoute) {
+  isTabOpen: boolean;
+  pickedContact: Contact;
+  createContact: boolean = false;
+
+  constructor(public salonService: SalonService, public route: ActivatedRoute, private changeDetector: ChangeDetectorRef) {
     super(salonService, route);
   }
 
@@ -31,9 +34,40 @@ export class EditSalonInfoContactComponent extends MaintenanceBaseEditFormCompon
 
   onSubmit(form: NgForm) {
     if (form.valid) {
-      this.salonService.editSalonContact(this.pickedContact).subscribe((response) => {
-        this.showAlertMessage(null, true);
-      }, this.handleError);
+      if (this.createContact) { // creates new contact
+        this.salonService.createSalonContact(this.pickedContact).subscribe((response) => {
+          this.showAlertMessage(null, true);
+        }, this.handleError);
+      } else { // edit existing contact
+        this.salonService.editSalonContact(this.pickedContact).subscribe((response) => {
+          this.showAlertMessage(null, true);
+        }, this.handleError);
+      }
     }
+    this.resetContacts();
+  }
+
+  resetContacts() {
+    this.loadSalonInfo();
+    this.changeDetector.detectChanges();
+    this.pickedContact = null;
+    this.createContact = false;
+  }
+  
+  onClose() {
+    this.resetContacts();
+  }
+
+  onRemove() {
+    this.salonService.removeSalonContact(this.pickedContact).subscribe((response) => {
+      this.showAlertMessage(null, true);
+      this.resetContacts();
+    }, this.handleError);
+  }
+
+  openCreateNewContact() {
+    this.createContact = true;
+    this.pickedContact = new Contact();
+    this.pickedContact.salonId = this.salon.id;
   }
 }

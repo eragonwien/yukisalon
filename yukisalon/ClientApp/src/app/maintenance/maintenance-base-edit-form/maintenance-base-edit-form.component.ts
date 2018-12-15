@@ -19,7 +19,7 @@ export class MaintenanceBaseEditFormComponent{
   alerts: AlertMessage[] = [];
   alertTimeout: number = 10 * 1000;
   alertDismissible : boolean = true;
-  successMessage: string = 'Änderung gespeichert';
+  successMessage: string = 'O.K';
   errorMessage: string = 'Fehler';
 
   routeId: string;
@@ -47,7 +47,7 @@ export class MaintenanceBaseEditFormComponent{
 
   onSubmit(form: NgForm) {
     if (form.valid) {
-      this.salonService.editSalonInfo(this.salon, this.routeId).subscribe((response) => {
+      this.salonService.editSalonInfo(this.salon).subscribe((response) => {
         this.showAlertMessage(null, true);
       }, this.handleError);
     }
