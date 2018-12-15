@@ -1,0 +1,16 @@
+<div class="container">
+  <accordion [closeOthers]="oneAtATime">
+    <accordion-group heading="Allegemein" class="my-2">
+      <app-edit-salon-info-general [salon]="salon"></app-edit-salon-info-general>
+    </accordion-group>
+    <accordion-group heading="Kontakt" class="my-2">
+      <app-edit-salon-info-contact [salon]="salon"></app-edit-salon-info-contact>
+    </accordion-group>
+    <accordion-group heading="Öffnungszeiten" class="my-2">
+      <app-edit-salon-info-opening-hours [salon]="salon"></app-edit-salon-info-opening-hours>
+    </accordion-group>
+    <accordion-group heading="Willkommen Texte" class="my-2">
+      <app-edit-salon-info-welcome-text [salon]="salon"></app-edit-salon-info-welcome-text>
+    </accordion-group>
+  </accordion>
+</div>
