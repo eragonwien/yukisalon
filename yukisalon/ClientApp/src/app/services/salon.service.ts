@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from "@angular/common/http";
 import { Router } from '@angular/router';
 import { Salon, EditSalonInfoModel } from '../models/Salon';
+import { Contact } from '../models/Contact';
 
 @Injectable()
 export class SalonService {
@@ -45,8 +46,15 @@ export class SalonService {
 
   editSalonInfo(salon: Salon) {
     let url = this.BaseUrl + "/api/Salon/" + salon.id;
+    
     let model = new EditSalonInfoModel(salon);
     return this.http.put(url, model, { observe: 'response' });
+  }
+
+  editSalonContact(contact: Contact) {
+    let url = this.BaseUrl + "/api/Contact/" + contact.id;
+    
+    return this.http.put(url, contact, { observe: 'response' });
   }
 
   returnToMaintenanceIndex(){
@@ -54,6 +62,9 @@ export class SalonService {
   }
 
   scrollToViewById(divId: string) {
-    document.getElementById(divId).scrollIntoView({ behavior: 'smooth', block: 'start' });
+    let targetDiv = document.getElementById(divId);
+    if (targetDiv) {
+      document.getElementById(divId).scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
   }
 }
