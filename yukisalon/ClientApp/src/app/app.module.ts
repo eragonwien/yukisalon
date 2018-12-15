@@ -23,13 +23,18 @@ import { ProductCardComponent } from './product/partials/product-card/product-ca
 import { FooterComponent } from './shared/footer/footer.component';
 import { LoginComponent } from './login/login.component';
 import { MaintenanceComponent } from './maintenance/maintenance.component';
-import { SalonInfoComponent } from './maintenance/salon-info/salon-info.component';
 import { MaintenanceIndexComponent } from './maintenance/index/index.component';
 import { SharedModule } from './shared.module';
 import { LogoutComponent } from './logout/logout.component';
 import { MaintenanceMenuComponent } from './maintenance/maintenance-menu/maintenance-menu.component';
 import { EditSalonProductComponent } from './maintenance/edit-salon-product/edit-salon-product.component';
 import { EditSalonUserComponent } from './maintenance/edit-salon-user/edit-salon-user.component';
+import { MaintenanceBaseEditFormComponent } from './maintenance/maintenance-base-edit-form/maintenance-base-edit-form.component';
+import { EditSalonInfoComponent } from './maintenance/edit-salon-info/edit-salon-info.component';
+import { EditSalonInfoGeneralComponent } from './maintenance/edit-salon-info/edit-salon-info-general/edit-salon-info-general.component';
+import { EditSalonInfoContactComponent } from './maintenance/edit-salon-info/edit-salon-info-contact/edit-salon-info-contact.component';
+import { EditSalonInfoOpeningHoursComponent } from './maintenance/edit-salon-info/edit-salon-info-opening-hours/edit-salon-info-opening-hours.component';
+import { EditSalonInfoWelcomeTextComponent } from './maintenance/edit-salon-info/edit-salon-info-welcome-text/edit-salon-info-welcome-text.component';
 
 @NgModule({
   declarations: [
@@ -49,12 +54,17 @@ import { EditSalonUserComponent } from './maintenance/edit-salon-user/edit-salon
     ProductCardComponent,
     LoginComponent,
     MaintenanceComponent,
-    SalonInfoComponent,
     MaintenanceIndexComponent,
     LogoutComponent,
     MaintenanceMenuComponent,
+    MaintenanceBaseEditFormComponent,
     EditSalonProductComponent,
     EditSalonUserComponent,
+    EditSalonInfoComponent,
+    EditSalonInfoGeneralComponent,
+    EditSalonInfoContactComponent,
+    EditSalonInfoOpeningHoursComponent,
+    EditSalonInfoWelcomeTextComponent,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -72,7 +82,7 @@ import { EditSalonUserComponent } from './maintenance/edit-salon-user/edit-salon
         { path: 'login', component: LoginComponent },
         { path: 'logout', component: LogoutComponent },
         { path: 'menu', component: MaintenanceMenuComponent },
-        { path: 'salon', component: SalonInfoComponent },
+        { path: 'salon', component: EditSalonInfoComponent },
         { path: 'product', component: EditSalonProductComponent },
         { path: 'user', component: EditSalonUserComponent },
       ]}
