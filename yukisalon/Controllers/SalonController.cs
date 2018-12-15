@@ -79,7 +79,7 @@ namespace yukisalon.Controllers
             return Ok(salon);
         }
 
-        // PUT: api/Salon/5
+        // PUT: api/Salon/5/General
         [HttpPut("{id}")]
         public async Task<IActionResult> PutSalon([FromRoute] int id, [FromBody] Salon salon)
         {
@@ -110,12 +110,12 @@ namespace yukisalon.Controllers
                     throw;
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                throw;
+                return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
             }
 
-            return NoContent();
+            return Ok();
         }
 
         private void SetModelForModification(Salon salon)
@@ -167,5 +167,7 @@ namespace yukisalon.Controllers
         {
             return context.Salon.Any(e => e.Id == id);
         }
+
+       
     }
 }
