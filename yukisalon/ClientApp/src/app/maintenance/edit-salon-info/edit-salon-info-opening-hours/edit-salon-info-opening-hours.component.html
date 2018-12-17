@@ -1,3 +1,24 @@
-<p>
-  edit-salon-info-opening-hours works!
-</p>
+<!-- <div *ngFor="let alert of alerts">
+  <alert [type]="alert.type" [dismissible]="alertDismissible" [dismissOnTimeout]="alert.timeout">
+    <strong *ngIf="alert.header">{{ alert.header }} </strong>{{ alert.message }}
+  </alert>
+</div> -->
+<!-- General Information -->
+<form (ngSubmit)="onSubmit(editSalonForm)" #editSalonForm="ngForm" *ngIf="salon" id="edit-salon-opening-hours-form">
+  <fieldset>
+    <div class="form-row" *ngFor="let day of weekdays">
+      <div class="form-group col-12">
+        <label for="name-input">Willkommen Titel</label>
+        <input type="text" class="form-control" name="welcome.title" id="welcome-title-input" [(ngModel)]="salon.welcome.title"
+               required>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group col-12">
+        <input type="submit" class="btn btn-primary btn-sm" value="Speichern">
+        <input type="button" class="btn btn-secondary btn-sm" value="Abbrechen" (click)="resetFields()">
+      </div>
+    </div>
+  </fieldset>
+</form>

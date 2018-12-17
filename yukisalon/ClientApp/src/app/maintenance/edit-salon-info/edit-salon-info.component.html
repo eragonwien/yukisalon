@@ -1,16 +1,28 @@
 <div class="container">
-  <accordion [closeOthers]="oneAtATime">
-    <accordion-group heading="Allegemein" class="my-2">
-      <app-edit-salon-info-general [salon]="salon"></app-edit-salon-info-general>
-    </accordion-group>
-    <accordion-group heading="Kontakt" class="my-2">
-      <app-edit-salon-info-contact [salon]="salon"></app-edit-salon-info-contact>
-    </accordion-group>
-    <accordion-group heading="Öffnungszeiten" class="my-2">
-      <app-edit-salon-info-opening-hours [salon]="salon"></app-edit-salon-info-opening-hours>
-    </accordion-group>
-    <accordion-group heading="Willkommen Texte" class="my-2">
-      <app-edit-salon-info-welcome-text [salon]="salon"></app-edit-salon-info-welcome-text>
-    </accordion-group>
-  </accordion>
+  <ngb-accordion [closeOthers]="oneAtATime">
+    <ngb-panel id="edit-salon-info-panel-general-setting">
+      <ng-template ngbPanelTitle>
+        <span class="font-weight-bold">Allegemein</span>
+      </ng-template>
+      <ng-template ngbPanelContent>
+        <app-edit-salon-info-general [salon]="salon"></app-edit-salon-info-general>
+      </ng-template>
+    </ngb-panel>
+    <ngb-panel id="edit-salon-info-panel-contact-setting">
+      <ng-template ngbPanelTitle>
+        <span class="font-weight-bold">Kontakt</span>
+      </ng-template>
+      <ng-template ngbPanelContent>
+        <app-edit-salon-info-contact [salon]="salon"></app-edit-salon-info-contact>
+      </ng-template>
+    </ngb-panel>
+    <ngb-panel id="edit-salon-info-panel-welcome-text-setting">
+      <ng-template ngbPanelTitle>
+        <span class="font-weight-bold">Willkommen Text</span>
+      </ng-template>
+      <ng-template ngbPanelContent>
+        <app-edit-salon-info-welcome-text [salon]="salon"></app-edit-salon-info-welcome-text>
+      </ng-template>
+    </ngb-panel>
+  </ngb-accordion>
 </div>

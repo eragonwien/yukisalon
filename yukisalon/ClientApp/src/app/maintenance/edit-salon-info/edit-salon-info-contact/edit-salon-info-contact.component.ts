@@ -18,6 +18,7 @@ export class EditSalonInfoContactComponent extends MaintenanceBaseEditFormCompon
   isTabOpen: boolean;
   pickedContact: Contact;
   createContact: boolean = false;
+  weekdays: string[] = ['Montag', 'Dienstag', 'Mittwoch', 'Donnerstag', 'Freitag', 'Samstag', 'Sonntag'];
 
   constructor(public salonService: SalonService, public route: ActivatedRoute, private changeDetector: ChangeDetectorRef) {
     super(salonService, route);
@@ -35,13 +36,9 @@ export class EditSalonInfoContactComponent extends MaintenanceBaseEditFormCompon
   onSubmit(form: NgForm) {
     if (form.valid) {
       if (this.createContact) { // creates new contact
-        this.salonService.createSalonContact(this.pickedContact).subscribe((response) => {
-          this.showAlertMessage(null, true);
-        }, this.handleError);
+        this.salonService.createSalonContact(this.pickedContact).subscribe(res => this.handleSuccess(), error => this.handleError(error), () => this.resetContacts());
       } else { // edit existing contact
-        this.salonService.editSalonContact(this.pickedContact).subscribe((response) => {
-          this.showAlertMessage(null, true);
-        }, this.handleError);
+        this.salonService.editSalonContact(this.pickedContact).subscribe(res => this.handleSuccess(), error => this.handleError(error));
       }
     }
     this.resetContacts();
@@ -59,10 +56,7 @@ export class EditSalonInfoContactComponent extends MaintenanceBaseEditFormCompon
   }
 
   onRemove() {
-    this.salonService.removeSalonContact(this.pickedContact).subscribe((response) => {
-      this.showAlertMessage(null, true);
-      this.resetContacts();
-    }, this.handleError);
+    this.salonService.removeSalonContact(this.pickedContact).subscribe(res => this.handleSuccess(), error => this.handleError(error), () => this.resetContacts());
   }
 
   openCreateNewContact() {

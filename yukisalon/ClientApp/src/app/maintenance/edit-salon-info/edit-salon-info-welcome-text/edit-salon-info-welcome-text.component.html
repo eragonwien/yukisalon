@@ -1,7 +1,7 @@
-<div *ngFor="let alert of alerts">
+<!-- <div *ngFor="let alert of alerts">
   <alert [type]="alert.type" [dismissible]="alertDismissible" [dismissOnTimeout]="alert.timeout">
     <strong *ngIf="alert.header">{{ alert.header }} </strong>{{ alert.message }}</alert>
-</div>
+</div> -->
 <!-- General Information -->
 <form (ngSubmit)="onSubmit(editSalonForm)" #editSalonForm="ngForm" *ngIf="salon" id="edit-salon-welcome-text-form">
   <fieldset>
@@ -30,7 +30,8 @@
 
     <div class="form-row">
       <div class="form-group col-12">
-        <input type="submit" class="btn btn-primary" value="Speichern">
+        <input type="submit" class="btn btn-primary btn-sm" value="Speichern">
+        <input type="button" class="btn btn-secondary btn-sm" value="Reset" (click)="resetFields()">
       </div>
     </div>
   </fieldset>

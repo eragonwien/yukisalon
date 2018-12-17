@@ -1,17 +1,18 @@
-<div *ngFor="let alert of alerts">
-  <alert [type]="alert.type" [dismissible]="alertDismissible" [dismissOnTimeout]="alert.timeout">
-    <strong *ngIf="alert.header">{{ alert.header }} </strong>{{ alert.message }}</alert>
-</div>
+<!-- <p *ngFor="let alert of alerts">
+  <ngb-alert [type]="alert.type" [dismissible]="alertDismissible" [dismissOnTimeout]="alert.timeout">
+    <strong *ngIf="alert.header">{{ alert.header }} </strong>{{ alert.message }}
+  </ngb-alert>
+</p> -->
 <div *ngIf="salon && salon.contact && !pickedContact">
   <div class="list-group">
     <p *ngFor="let contact of salon.contact" class="list-group-item list-group-item-action" (click)="onContactPicked(contact)">
       {{ contact.address1 }} {{ contact.address2 ? '(' + contact.address2 + ')' : '' }}, {{ contact.plz }} {{
-      contact.city }}
+      contact.city
+      }}
     </p>
     <p class="list-group-item list-group-item-action" (click)="openCreateNewContact()">Neue Kontakt anlegen</p>
   </div>
 </div>
-
 <div *ngIf="salon && salon.contact && pickedContact">
   <!-- Addresse bearbeitung -->
   <form (ngSubmit)="onSubmit(editSalonForm)" #editSalonForm="ngForm" id="edit-salon-contact-form">
@@ -23,41 +24,35 @@
           <input type="text" class="form-control" name="address1" id="address-1-input" [(ngModel)]="pickedContact.address1"
             required>
         </div>
-
         <!-- Address 2 -->
         <div class="form-group col-12">
           <label for="address-2-input">Zusatzaddresse</label>
           <input type="text" class="form-control" name="address2" id="address-2-input" [(ngModel)]="pickedContact.address2">
         </div>
       </div>
-
       <div class="form-row">
         <!-- PLZ -->
         <div class="form-group col-12">
           <label for="plz-input">PLZ</label>
           <input type="text" class="form-control" name="plz" id="plz-input" [(ngModel)]="pickedContact.plz">
         </div>
-
         <!-- City -->
         <div class="form-group col-12">
           <label for="city-input">Ort</label>
           <input type="text" class="form-control" name="city" id="city-input" [(ngModel)]="pickedContact.city">
         </div>
       </div>
-
       <div class="form-row">
         <!-- Phone -->
         <div class="form-group col-12">
           <label for="phone-input">Telefonnummer</label>
           <input type="text" class="form-control" name="phone" id="phone-input" [(ngModel)]="pickedContact.phone">
         </div>
-
         <!-- Facebook -->
         <div class="form-group col-12">
           <label for="facebook-input">Facebook</label>
           <input type="text" class="form-control" name="facebook" id="facebook-input" [(ngModel)]="pickedContact.facebook">
         </div>
-
         <!-- Email -->
         <div class="form-group col-12">
           <label for="email-input">Email</label>
@@ -65,11 +60,25 @@
         </div>
       </div>
 
+      <!-- Öffnungszeiten -->
       <div class="form-row">
         <div class="form-group col-12">
-          <input type="submit" class="btn btn-primary" value="Speichern">
-          <input type="button" class="btn btn-secondary" value="Löschen" (click)="onRemove()">
-          <input type="button" class="btn" value="Abbrechen" (click)="onClose()">
+          <div class="list-group">
+            <div class="list-group-item list-group-item-action" *ngFor="let openHour of pickedContact.openHour">
+              <p>{{ openHour.day }}</p>
+              <p *ngIf="openHour.open && openHour.close">{{ openHour.open}} - {{ openHour.close }}</p>
+              <p *ngIf="!openHour.open && !openHour.close">geschlossen
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group col-12">
+          <input type="submit" class="btn btn-primary btn-sm" value="Speichern">
+          <input type="button" class="btn btn-danger btn-sm" value="Löschen" (click)="onRemove()">
+          <input type="button" class="btn btn-secondary btn-sm" value="Reset" (click)="onClose()">
         </div>
       </div>
     </fieldset>

@@ -3,6 +3,7 @@ import { MaintenanceBaseEditFormComponent } from '../../maintenance-base-edit-fo
 import { SalonService } from '../../../services/salon.service';
 import { ActivatedRoute } from '@angular/router';
 import { Salon } from '../../../models/Salon';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-edit-salon-info-general',

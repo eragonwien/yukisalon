@@ -4,6 +4,7 @@ import { SalonService } from '../../../services/salon.service';
 import { ActivatedRoute } from '@angular/router';
 import { NgForm } from '@angular/forms';
 import { Salon } from '../../../models/Salon';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-edit-salon-info-welcome-text',

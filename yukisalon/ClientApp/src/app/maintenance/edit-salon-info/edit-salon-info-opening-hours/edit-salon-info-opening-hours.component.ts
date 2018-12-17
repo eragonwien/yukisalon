@@ -3,6 +3,7 @@ import { Salon } from '../../../models/Salon';
 import { MaintenanceBaseEditFormComponent } from '../../maintenance-base-edit-form/maintenance-base-edit-form.component';
 import { SalonService } from '../../../services/salon.service';
 import { ActivatedRoute } from '@angular/router';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-edit-salon-info-opening-hours',
@@ -13,6 +14,8 @@ export class EditSalonInfoOpeningHoursComponent extends MaintenanceBaseEditFormC
 
   @Input() salon: Salon;
 
+  weekdays: string[] = ['Montag', 'Dienstag', 'Mittwoch', 'Donnerstag', 'Freitag', 'Samstag', 'Sonntag'];
+
   constructor(public salonService: SalonService, public route: ActivatedRoute) {
     super(salonService, route);
   }
@@ -20,5 +23,4 @@ export class EditSalonInfoOpeningHoursComponent extends MaintenanceBaseEditFormC
   ngOnInit() {
     this.formDivId = 'edit-salon-opening-hours-form';
   }
-
 }

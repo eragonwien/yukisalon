@@ -4,7 +4,7 @@ import { AlertMessage } from '../../models/alertMessage';
 import { SalonService } from '../../services/salon.service';
 import { ActivatedRoute } from '@angular/router';
 import { NgForm } from '@angular/forms';
-import { HttpErrorResponse } from '@angular/common/http';
+import { HttpErrorResponse, HttpResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-maintenance-base-edit-form',
@@ -37,20 +37,14 @@ export class MaintenanceBaseEditFormComponent{
     }, this.handleError);
   }
 
-  handleError(error: HttpErrorResponse) {
-    if (error.status === 404) {
-      return this.salonService.returnToMaintenanceIndex();
-    }
-    let errorText = error.status + ' : ' + error.statusText;
-    this.showAlertMessage(errorText, false);
-  }
-
   onSubmit(form: NgForm) {
     if (form.valid) {
-      this.salonService.editSalonInfo(this.salon).subscribe((response) => {
-        this.showAlertMessage(null, true);
-      }, this.handleError);
+      this.salonService.editSalonInfo(this.salon).subscribe(res => this.handleSuccess(), error => this.handleError(error));
     }
+  }
+
+  onClose() {
+    this.resetFields();
   }
 
   showAlertMessage(message: string, isSuccess: boolean) {
@@ -61,5 +55,21 @@ export class MaintenanceBaseEditFormComponent{
       timeout: this.alertTimeout
     });
     this.salonService.scrollToViewById(this.formDivId);
+  }
+
+  handleSuccess() {
+    this.showAlertMessage(null, true);
+  }
+
+  handleError(error: HttpErrorResponse) {
+    if (error.status === 404) {
+      return this.salonService.returnToMaintenanceIndex();
+    }
+    let errorText = error.error;
+    this.showAlertMessage(errorText, false);
+  }
+
+  resetFields() {
+    this.loadSalonInfo();
   }
 }
