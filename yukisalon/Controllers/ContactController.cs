@@ -54,7 +54,7 @@ namespace yukisalon.Controllers
             {
                 return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
             }
-            return Ok();
+            return StatusCode(StatusCodes.Status201Created);
         }
 
         // PUT: api/Contact/5
@@ -95,7 +95,7 @@ namespace yukisalon.Controllers
             return Ok();
         }
 
-        // DELETE: api/ApiWithActions/5
+        // DELETE: api/Delete/5
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)
         {
