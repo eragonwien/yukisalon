@@ -1,19 +1,19 @@
 <div *ngIf="contact" class="text-primary p-3">
   <h3 class="text-primary py-2">Addresse</h3>
   <p>
-    <i class="fas fa-map-marker-alt"></i>
+    <fa-icon [icon]="locationIcon"></fa-icon>
     {{ contact.address1 }} {{ contact.address2 }}, {{ contact.plz }} {{ contact.city }}
   </p>
   <p *ngIf="contact.phone">
-    <i class="fas fa-phone"></i>
+    <fa-icon [icon]="phoneIcon"></fa-icon>
     {{ contact.phone }}
   </p>
   <p *ngIf="contact.email">
-    <i class="fas fa-at"></i>
+    <fa-icon [icon]="emailIcon"></fa-icon>
     {{ contact.email }}
   </p>
   <p *ngIf="contact.facebook">
-    <i class="fab fa-facebook-square"></i>
+    <fa-icon [icon]="facebookIcon"></fa-icon>
     <a [href]="contact.facebook">{{ contact.facebook }}</a>
   </p>
 </div>
