@@ -81,7 +81,7 @@ namespace yukisalon.Controllers
 
         // PUT: api/Salon/5/General
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutSalon([FromRoute] int id, [FromBody] Salon salon)
+        public async Task<IActionResult> UpdateSalon([FromRoute] int id, [FromBody] Salon salon)
         {
             if (!ModelState.IsValid)
             {
