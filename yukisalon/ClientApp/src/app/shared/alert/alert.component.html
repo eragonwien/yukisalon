@@ -1,0 +1,5 @@
+<p *ngFor="let alert of alerts">
+  <ngb-alert [type]="alert.type" [dismissible]="alert.dismissible" (close)="close(alert)">
+    <strong *ngIf="alert.header">{{ alert.header }} </strong>{{ alert.message }}
+  </ngb-alert>
+</p>
