@@ -35,6 +35,8 @@ import { EditSalonInfoGeneralComponent } from './maintenance/edit-salon-info/edi
 import { EditSalonInfoContactComponent } from './maintenance/edit-salon-info/edit-salon-info-contact/edit-salon-info-contact.component';
 import { EditSalonInfoOpeningHoursComponent } from './maintenance/edit-salon-info/edit-salon-info-opening-hours/edit-salon-info-opening-hours.component';
 import { EditSalonInfoWelcomeTextComponent } from './maintenance/edit-salon-info/edit-salon-info-welcome-text/edit-salon-info-welcome-text.component';
+import { AlertComponent } from './shared/alert/alert.component';
+import { LoadingSpinnerComponent } from './shared/loading-spinner/loading-spinner.component';
 
 @NgModule({
   declarations: [
@@ -65,6 +67,8 @@ import { EditSalonInfoWelcomeTextComponent } from './maintenance/edit-salon-info
     EditSalonInfoContactComponent,
     EditSalonInfoOpeningHoursComponent,
     EditSalonInfoWelcomeTextComponent,
+    AlertComponent,
+    LoadingSpinnerComponent,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),

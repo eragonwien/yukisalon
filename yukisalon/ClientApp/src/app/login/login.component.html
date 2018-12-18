@@ -3,22 +3,32 @@
     <div class="col-12 col-md-4 my-5">
       <div class="card">
         <div class="card-body">
-          <form (ngSubmit)="onSubmit(loginForm)" #loginForm="ngForm">
-            <div class="form-group row">
-              <label for="email-input" class="col-12">Email Addresse</label>
-              <div class="col-12">
-                <input type="email" class="form-control" name="email" id="email-input" placeholder="Email Addresse"
-                  [(ngModel)]="loginUser.email" name="email" required email>
+          <app-alert [alerts]="alerts"></app-alert>
+          <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+            <fieldset>
+              <div class="form-group row">
+                <div class="col-12">
+                  <input type="text" class="form-control" id="email" placeholder="Email Addresse" formControlName="email"
+                    [ngClass]="{ 'is-invalid': submitted && fields.email.errors }">
+                    <div *ngIf="submitted && fields.email.errors" class="invalid-feedback">
+                        <div *ngIf="fields.email.errors.required">Email darf nicht leer sein</div>
+                        <div *ngIf="fields.email.errors.email">Email muss gültig sein</div>
+                    </div>
+                </div>
               </div>
-            </div>
-            <div class="form-group row">
-              <label for="email-input" class="col-12">Passwort</label>
-              <div class="col-12">
-                <input type="password" class="form-control" name="password" id="password-input" placeholder="Passwort"
-                  [(ngModel)]="loginUser.password" name="password" required>
+              <div class="form-group row">
+                <div class="col-12">
+                  <input type="password" class="form-control" id="password" placeholder="Passwort" formControlName="password"
+                    [ngClass]="{ 'is-invalid': submitted && fields.password.errors }">
+                  <div *ngIf="submitted && fields.password.errors" class="invalid-feedback">
+                    <div *ngIf="fields.password.errors.required">Password darf nicht leer sein</div>
+                  </div>
+                </div>
               </div>
-            </div>
-            <input type="submit" class="btn btn-primary" value="Anmelden" (ngSubmit)="onSubmit()">
+              <button type="submit" class="btn btn-primary btn-block">
+                Anmelden <app-loading-spinner *ngIf="loading"></app-loading-spinner>
+              </button>
+            </fieldset>
           </form>
         </div>
       </div>

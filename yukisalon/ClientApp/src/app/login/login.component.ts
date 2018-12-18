@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { LoginUser } from '../models/User';
 import { AccountService } from '../services/account.service';
 import { SalonService } from '../services/salon.service';
-import { NgForm } from "@angular/forms";
+import { FormGroup, FormBuilder, Validators, FormControl } from "@angular/forms";
 import { Router, ActivatedRoute } from '@angular/router';
+import { faSpinner } from "@fortawesome/free-solid-svg-icons";
+import { HttpErrorResponse, HttpResponse } from '@angular/common/http';
+import { AlertMessage } from '../models/alertMessage';
 
 @Component({
   selector: 'app-login',
@@ -12,28 +14,44 @@ import { Router, ActivatedRoute } from '@angular/router';
 })
 export class LoginComponent implements OnInit {
 
-  loginUser: LoginUser;
+  loginForm: FormGroup;
+  submitted: boolean = false;
+  loading: boolean = false;
+  loadingIcon = faSpinner;
+  alerts: AlertMessage[] = [];
 
-  constructor(private accountService: AccountService, private salonService: SalonService, private router: Router, private route: ActivatedRoute) { }
+  constructor(private accountService: AccountService, private salonService: SalonService, private router: Router, private route: ActivatedRoute, private formBuilder: FormBuilder) { }
 
   ngOnInit() {
     this.accountService.isUserLoggedIn = false;
-    this.loginUser = new LoginUser();
+
+    this.loginForm = new FormGroup({ 
+      'email': new FormControl(null, [Validators.required, Validators.email]),
+      'password': new FormControl(null, [Validators.required])
+    });
   }
 
-  onSubmit(loginForm: NgForm) {
-    if (loginForm.valid) {
-      this.accountService.login(this.loginUser).subscribe((response) => {
-        this.handleLogin(response);
-      });
-    } else {
-      alert("Invalid");
+  onSubmit() {
+    this.submitted = true;
+    if (this.loginForm.valid) {
+      this.loading = true;
+      this.accountService.login(this.loginForm.value.email, this.loginForm.value.password)
+        .subscribe(res => this.handleLogin(), error => this.handleError(error));
     }
   }
 
-  handleLogin(response) {
+  handleLogin() {
     this.accountService.isUserLoggedIn = true;
-    let returnUrl = this.route.snapshot.paramMap.get('returnUrl');
+    //let returnUrl = this.route.snapshot.paramMap.get('returnUrl');
     this.router.navigate(['maintenance']); 
   }
+
+  handleError(error: HttpErrorResponse) {
+    let alert = new AlertMessage('danger', 'Falsche Email oder Passwort');
+    this.alerts.push(alert);
+    setTimeout(() => this.alerts.splice(this.alerts.indexOf(alert), 1), alert.timeout); // removes after a specific time
+    this.loading = false;
+  }
+
+  get fields() { return this.loginForm.controls };
 }
