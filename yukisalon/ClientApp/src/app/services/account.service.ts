@@ -11,10 +11,10 @@ export class AccountService {
 
   constructor(private salonService: SalonService, private http: HttpClient, private router: Router) { }
 
-  login(user: LoginUser) {
+  login(email: string, password: string) {
     let data = {
-      Email: user.email,
-      Password: user.password
+      Email: email,
+      Password: password
     };
     let url = this.salonService.BaseUrl + "/Account/Login";
     return this.http.post(url, data, { observe: 'response' });
