@@ -1,10 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Salon } from '../../models/Salon';
 import { AlertMessage } from '../../models/alertMessage';
 import { SalonService } from '../../services/salon.service';
-import { ActivatedRoute } from '@angular/router';
-import { NgForm } from '@angular/forms';
-import { HttpErrorResponse, HttpResponse } from '@angular/common/http';
+import { FormGroup } from '@angular/forms';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-maintenance-base-edit-form',
@@ -16,19 +15,13 @@ export class MaintenanceBaseEditFormComponent{
   salon: Salon;
   
   formDivId: string;
+  form: FormGroup;
+  submitted: boolean = false;
+  loading: boolean = false;
+
   alerts: AlertMessage[] = [];
-  alertTimeout: number = 10 * 1000;
-  alertDismissible : boolean = true;
-  successMessage: string = 'O.K';
-  errorMessage: string = 'Fehler';
 
-  routeId: string;
-  infoRoute: string = 'Info';
-  contactRoute: string = 'Contact';
-  userRoute: string = 'User';
-  welcomeRoute: string = 'Welcome';
-
-  constructor(public salonService: SalonService, public route: ActivatedRoute) { }
+  constructor(public salonService: SalonService) { }
 
   loadSalonInfo() {
     let salonId = this.salonService.currentSalonId;
@@ -37,10 +30,15 @@ export class MaintenanceBaseEditFormComponent{
     }, this.handleError);
   }
 
-  onSubmit(form: NgForm) {
-    if (form.valid) {
-      this.salonService.editSalonInfo(this.salon).subscribe(res => this.handleSuccess(), error => this.handleError(error));
+  onSubmit() {
+    this.submitted = true;
+    if (this.form.valid) {
+      this.loading = true;
+      this.mergeSalon();
+      this.salonService.editSalonInfo(this.salon)
+        .subscribe(() => this.handleSuccess(), error => this.handleError(error)).add(() => this.loading = false);
     }
+    this.loading = false;
   }
 
   onClose() {
@@ -48,12 +46,14 @@ export class MaintenanceBaseEditFormComponent{
   }
 
   showAlertMessage(message: string, isSuccess: boolean) {
-    this.alerts.push({
-      type: isSuccess ? 'success' : 'danger',
-      header: isSuccess ? this.successMessage : this.errorMessage,
-      message: message,
-      timeout: this.alertTimeout
-    });
+    let alert = new AlertMessage(
+      isSuccess ? 'success' : 'danger',
+      message,
+      this.salonService.alertDefaultTimeout, 
+      isSuccess ? this.salonService.alertDefaultSuccessHeader : this.salonService.alertDefaultErrorHeader,
+    );
+    this.alerts.push(alert);
+    setTimeout(() => this.alerts.splice(this.alerts.indexOf(alert), 1), alert.timeout); // removes after a specific time
     this.salonService.scrollToViewById(this.formDivId);
   }
 
@@ -72,4 +72,16 @@ export class MaintenanceBaseEditFormComponent{
   resetFields() {
     this.loadSalonInfo();
   }
+
+  mergeSalon() {
+    switch(this.form.value.formType) {
+      case 'welcome':
+        this.salon.welcome = Object.assign({}, this.salon.welcome, this.form.value);
+        break;
+      default:
+        this.salon = Object.assign({}, this.salon, this.form.value);
+    }
+  }
+
+  get fields() { return this.form.controls };
 }
