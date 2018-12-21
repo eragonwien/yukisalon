@@ -2,7 +2,8 @@ export class OpenHour {
   id: number;
   day: string;
   open: string;
-  close: string
+  close: string;
+  isOpen: boolean;
 }
 
 export class Contact {
@@ -15,6 +16,9 @@ export class Contact {
   phone: string;
   facebook: string;
   email: string;
-  openHour: OpenHour[]
-}
+  openHour: OpenHour[];
 
+  constructor() {
+    this.openHour = [];
+  }
+}
