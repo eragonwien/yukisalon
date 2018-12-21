@@ -21,7 +21,7 @@
               "src/assets"
             ],
             "styles": [
-              "src/assets/css/app.css"
+              "src/styles.css"
             ],
             "scripts": []
           },
@@ -71,7 +71,7 @@
             "tsConfig": "src/tsconfig.spec.json",
             "scripts": [],
             "styles": [
-              "src/assets/css/app.css"
+              "src/styles.css"
             ],
             "assets": [
               "src/assets"
