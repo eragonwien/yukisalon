@@ -44,6 +44,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="ClientApp\src\app\models\AlertMessage.ts" />
     <None Remove="ClientApp\src\app\models\Contact.ts" />
     <None Remove="ClientApp\src\app\models\Salon.ts" />
     <None Remove="ClientApp\src\app\models\User.ts" />
@@ -61,6 +62,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <TypeScriptCompile Include="ClientApp\src\app\models\AlertMessage.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\models\Contact.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\models\Salon.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\models\User.ts" />
