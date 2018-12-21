@@ -112,11 +112,11 @@ namespace yukisalon.Models
             Contact contact = context.Contact.First();
             var openHours = new OpenHour[]
             {
-                new OpenHour() { Day = "Mo.", Open = "12:00", Close = "19:00", ContactId = contact.Id },
-                new OpenHour() { Day = "Di. - Fr.", Open = "09:00", Close = "19:00", ContactId = contact.Id },
-                new OpenHour() { Day = "Sa.", Open = "09:00", Close = "16:00", ContactId = contact.Id },
-                new OpenHour() { Day = "So.", ContactId = contact.Id },
-                new OpenHour() { Day = "Feiertag", ContactId = contact.Id }
+                new OpenHour() { Day = "Mo.", IsOpen = true, Open = "12:00", Close = "19:00", ContactId = contact.Id },
+                new OpenHour() { Day = "Di. - Fr.", IsOpen = true, Open = "09:00", Close = "19:00", ContactId = contact.Id },
+                new OpenHour() { Day = "Sa.", IsOpen = true, Open = "09:00", Close = "16:00", ContactId = contact.Id },
+                new OpenHour() { Day = "So.", IsOpen = false, ContactId = contact.Id },
+                new OpenHour() { Day = "Feiertag", IsOpen = false, ContactId = contact.Id }
             };
             foreach (var openHour in openHours)
             {

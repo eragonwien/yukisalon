@@ -8,6 +8,7 @@ namespace yukisalon.Models
         public int Id { get; set; }
         public int ContactId { get; set; }
         public string Day { get; set; }
+        public bool IsOpen { get; set; }
         public string Open { get; set; }
         public string Close { get; set; }
 
