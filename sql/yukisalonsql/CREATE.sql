@@ -34,6 +34,7 @@ CREATE TABLE [OpenHour] (
     [Id] int NOT NULL IDENTITY,
 	[ContactId] INT NOT NULL,
     [Day] nvarchar(10),
+	[IsOpen] bit,
     [Open] nvarchar(5),
     [Close] nvarchar(5),
     CONSTRAINT [PK_OpenHour] PRIMARY KEY ([Id]),
