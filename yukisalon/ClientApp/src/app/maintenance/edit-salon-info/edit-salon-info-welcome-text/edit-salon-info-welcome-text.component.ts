@@ -1,10 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { MaintenanceBaseEditFormComponent } from '../../maintenance-base-edit-form/maintenance-base-edit-form.component';
 import { SalonService } from '../../../services/salon.service';
-import { ActivatedRoute } from '@angular/router';
-import { NgForm } from '@angular/forms';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Salon } from '../../../models/Salon';
-import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-edit-salon-info-welcome-text',
@@ -15,12 +13,21 @@ export class EditSalonInfoWelcomeTextComponent extends MaintenanceBaseEditFormCo
 
   @Input() salon: Salon;
 
-  constructor(public salonService: SalonService, public route: ActivatedRoute) {
-    super(salonService, route);
+  constructor(public salonService: SalonService) {
+    super(salonService);
   }
 
   ngOnInit() {
     this.formDivId = 'edit-salon-welcome-text-form';
-    this.routeId = this.infoRoute;
+    this.initForm();
+  }
+
+  initForm() {
+    this.form = new FormGroup({ 
+      'title': new FormControl(this.salon.welcome.title, [Validators.required]),
+      'text1': new FormControl(this.salon.welcome.text1),
+      'formType': new FormControl()
+    });
+    this.form.get('formType').setValue('welcome');
   }
 }
