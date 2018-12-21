@@ -96,7 +96,8 @@ namespace yukisalon.Controllers
 
             try
             {
-                SetModelForModification(salon);
+                context.Update(salon);
+                context.Update(salon.Welcome);
                 await context.SaveChangesAsync();
             }
             catch (DbUpdateConcurrencyException)

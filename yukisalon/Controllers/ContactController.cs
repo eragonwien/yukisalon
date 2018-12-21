@@ -73,7 +73,8 @@ namespace yukisalon.Controllers
 
             try
             {
-                context.Entry(contact).State = EntityState.Modified;
+                context.Update(contact);
+                context.UpdateRange(contact.OpenHour);
                 await context.SaveChangesAsync();
             }
             catch (DbUpdateConcurrencyException)
@@ -116,7 +117,7 @@ namespace yukisalon.Controllers
 
                 if (removeContact != null)
                 {
-                    context.Contact.Remove(removeContact);
+                    context.Remove(removeContact);
                     await context.SaveChangesAsync();
                 }
             }
