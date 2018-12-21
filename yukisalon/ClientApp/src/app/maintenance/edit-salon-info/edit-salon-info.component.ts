@@ -12,8 +12,8 @@ export class EditSalonInfoComponent extends MaintenanceBaseEditFormComponent imp
 
   oneAtATime: boolean = true;
   
-  constructor(public salonService: SalonService, public route: ActivatedRoute) {
-    super(salonService, route);
+  constructor(public salonService: SalonService) {
+    super(salonService);
   }
 
   ngOnInit() {
