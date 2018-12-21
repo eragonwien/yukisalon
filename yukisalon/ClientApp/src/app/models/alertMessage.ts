@@ -12,5 +12,4 @@ export class AlertMessage {
     this.header = header;
     this.dismissible = dismissible;
   }
-  
 }
