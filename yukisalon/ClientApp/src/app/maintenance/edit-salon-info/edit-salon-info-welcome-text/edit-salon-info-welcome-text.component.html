@@ -1,37 +1,31 @@
-<!-- <div *ngFor="let alert of alerts">
-  <alert [type]="alert.type" [dismissible]="alertDismissible" [dismissOnTimeout]="alert.timeout">
-    <strong *ngIf="alert.header">{{ alert.header }} </strong>{{ alert.message }}</alert>
-</div> -->
-<!-- General Information -->
-<form (ngSubmit)="onSubmit(editSalonForm)" #editSalonForm="ngForm" *ngIf="salon" id="edit-salon-welcome-text-form">
+<app-alert [alerts]="alerts"></app-alert>
+<form [formGroup]="form" (ngSubmit)="onSubmit()" *ngIf="salon" id="edit-salon-welcome-text-form">
   <fieldset>
     <div class="form-row">
-      <!-- Wilkommen Text Kopfzeile -->
+      <!-- Name -->
       <div class="form-group col-12">
-        <label for="name-input">Willkommen Titel</label>
-        <input type="text" class="form-control" name="welcome.title" id="welcome-title-input" [(ngModel)]="salon.welcome.title"
-          required>
-      </div>
-
-    </div>
-
-    <div class="form-row">
-      <!-- Wilkommen Text Körpertext 1 -->
-      <div class="form-group col-12">
-        <label for="welcome-text1-input">Willkommen Text 1</label>
-        <textarea type="text" class="form-control" rows="5" name="welcome.text1" id="welcome-text1-input" [(ngModel)]="salon.welcome.text1"></textarea>
-      </div>
-      <!-- Wilkommen Text Körpertext 2 -->
-      <div class="form-group col-12">
-        <label for="welcome-text2-input">Willkommen Text 2</label>
-        <textarea type="text" class="form-control" rows="5" name="welcome.text2" id="welcome-text2-input" [(ngModel)]="salon.welcome.text2"></textarea>
+        <label class="control-label" for="salon-welcome-title">
+            Titel <small class="text-muted">erforderlich</small>
+        </label>
+        <input type="text" class="form-control" id="salon-welcome-title" formControlName="title" [ngClass]="{ 'is-invalid': submitted && fields.title.errors }" />
+        <div *ngIf="submitted && fields.title.errors" class="invalid-feedback">
+          <div *ngIf="fields.title.errors.required">Titel ist erforderlich</div>
+        </div>
       </div>
     </div>
 
     <div class="form-row">
+      <!-- description -->
       <div class="form-group col-12">
-        <input type="submit" class="btn btn-primary btn-sm" value="Speichern">
-        <input type="button" class="btn btn-secondary btn-sm" value="Reset" (click)="resetFields()">
+        <label class="control-label" for="salon-welcome-text">Text</label>
+        <textarea type="text" class="form-control" rows="3" id="salon-welcome-text" formControlName="text1"
+          [ngClass]="{ 'is-invalid': submitted && fields.text1.errors }"></textarea>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group col-12">
+        <input type="submit" class="btn btn-primary" value="Speichern">
       </div>
     </div>
   </fieldset>

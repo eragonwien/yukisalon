@@ -3,7 +3,7 @@ import { MaintenanceBaseEditFormComponent } from '../../maintenance-base-edit-fo
 import { SalonService } from '../../../services/salon.service';
 import { ActivatedRoute } from '@angular/router';
 import { Salon } from '../../../models/Salon';
-import { HttpErrorResponse } from '@angular/common/http';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-edit-salon-info-general',
@@ -14,12 +14,22 @@ export class EditSalonInfoGeneralComponent extends MaintenanceBaseEditFormCompon
 
   @Input() salon: Salon;
 
-  constructor(public salonService: SalonService, public route: ActivatedRoute) {
-    super(salonService, route);
+  constructor(public salonService: SalonService) {
+    super(salonService);
   }
 
   ngOnInit() {
     this.formDivId = 'edit-salon-general-form';
-    this.routeId = this.infoRoute;
+    this.initForm();
+  }
+
+  initForm() {
+    this.form = new FormGroup({ 
+      'name': new FormControl(this.salon.name, [Validators.required]),
+      'description': new FormControl(this.salon.description, [Validators.required]),
+      'extraInfo': new FormControl(this.salon.extraInfo),
+      'formType': new FormControl()
+    });
+    this.form.get('formType').setValue('general');
   }
 }

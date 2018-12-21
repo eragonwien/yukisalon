@@ -1,36 +1,36 @@
-<!-- <div *ngFor="let alert of alerts">
-  <alert [type]="alert.type" [dismissible]="alertDismissible" [dismissOnTimeout]="alert.timeout">
-    <strong *ngIf="alert.header">{{ alert.header }} </strong>{{ alert.message }}</alert>
-</div> -->
-<!-- General Information -->
-<form (ngSubmit)="onSubmit(editSalonForm)" #editSalonForm="ngForm" *ngIf="salon" id="edit-salon-general-form">
+<app-alert [alerts]="alerts"></app-alert>
+<form [formGroup]="form" (ngSubmit)="onSubmit()" *ngIf="salon" id="edit-salon-general-form">
   <fieldset>
     <div class="form-row">
       <!-- Name -->
       <div class="form-group col-12">
-        <label for="name-input">Name</label>
-        <input type="text" class="form-control" name="name" id="name-input" [(ngModel)]="salon.name" required>
+        <label class="control-label" for="salon-name">
+          Name <small class="text-muted">erforderlich</small>
+        </label>
+        <input type="text" class="form-control" id="salon-name" formControlName="name" [ngClass]="{ 'is-invalid': submitted && fields.name.errors }" />
+        <div *ngIf="submitted && fields.name.errors" class="invalid-feedback">
+          <div *ngIf="fields.name.errors.required">Name ist erforderlich</div>
+        </div>
       </div>
     </div>
 
     <div class="form-row">
-      <!-- Description -->
+      <!-- description -->
       <div class="form-group col-12">
-        <label for="description-input">Beschreibung 1</label>
-        <textarea type="text" class="form-control" rows="5" name="description" id="description-input" [(ngModel)]="salon.description"
-          required></textarea>
-      </div>
-      <!-- Extra Info -->
-      <div class="form-group col-12">
-        <label for="extra-info-input">Beschreibung 2</label>
-        <textarea type="text" class="form-control" rows="5" name="extraInfo" id="extra-info-input" [(ngModel)]="salon.extraInfo"></textarea>
+        <label class="control-label required" for="salon-description">
+          Beschreibung <small class="text-muted">erforderlich</small>
+        </label>
+        <textarea type="text" class="form-control" rows="3" id="salon-description" formControlName="description"
+          [ngClass]="{ 'is-invalid': submitted && fields.description.errors }"></textarea>
+        <div *ngIf="submitted && fields.description.errors" class="invalid-feedback">
+          <div *ngIf="fields.description.errors.required">Beschreibung ist erforderlich</div>
+        </div>
       </div>
     </div>
 
     <div class="form-row">
       <div class="form-group col-12">
-        <input type="submit" class="btn btn-primary btn-sm" value="Speichern">
-        <input type="button" class="btn btn-secondary btn-sm" value="Reset" (click)="resetFields()">
+        <input type="submit" class="btn btn-primary" value="Speichern">
       </div>
     </div>
   </fieldset>
