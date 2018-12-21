@@ -3,7 +3,6 @@ import { AccountService } from '../services/account.service';
 import { SalonService } from '../services/salon.service';
 import { FormGroup, FormBuilder, Validators, FormControl } from "@angular/forms";
 import { Router, ActivatedRoute } from '@angular/router';
-import { faSpinner } from "@fortawesome/free-solid-svg-icons";
 import { HttpErrorResponse, HttpResponse } from '@angular/common/http';
 import { AlertMessage } from '../models/alertMessage';
 
@@ -17,7 +16,6 @@ export class LoginComponent implements OnInit {
   loginForm: FormGroup;
   submitted: boolean = false;
   loading: boolean = false;
-  loadingIcon = faSpinner;
   alerts: AlertMessage[] = [];
 
   constructor(private accountService: AccountService, private salonService: SalonService, private router: Router, private route: ActivatedRoute, private formBuilder: FormBuilder) { }
