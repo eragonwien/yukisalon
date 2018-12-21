@@ -4,7 +4,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 
-import { NgbAlertModule, NgbAccordionModule, NgbModalModule } from "@ng-bootstrap/ng-bootstrap";
+import { NgbAlertModule, NgbAccordionModule, NgbModalModule, NgbButtonsModule, NgbTimepickerModule } from "@ng-bootstrap/ng-bootstrap";
 import { FontAwesomeModule } from "@fortawesome/angular-fontawesome";
 
 import { AppComponent } from './app.component';
@@ -33,7 +33,6 @@ import { MaintenanceBaseEditFormComponent } from './maintenance/maintenance-base
 import { EditSalonInfoComponent } from './maintenance/edit-salon-info/edit-salon-info.component';
 import { EditSalonInfoGeneralComponent } from './maintenance/edit-salon-info/edit-salon-info-general/edit-salon-info-general.component';
 import { EditSalonInfoContactComponent } from './maintenance/edit-salon-info/edit-salon-info-contact/edit-salon-info-contact.component';
-import { EditSalonInfoOpeningHoursComponent } from './maintenance/edit-salon-info/edit-salon-info-opening-hours/edit-salon-info-opening-hours.component';
 import { EditSalonInfoWelcomeTextComponent } from './maintenance/edit-salon-info/edit-salon-info-welcome-text/edit-salon-info-welcome-text.component';
 import { AlertComponent } from './shared/alert/alert.component';
 import { LoadingSpinnerComponent } from './shared/loading-spinner/loading-spinner.component';
@@ -65,7 +64,6 @@ import { LoadingSpinnerComponent } from './shared/loading-spinner/loading-spinne
     EditSalonInfoComponent,
     EditSalonInfoGeneralComponent,
     EditSalonInfoContactComponent,
-    EditSalonInfoOpeningHoursComponent,
     EditSalonInfoWelcomeTextComponent,
     AlertComponent,
     LoadingSpinnerComponent,
@@ -91,7 +89,7 @@ import { LoadingSpinnerComponent } from './shared/loading-spinner/loading-spinne
         { path: 'user', component: EditSalonUserComponent },
       ]}
     ]),
-    NgbAlertModule, NgbAccordionModule, NgbModalModule,
+    NgbAlertModule, NgbAccordionModule, NgbModalModule, NgbButtonsModule, NgbTimepickerModule,
     FontAwesomeModule,
   ],
   providers: [],
