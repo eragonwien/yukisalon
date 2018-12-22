@@ -74,6 +74,16 @@ namespace yukisalon.Controllers
             try
             {
                 context.Update(contact);
+
+                // Creates new open hour
+                if (contact.OpenHour.Any(h => h.Id <= 0))
+                {
+                    AddNewOpenHour(contact);
+                }
+
+                // Removes open hour
+                RemoveOpenHour(contact);
+
                 context.UpdateRange(contact.OpenHour);
                 await context.SaveChangesAsync();
             }
@@ -94,6 +104,28 @@ namespace yukisalon.Controllers
             }
 
             return Ok();
+        }
+
+        private void RemoveOpenHour(Contact contact)
+        {
+            var submittedOpenHours = contact.OpenHour.ToList();
+            var currentOpenHours = context.OpenHour.Where(h => h.ContactId == contact.Id).ToList();
+            if (currentOpenHours.Count > submittedOpenHours.Count)
+            {
+                var removedHours = currentOpenHours.Except(submittedOpenHours).ToList();
+                context.OpenHour.RemoveRange(removedHours);
+                context.SaveChanges();
+            }   
+        }
+
+        private void AddNewOpenHour(Contact contact)
+        {
+            // Create new openhour
+            contact.OpenHour.Where(h => h.Id <= 0).ToList().ForEach(hour =>
+            {
+                context.Add(hour);
+            });
+            context.SaveChanges();
         }
 
         // DELETE: api/Delete/5

@@ -3,14 +3,8 @@ import { Salon } from "../../../models/Salon";
 import { MaintenanceBaseEditFormComponent } from "../../maintenance-base-edit-form/maintenance-base-edit-form.component";
 import { SalonService } from "../../../services/salon.service";
 import { Contact, OpenHour } from "../../../models/Contact";
-import {
-  Validators,
-  FormBuilder,
-  FormGroup,
-  AbstractControl,
-  FormArray,
-  FormControl
-} from "@angular/forms";
+import { Validators, FormBuilder, FormGroup, FormArray } from "@angular/forms";
+import { faPlusCircle, faTrash } from "@fortawesome/free-solid-svg-icons";
 
 @Component({
   selector: "app-edit-salon-info-contact",
@@ -28,10 +22,9 @@ export class EditSalonInfoContactComponent
 
   openText: string = this.salonService.openingHourOpenText;
   closedText: string = this.salonService.openingHourClosedText;
-
-  get openHourFields() {
-    return this.form.get("openHour");
-  }
+  removeText: string = this.salonService.removeText;
+  plusIcon = faPlusCircle;
+  removeIcon = faTrash;
 
   constructor(
     public salonService: SalonService,
@@ -51,6 +44,7 @@ export class EditSalonInfoContactComponent
 
   createOpenHourForm(openHour: OpenHour): FormGroup {
     return this.formBuilder.group({
+      id: [openHour.id],
       day: [openHour.day, [Validators.required]],
       isOpen: [openHour.isOpen, [Validators.required]],
       open: openHour.open,
@@ -95,8 +89,6 @@ export class EditSalonInfoContactComponent
 
   onSubmit() {
     this.submitted = true;
-    console.log(this.form.value);
-    return;
     if (this.form.valid) {
       this.mergeContacts();
       if (this.createContact) {
@@ -134,6 +126,24 @@ export class EditSalonInfoContactComponent
     this.pickedContact = null;
     this.createContact = false;
     this.submitted = false;
+  }
+
+  /* Opening Hour */
+
+  get openHourGroup(): FormArray {
+    return this.form.get("openHour") as FormArray;
+  }
+
+  addOpenHour() {
+    this.openHourGroup.push(this.createOpenHourForm(new OpenHour()));
+  }
+
+  removeOpenHour(openHour: OpenHour, index: number) {
+    this.openHourGroup.removeAt(index);
+    this.pickedContact.openHour.splice(
+      this.pickedContact.openHour.findIndex(h => h.id === openHour.id),
+      1
+    );
   }
 
   toggleOpeningHour(openHour: OpenHour) {

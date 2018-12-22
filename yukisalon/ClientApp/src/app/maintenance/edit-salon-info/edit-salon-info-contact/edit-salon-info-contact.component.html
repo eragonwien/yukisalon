@@ -2,11 +2,11 @@
 <div *ngIf="salon && salon.contact && !pickedContact">
   <div class="list-group">
     <p *ngFor="let contact of salon.contact" class="list-group-item list-group-item-action" (click)="onContactPicked(contact)">
-      {{ contact.address1 }}, {{ contact.plz }} {{
-      contact.city
-      }}
+      {{ contact.address1 }}, {{ contact.plz }} {{ contact.city }}
     </p>
-    <p class="list-group-item list-group-item-action" (click)="openCreateNewContact()">Neue Kontakt anlegen</p>
+    <p class="list-group-item list-group-item-action" (click)="openCreateNewContact()">
+      Neue Kontakt anlegen
+    </p>
   </div>
 </div>
 <div *ngIf="salon && salon.contact && pickedContact">
@@ -18,16 +18,18 @@
         <div class="form-group col-12 col-md-7">
           <label for="address-1-input">Addresse</label>
           <input type="text" class="form-control" name="address" id="address-1-input" formControlName="address1"
-            [ngClass]="{ 'is-invalid': submitted && fields.address1.errors }">
+            [ngClass]="{ 'is-invalid': submitted && fields.address1.errors }" />
           <div *ngIf="submitted && fields.address1.errors" class="invalid-feedback">
-            <div *ngIf="fields.address1.errors.required">Addresse ist erforderlich</div>
+            <div *ngIf="fields.address1.errors.required">
+              Addresse ist erforderlich
+            </div>
           </div>
         </div>
 
         <!-- PLZ -->
         <div class="form-group col-12 col-md-2">
           <label for="plz-input">PLZ</label>
-          <input type="text" class="form-control" name="plz" id="plz-input" formControlName="plz" [ngClass]="{ 'is-invalid': submitted && fields.plz.errors }">
+          <input type="text" class="form-control" name="plz" id="plz-input" formControlName="plz" [ngClass]="{ 'is-invalid': submitted && fields.plz.errors }" />
           <div *ngIf="submitted && fields.plz.errors" class="invalid-feedback">
             <div *ngIf="fields.plz.errors.required">PLZ ist erforderlich</div>
           </div>
@@ -35,7 +37,7 @@
         <!-- City -->
         <div class="form-group col-12 col-md-3">
           <label for="city-input">Ort</label>
-          <input type="text" class="form-control" name="city" id="city-input" formControlName="city" [ngClass]="{ 'is-invalid': submitted && fields.city.errors }">
+          <input type="text" class="form-control" name="city" id="city-input" formControlName="city" [ngClass]="{ 'is-invalid': submitted && fields.city.errors }" />
           <div *ngIf="submitted && fields.city.errors" class="invalid-feedback">
             <div *ngIf="fields.city.errors.required">Ort ist erforderlich</div>
           </div>
@@ -46,61 +48,73 @@
         <!-- Phone -->
         <div class="form-group col-12 col-md-6">
           <label for="phone-input">Telefonnummer</label>
-          <input type="text" class="form-control" name="phone" id="phone-input" formControlName="phone" [ngClass]="{ 'is-invalid': submitted && fields.phone.errors }">
+          <input type="text" class="form-control" name="phone" id="phone-input" formControlName="phone" [ngClass]="{ 'is-invalid': submitted && fields.phone.errors }" />
           <div *ngIf="submitted && fields.phone.errors" class="invalid-feedback">
-            <div *ngIf="fields.phone.errors.required">Telefonnummer ist erforderlich</div>
+            <div *ngIf="fields.phone.errors.required">
+              Telefonnummer ist erforderlich
+            </div>
           </div>
         </div>
         <!-- Email -->
         <div class="form-group col-12 col-md-6">
           <label for="email-input">Email</label>
-          <input type="text" class="form-control" name="email" id="email-input" formControlName="email" [ngClass]="{ 'is-invalid': submitted && fields.email.errors }">
+          <input type="text" class="form-control" name="email" id="email-input" formControlName="email" [ngClass]="{ 'is-invalid': submitted && fields.email.errors }" />
         </div>
         <!-- Facebook -->
         <div class="form-group col-12 col-md-6">
           <label for="facebook-input">Facebook</label>
           <input type="text" class="form-control" name="facebook" id="facebook-input" formControlName="facebook"
-            [ngClass]="{ 'is-invalid': submitted && fields.facebook.errors }">
+            [ngClass]="{ 'is-invalid': submitted && fields.facebook.errors }" />
         </div>
-
       </div>
 
       <!-- Öffnungszeiten -->
       <div class="form-row" formArrayName="openHour">
         <div class="form-group col-12">
           <div class="list-group">
-            <div class="list-group-item list-group-item-action" *ngFor="let openHour of openHourFields.controls; let i=index"
+            <div class="list-group-item list-group-item-action" *ngFor="let openHour of openHourGroup.controls; let i = index"
               [formGroupName]="i">
-              <div class="row d-flex justify-content-between">
-                <div class="col-6 col-md-4">
-                  <input type="text" class="form-control" formControlName="day">
+              <div class="row">
+                <div class="form-group col-12 col-lg-3">
+                  <input type="text" class="form-control" formControlName="day" [ngClass]="{ 'is-invalid': submitted && openHour.controls.day.errors }" />
+                  <div *ngIf="submitted && openHour.controls.day.errors" class="invalid-feedback">
+                    <div *ngIf="openHour.controls.day.errors.required">Titel ist erforderlich</div>
+                  </div>
                 </div>
-                <div class="col-6 col-md-2">
+                <div class="form-group col-6 col-lg-3">
+                  <input type="time" class="form-control" formControlName="open" *ngIf="openHour.value.isOpen" />
+                </div>
+                <div class="form-group col-6 col-lg-3">
+                  <input type="time" class="form-control" formControlName="close" *ngIf="openHour.value.isOpen" />
+                </div>
+                <div class="col-6 col-lg-1">
                   <div class="form-check">
                     <label class="form-check-label">
-                      <input type="checkbox" class="form-check-input" formControlName="isOpen">
+                      <input type="checkbox" class="form-check-input" formControlName="isOpen" />
                       <span class="text-success" *ngIf="openHour.value.isOpen">{{ openText }}</span>
                       <span class="text-danger" *ngIf="!openHour.value.isOpen">{{ closedText }}</span>
                     </label>
                   </div>
                 </div>
-                <div class="form-group col-6 col-md-3">
-                  <input type="time" class="form-control" formControlName="open" *ngIf="openHour.value.isOpen">
-                </div>
-                <div class="form-group col-6 col-md-3">
-                  <input type="time" class="form-control" formControlName="close" *ngIf="openHour.value.isOpen">
+                <div class="col-6 col-lg-2">
+                  <button type="button" class="btn btn-danger" (click)="removeOpenHour(openHour, i)">
+                    {{ removeText }} <fa-icon [icon]="removeIcon"></fa-icon>
+                  </button>
                 </div>
               </div>
             </div>
+            <button type="button" class="btn btn-primary btn-block" (click)="addOpenHour()">
+              Öffnungszeiten hinzufügen <fa-icon [icon]="plusIcon"></fa-icon>
+            </button>
           </div>
         </div>
       </div>
 
       <div class="form-row">
         <div class="form-group col-12">
-          <input type="submit" class="btn btn-primary" value="Speichern">
-          <input type="button" class="btn btn-danger" value="Löschen" (click)="onRemove()" *ngIf="canRemove()">
-          <input type="button" class="btn btn-light" value="Abbrechen" (click)="onClose()" *ngIf="!createContact">
+          <input type="submit" class="btn btn-primary" value="Speichern" />
+          <input type="button" class="btn btn-danger" value="Löschen" (click)="onRemove()" *ngIf="canRemove()" />
+          <input type="button" class="btn btn-light" value="Abbrechen" (click)="onClose()" *ngIf="!createContact" />
         </div>
       </div>
     </fieldset>

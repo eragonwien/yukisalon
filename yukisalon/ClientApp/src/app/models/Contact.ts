@@ -1,9 +1,9 @@
 export class OpenHour {
-  id: number;
+  id: number = 0;
   day: string;
   open: string;
   close: string;
-  isOpen: boolean;
+  isOpen: boolean = false;
 }
 
 export class Contact {

@@ -15,6 +15,7 @@ export class SalonService {
 
   openingHourOpenText: string = "Open";
   openingHourClosedText: string = "Closed";
+  removeText: string = "Löschen";
 
   constructor(private http: HttpClient, private router: Router) {}
 
