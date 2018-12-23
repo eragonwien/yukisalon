@@ -79,6 +79,10 @@ export class MaintenanceBaseEditFormComponent {
     this.loadSalonInfo();
   }
 
+  resetForm() {
+    this.form.reset();
+  }
+
   mergeSalon() {
     switch (this.form.value.formType) {
       case "welcome":
