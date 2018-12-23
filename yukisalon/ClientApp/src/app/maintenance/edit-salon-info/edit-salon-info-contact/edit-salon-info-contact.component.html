@@ -15,8 +15,8 @@
     <fieldset>
       <div class="form-row">
         <!-- Addresse -->
-        <div class="form-group col-12 col-md-7">
-          <label for="address-1-input">Addresse</label>
+        <div class="form-group col-12 col-md-6">
+          <label class="control-label required" for="address-1-input">Addresse <small class="text-muted">erforderlich</small></label>
           <input type="text" class="form-control" name="address" id="address-1-input" formControlName="address1"
             [ngClass]="{ 'is-invalid': submitted && fields.address1.errors }" />
           <div *ngIf="submitted && fields.address1.errors" class="invalid-feedback">
@@ -28,15 +28,15 @@
 
         <!-- PLZ -->
         <div class="form-group col-12 col-md-2">
-          <label for="plz-input">PLZ</label>
+          <label for="plz-input" class="control-label required">PLZ <small class="text-muted">erforderlich</small></label>
           <input type="text" class="form-control" name="plz" id="plz-input" formControlName="plz" [ngClass]="{ 'is-invalid': submitted && fields.plz.errors }" />
           <div *ngIf="submitted && fields.plz.errors" class="invalid-feedback">
             <div *ngIf="fields.plz.errors.required">PLZ ist erforderlich</div>
           </div>
         </div>
         <!-- City -->
-        <div class="form-group col-12 col-md-3">
-          <label for="city-input">Ort</label>
+        <div class="form-group col-12 col-md-4">
+          <label for="city-input" class="control-label required">Ort <small class="text-muted">erforderlich</small></label>
           <input type="text" class="form-control" name="city" id="city-input" formControlName="city" [ngClass]="{ 'is-invalid': submitted && fields.city.errors }" />
           <div *ngIf="submitted && fields.city.errors" class="invalid-feedback">
             <div *ngIf="fields.city.errors.required">Ort ist erforderlich</div>
@@ -47,7 +47,7 @@
       <div class="form-row">
         <!-- Phone -->
         <div class="form-group col-12 col-md-6">
-          <label for="phone-input">Telefonnummer</label>
+          <label for="phone-input" class="control-label required">Telefonnummer <small class="text-muted">erforderlich</small></label>
           <input type="text" class="form-control" name="phone" id="phone-input" formControlName="phone" [ngClass]="{ 'is-invalid': submitted && fields.phone.errors }" />
           <div *ngIf="submitted && fields.phone.errors" class="invalid-feedback">
             <div *ngIf="fields.phone.errors.required">
@@ -112,9 +112,12 @@
 
       <div class="form-row">
         <div class="form-group col-12">
-          <input type="submit" class="btn btn-primary" value="Speichern" />
-          <input type="button" class="btn btn-danger" value="Löschen" (click)="onRemove()" *ngIf="canRemove()" />
-          <input type="button" class="btn btn-light" value="Abbrechen" (click)="onClose()" *ngIf="!createContact" />
+          <div class="btn-group">
+            <input type="submit" class="btn btn-primary" value="Speichern" />
+            <input type="button" class="btn btn-danger" value="Löschen" (click)="onRemove()" *ngIf="canRemove()" />
+            <input type="button" class="btn btn-light" value="Reset" (click)="resetForm()" *ngIf="createContact" />
+            <input type="button" class="btn btn-light" value="Abbrechen" (click)="onClose()" />
+          </div>
         </div>
       </div>
     </fieldset>
