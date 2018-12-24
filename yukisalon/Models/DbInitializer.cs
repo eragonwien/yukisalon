@@ -70,9 +70,10 @@ namespace yukisalon.Models
                 SalonId = salon.Id,
                 RoleId = adminRole.Id,
                 Email = "tuyetvienna@gmail.com",
-                Password = "",
+                Password = "1212",
                 ExtraInfo = "",
                 IsActive = true,
+                IsDisplayed = true,
                 Description = "Yuki Tuyet personal info"
             };
             context.User.Add(owner);

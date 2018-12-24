@@ -71,6 +71,7 @@ CREATE TABLE [User] (
     [Description] nvarchar(max),
     [ExtraInfo] nvarchar(max),
     [IsActive] bit,
+    [IsDisplayed] bit,
     [RoleId] int NOT NULL,
     CONSTRAINT [PK_User] PRIMARY KEY ([Id]),
 	CONSTRAINT [FK_User_Salon_SalonId] FOREIGN KEY ([SalonId]) REFERENCES [Salon] ([Id]),
