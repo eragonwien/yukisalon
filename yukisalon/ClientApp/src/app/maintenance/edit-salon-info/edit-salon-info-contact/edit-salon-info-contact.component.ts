@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, ChangeDetectorRef } from "@angular/core";
 import { Salon } from "../../../models/Salon";
-import { MaintenanceBaseEditFormComponent } from "../../maintenance-base-edit-form/maintenance-base-edit-form.component";
+import { MaintenanceBaseFormComponent } from "../../../shared/maintenance-base-form/maintenance-base-form.component";
 import { SalonService } from "../../../services/salon.service";
 import { Contact, OpenHour } from "../../../models/Contact";
 import { Validators, FormBuilder, FormGroup, FormArray } from "@angular/forms";
@@ -11,8 +11,7 @@ import { faPlusCircle, faTrash } from "@fortawesome/free-solid-svg-icons";
   templateUrl: "./edit-salon-info-contact.component.html",
   styleUrls: ["./edit-salon-info-contact.component.css"]
 })
-export class EditSalonInfoContactComponent
-  extends MaintenanceBaseEditFormComponent
+export class EditSalonInfoContactComponent extends MaintenanceBaseFormComponent
   implements OnInit {
   @Input() salon: Salon;
 
@@ -29,9 +28,9 @@ export class EditSalonInfoContactComponent
   constructor(
     public salonService: SalonService,
     private changeDetector: ChangeDetectorRef,
-    private formBuilder: FormBuilder
+    public formBuilder: FormBuilder
   ) {
-    super(salonService);
+    super(salonService, formBuilder);
   }
 
   ngOnInit() {
@@ -115,8 +114,7 @@ export class EditSalonInfoContactComponent
 
   openCreateNewContact() {
     this.createContact = true;
-    this.pickedContact = new Contact();
-    this.pickedContact.salonId = this.salon.id;
+    this.pickedContact = new Contact(this.salon.id);
     this.initForm();
   }
 

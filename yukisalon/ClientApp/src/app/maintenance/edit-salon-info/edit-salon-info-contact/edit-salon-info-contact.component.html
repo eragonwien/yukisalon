@@ -113,7 +113,7 @@
       <div class="form-row">
         <div class="form-group col-12">
           <div class="btn-group">
-            <input type="submit" class="btn btn-primary" value="Speichern" />
+            <button type="submit" class="btn btn-primary">Speichern <app-loading-spinner *ngIf="loading"></app-loading-spinner></button>
             <input type="button" class="btn btn-danger" value="Löschen" (click)="onRemove()" *ngIf="canRemove()" />
             <input type="button" class="btn btn-light" value="Reset" (click)="resetForm()" *ngIf="createContact" />
             <input type="button" class="btn btn-light" value="Abbrechen" (click)="onClose()" />
