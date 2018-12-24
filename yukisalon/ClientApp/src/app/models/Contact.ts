@@ -18,7 +18,8 @@ export class Contact {
   email: string;
   openHour: OpenHour[];
 
-  constructor() {
+  constructor(salonId: number) {
+    this.salonId = salonId;
     this.openHour = [];
   }
 }
