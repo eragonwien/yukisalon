@@ -79,7 +79,7 @@ namespace yukisalon.Controllers
             return Ok(salon);
         }
 
-        // PUT: api/Salon/5/General
+        // PUT: api/Salon/5
         [HttpPut("{id}")]
         public async Task<IActionResult> UpdateSalon([FromRoute] int id, [FromBody] Salon salon)
         {
