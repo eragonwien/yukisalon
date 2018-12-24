@@ -5,7 +5,7 @@
       <!-- Name -->
       <div class="form-group col-12">
         <label class="control-label" for="salon-welcome-title">
-            Titel <small class="text-muted">erforderlich</small>
+          Titel <small class="text-muted">erforderlich</small>
         </label>
         <input type="text" class="form-control" id="salon-welcome-title" formControlName="title" [ngClass]="{ 'is-invalid': submitted && fields.title.errors }" />
         <div *ngIf="submitted && fields.title.errors" class="invalid-feedback">
@@ -18,14 +18,16 @@
       <!-- description -->
       <div class="form-group col-12">
         <label class="control-label" for="salon-welcome-text">Text</label>
-        <textarea type="text" class="form-control" rows="3" id="salon-welcome-text" formControlName="text1"
-          [ngClass]="{ 'is-invalid': submitted && fields.text1.errors }"></textarea>
+        <textarea type="text" class="form-control" rows="3" id="salon-welcome-text" formControlName="text1" [ngClass]="{ 'is-invalid': submitted && fields.text1.errors }"></textarea>
       </div>
     </div>
 
     <div class="form-row">
       <div class="form-group col-12">
-        <input type="submit" class="btn btn-primary" value="Speichern">
+        <div class="btn-group">
+          <button type="submit" class="btn btn-primary">Speichern <app-loading-spinner *ngIf="loading"></app-loading-spinner></button>
+          <input type="button" class="btn btn-light" value="Abbrechen" (click)="onClose()" />
+        </div>
       </div>
     </div>
   </fieldset>
