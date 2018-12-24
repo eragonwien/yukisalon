@@ -2,15 +2,15 @@ import { Component } from "@angular/core";
 import { Salon } from "../../models/Salon";
 import { AlertMessage } from "../../models/alertMessage";
 import { SalonService } from "../../services/salon.service";
-import { FormGroup } from "@angular/forms";
+import { FormGroup, FormBuilder } from "@angular/forms";
 import { HttpErrorResponse } from "@angular/common/http";
 
 @Component({
-  selector: "app-maintenance-base-edit-form",
-  templateUrl: "./maintenance-base-edit-form.component.html",
-  styleUrls: ["./maintenance-base-edit-form.component.css"]
+  selector: "app-maintenance-base-form",
+  templateUrl: "./maintenance-base-form.component.html",
+  styleUrls: ["./maintenance-base-form.component.css"]
 })
-export class MaintenanceBaseEditFormComponent {
+export class MaintenanceBaseFormComponent {
   salon: Salon;
 
   formDivId: string;
@@ -20,7 +20,10 @@ export class MaintenanceBaseEditFormComponent {
 
   alerts: AlertMessage[] = [];
 
-  constructor(public salonService: SalonService) {}
+  constructor(
+    public salonService: SalonService,
+    public formBuilder: FormBuilder
+  ) {}
 
   loadSalonInfo() {
     let salonId = this.salonService.currentSalonId;
