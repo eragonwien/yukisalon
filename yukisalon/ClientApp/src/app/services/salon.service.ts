@@ -1,3 +1,4 @@
+import { User } from "./../models/User";
 import { Injectable } from "@angular/core";
 import { HttpClient, HttpErrorResponse } from "@angular/common/http";
 import { Router } from "@angular/router";
@@ -16,6 +17,9 @@ export class SalonService {
   openingHourOpenText: string = "Open";
   openingHourClosedText: string = "Closed";
   removeText: string = "Löschen";
+  activeText: string = "Aktiviert";
+  inactiveText: string = "Deaktiviert";
+  displayedText: string = "Anzeigen";
 
   constructor(private http: HttpClient, private router: Router) {}
 
@@ -96,5 +100,10 @@ export class SalonService {
         .getElementById(divId)
         .scrollIntoView({ behavior: "smooth", block: "start" });
     }
+  }
+
+  editSalonUser(user: User) {
+    let url = this.BaseUrl + "/api/User/" + user.id;
+    return this.http.put(url, user, { observe: "response" });
   }
 }
