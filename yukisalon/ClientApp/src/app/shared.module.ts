@@ -1,18 +1,15 @@
-import { NgModule, ModuleWithProviders } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { AccountService } from './services/account.service';
-import { SalonService } from './services/salon.service';
-import { AddWithCredentialsHttpInterceptorService } from './services/add-with-credentials-http-interceptor.service';
-import { UnauthorizedHttpInterceptorService } from './services/unauthorized-http-interceptor.service';
-import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { NgModule, ModuleWithProviders } from "@angular/core";
+import { CommonModule } from "@angular/common";
+import { AccountService } from "./services/account.service";
+import { SalonService } from "./services/salon.service";
+import { AddWithCredentialsHttpInterceptorService } from "./services/add-with-credentials-http-interceptor.service";
+import { UnauthorizedHttpInterceptorService } from "./services/unauthorized-http-interceptor.service";
+import { HTTP_INTERCEPTORS } from "@angular/common/http";
 
 @NgModule({
-  imports: [
-    CommonModule
-  ]
+  imports: [CommonModule]
 })
 export class SharedModule {
-
   static forRoot(): ModuleWithProviders {
     return {
       ngModule: SharedModule,
@@ -21,13 +18,13 @@ export class SharedModule {
         SalonService,
         {
           provide: HTTP_INTERCEPTORS,
-          useClass: AddWithCredentialsHttpInterceptorService, 
+          useClass: AddWithCredentialsHttpInterceptorService,
           multi: true
         },
         {
           provide: HTTP_INTERCEPTORS,
-          useClass: UnauthorizedHttpInterceptorService, 
-          multi: true,
+          useClass: UnauthorizedHttpInterceptorService,
+          multi: true
         }
       ]
     };
