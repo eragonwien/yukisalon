@@ -1,3 +1,4 @@
+import { FormBuilder } from "@angular/forms";
 import { Component, OnInit } from "@angular/core";
 import { MaintenanceBaseFormComponent } from "../../shared/maintenance-base-form/maintenance-base-form.component";
 import { SalonService } from "../../services/salon.service";
@@ -12,8 +13,11 @@ export class EditSalonInfoComponent extends MaintenanceBaseFormComponent
   implements OnInit {
   oneAtATime: boolean = true;
 
-  constructor(public salonService: SalonService) {
-    super(salonService);
+  constructor(
+    public salonService: SalonService,
+    public formBuilder: FormBuilder
+  ) {
+    super(salonService, formBuilder);
   }
 
   ngOnInit() {
