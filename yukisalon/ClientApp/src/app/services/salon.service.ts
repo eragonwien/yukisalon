@@ -20,6 +20,8 @@ export class SalonService {
   activeText: string = "Aktiviert";
   inactiveText: string = "Deaktiviert";
   displayedText: string = "Anzeigen";
+  createUserText: string = "Benutzer anlegen";
+  editUserText: string = "Benutzer bearbeiten";
 
   constructor(private http: HttpClient, private router: Router) {}
 
@@ -105,5 +107,10 @@ export class SalonService {
   editSalonUser(user: User) {
     let url = this.BaseUrl + "/api/User/" + user.id;
     return this.http.put(url, user, { observe: "response" });
+  }
+
+  createSalonUser(user: User) {
+    let url = this.BaseUrl + "/api/User/";
+    return this.http.post(url, user, { observe: "response" });
   }
 }
