@@ -35,7 +35,7 @@ export class EditSalonInfoGeneralComponent extends MaintenanceBaseFormComponent
     this.form = this.formBuilder.group({
       name: [this.salon.name, [Validators.required]],
       description: [this.salon.description, [Validators.required]],
-      extraInfo: [this.salon.extraInfo, [Validators.required]],
+      extraInfo: [this.salon.extraInfo],
       formType: "general"
     });
   }
