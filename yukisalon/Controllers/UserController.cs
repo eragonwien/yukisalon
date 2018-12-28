@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -11,6 +12,7 @@ namespace yukisalon.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class UserController : ControllerBase
     {
         private readonly YUKISALONDEVContext context;
@@ -62,7 +64,7 @@ namespace yukisalon.Controllers
 
             try
             {
-                context.Update(user);
+                SetUserModified(user);
                 await context.SaveChangesAsync();
             }
             catch (Exception ex)
@@ -80,6 +82,15 @@ namespace yukisalon.Controllers
             return Ok();
         }
 
+        private void SetUserModified(User user)
+        {
+            context.Entry(user).Property(u => u.Name).IsModified = true;
+            context.Entry(user).Property(u => u.Description).IsModified = true;
+            context.Entry(user).Property(u => u.IsDisplayed).IsModified = true;
+            context.Entry(user).Property(u => u.IsActive).IsModified = true;
+            context.Entry(user).Property(u => u.Email).IsModified = true;
+        }
+
         // POST: api/User
         [HttpPost]
         public async Task<IActionResult> CreateUser([FromBody] User user)
@@ -89,8 +100,30 @@ namespace yukisalon.Controllers
                 return BadRequest(ModelState);
             }
 
-            context.User.Add(user);
-            await context.SaveChangesAsync();
+            if (user.RoleId < 0)
+            {
+                user.RoleId = context.Role.First().Id;
+            }
+
+            try
+            {
+                context.User.Add(user);
+                await context.SaveChangesAsync();
+            }
+            catch (Exception ex)
+            {
+                if (UserExists(user.Email))
+                {
+                    ModelState.AddModelError("Email", "Benutzer existiert bereits");
+                    return BadRequest(ModelState);
+                }
+                else
+                {
+                    return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
+                }
+            }
+
+            
 
             return CreatedAtAction("GetUser", new { id = user.Id }, user);
         }
@@ -119,6 +152,11 @@ namespace yukisalon.Controllers
         private bool UserExists(int id)
         {
             return context.User.Any(e => e.Id == id);
+        }
+
+        private bool UserExists(string email)
+        {
+            return context.User.Any(e => e.Email.Equals(email));
         }
     }
 }
