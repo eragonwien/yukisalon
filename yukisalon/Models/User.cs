@@ -9,20 +9,16 @@ namespace yukisalon.Models
         public int Id { get; set; }
         public int SalonId { get; set; }
 
-        [Required]
         public string Email { get; set; }
         
-        [Required]
         public string Name { get; set; }
         
-        [Required]
         public string Password { get; set; }
         public string Description { get; set; }
         public string ExtraInfo { get; set; }
         public bool? IsActive { get; set; }
         public bool? IsDisplayed { get; set; }
 
-        [Required]
         public int RoleId { get; set; }
 
         public Role Role { get; set; }
