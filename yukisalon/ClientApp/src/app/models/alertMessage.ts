@@ -5,7 +5,13 @@ export class AlertMessage {
   dismissible: boolean;
   header?: string;
 
-  constructor(type: string, message: string, timeout: number = 10000, header?: string, dismissible: boolean = true) {
+  constructor(
+    type: string,
+    message: string,
+    timeout: number = 10000,
+    header?: string,
+    dismissible: boolean = true
+  ) {
     this.type = type;
     this.message = message;
     this.timeout = timeout;
