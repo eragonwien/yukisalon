@@ -12,6 +12,9 @@ export class User {
 
   constructor(salonId: number) {
     this.salonId = salonId;
+    this.isActive = false;
+    this.isDisplayed = false;
+    this.roleId = -1;
   }
 }
 
