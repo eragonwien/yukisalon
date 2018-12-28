@@ -1,9 +1,19 @@
 <div class="container">
+  <app-alert [alerts]="alerts"></app-alert>
   <ul class="list-group" *ngIf="salon">
+    <!-- Edit User -->
     <li class="list-group-item d-flex justify-content-between align-items-center" *ngFor="let user of salon.user">
       <span>{{ user.name }} - {{ user.email }}</span>
       <button type="button" class="btn btn-primary" (click)="openEditUser(user)">
         <fa-icon [icon]="editIcon"></fa-icon>
+      </button>
+    </li>
+
+    <!-- Create User -->
+    <li class="list-group-item d-flex justify-content-between align-items-center">
+      <span>Neue Benutzer anlegen</span>
+      <button type="button" class="btn btn-primary" (click)="openCreateUser()">
+        <fa-icon [icon]="plusIcon"></fa-icon>
       </button>
     </li>
   </ul>
