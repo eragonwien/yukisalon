@@ -58,6 +58,10 @@ export class MaintenanceBaseFormComponent {
         ? this.salonService.alertDefaultSuccessHeader
         : this.salonService.alertDefaultErrorHeader
     );
+    this.showAlertMsg(alert);
+  }
+
+  showAlertMsg(alert: AlertMessage) {
     this.alerts.push(alert);
     setTimeout(
       () => this.alerts.splice(this.alerts.indexOf(alert), 1),
@@ -74,8 +78,21 @@ export class MaintenanceBaseFormComponent {
     if (error.status === 404) {
       return this.salonService.returnToMaintenanceIndex();
     }
-    let errorText = error.error;
-    this.showAlertMessage(errorText, false);
+    this.displayErrors(error.error);
+  }
+
+  displayErrors(error: any) {
+    switch (typeof error) {
+      case "string":
+        this.showAlertMessage(error, false);
+        break;
+      default:
+        Object.keys(error).forEach(key => {
+          let errorText = key + ": " + error[key];
+          this.showAlertMessage(errorText, false);
+        });
+        break;
+    }
   }
 
   resetFields() {
