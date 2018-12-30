@@ -143,6 +143,19 @@ namespace yukisalon.Controllers
                 return NotFound();
             }
 
+            if (User.Identity.Name.Equals(user.Email))
+            {
+                ModelState.AddModelError("", string.Format("{0} kann sich selbst nicht löschen", user.Name));
+                return BadRequest(ModelState);
+            }
+
+            int userCount = await context.User.CountAsync(u => u.SalonId == user.SalonId);
+            if (userCount <= 1)
+            {
+                ModelState.AddModelError("", string.Format("{0} ist der einzige Benutzer und darf daher nicht gelöscht werden.", user.Name));
+                return BadRequest(ModelState);
+            }
+
             context.User.Remove(user);
             await context.SaveChangesAsync();
 
