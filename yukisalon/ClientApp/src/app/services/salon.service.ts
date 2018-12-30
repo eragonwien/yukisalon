@@ -20,8 +20,12 @@ export class SalonService {
   activeText: string = "Aktiviert";
   inactiveText: string = "Deaktiviert";
   displayedText: string = "Anzeigen";
+  saveText: string = "Speichern";
   createUserText: string = "Benutzer anlegen";
   editUserText: string = "Benutzer bearbeiten";
+  removeUserText: string = "Benutzer löschen";
+  closeText: string = "Schließen";
+  cancelText: string = "Abbrechen";
 
   constructor(private http: HttpClient, private router: Router) {}
 
@@ -104,13 +108,18 @@ export class SalonService {
     }
   }
 
+  createSalonUser(user: User) {
+    let url = this.BaseUrl + "/api/User/";
+    return this.http.post(url, user, { observe: "response" });
+  }
+
   editSalonUser(user: User) {
     let url = this.BaseUrl + "/api/User/" + user.id;
     return this.http.put(url, user, { observe: "response" });
   }
 
-  createSalonUser(user: User) {
-    let url = this.BaseUrl + "/api/User/";
-    return this.http.post(url, user, { observe: "response" });
+  removeSalonUser(user: User) {
+    let url = this.BaseUrl + "/api/User/" + user.id;
+    return this.http.delete(url, { observe: "response" });
   }
 }
