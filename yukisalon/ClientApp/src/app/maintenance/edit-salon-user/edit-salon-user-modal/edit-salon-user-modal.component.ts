@@ -5,7 +5,7 @@ import { User } from "./../../../models/User";
 import { Component, OnInit, Input, Output, EventEmitter } from "@angular/core";
 import { NgbActiveModal } from "@ng-bootstrap/ng-bootstrap";
 import { AlertMessage } from "./../../../models/AlertMessage";
-import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
+import { faEye, faEyeSlash, faTrash } from "@fortawesome/free-solid-svg-icons";
 
 @Component({
   selector: "app-edit-salon-user-modal",
@@ -22,15 +22,19 @@ export class EditSalonUserModalComponent extends MaintenanceBaseFormComponent
   displayedText: string = this.salonService.displayedText;
   createUserText: string = this.salonService.createUserText;
   editUserText: string = this.salonService.editUserText;
+  closeText: string = this.salonService.closeText;
+  removeText: string = this.salonService.removeText;
+  saveText: string = this.salonService.saveText;
   isCreate: boolean = false;
   showPassword: boolean = false;
   showPasswordIcon = faEye;
   hidePasswordIcon = faEyeSlash;
+  removeIcon = faTrash;
 
   constructor(
     public salonService: SalonService,
     public formBuilder: FormBuilder,
-    private activeModal: NgbActiveModal
+    public activeModal: NgbActiveModal
   ) {
     super(salonService, formBuilder);
   }
@@ -68,7 +72,6 @@ export class EditSalonUserModalComponent extends MaintenanceBaseFormComponent
 
   onSubmit() {
     this.submitted = true;
-    console.log(this.form);
     if (this.form.valid) {
       this.loading = true;
       if (this.isCreate) {
