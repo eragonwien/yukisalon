@@ -7,6 +7,7 @@ import { FormBuilder } from "@angular/forms";
 import { faPen, faPlus, faTrash } from "@fortawesome/free-solid-svg-icons";
 import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
 import { EditSalonUserModalComponent } from "./edit-salon-user-modal/edit-salon-user-modal.component";
+import { ConfirmRemoveUserModalComponent } from "./confirm-remove-user-modal/confirm-remove-user-modal.component";
 
 @Component({
   selector: "app-edit-salon-user",
@@ -36,19 +37,30 @@ export class EditSalonUserComponent extends MaintenanceBaseFormComponent
     const modalRef = this.modalService.open(EditSalonUserModalComponent);
     modalRef.componentInstance.user = user;
     modalRef.componentInstance.form = this.form;
-    modalRef.componentInstance.alertEmitter.subscribe((alert: AlertMessage) => {
-      this.showAlertMsg(alert);
-      this.loadSalonInfo();
-    });
+    modalRef.componentInstance.alertEmitter.subscribe((alert: AlertMessage) =>
+      this.alertThenReloadInfo(alert)
+    );
   }
 
   openCreateUser() {
     const modalRef = this.modalService.open(EditSalonUserModalComponent);
     modalRef.componentInstance.user = new User(this.salon.id);
     modalRef.componentInstance.form = this.form;
-    modalRef.componentInstance.alertEmitter.subscribe((alert: AlertMessage) => {
-      this.showAlertMsg(alert);
-      this.loadSalonInfo();
-    });
+    modalRef.componentInstance.alertEmitter.subscribe((alert: AlertMessage) =>
+      this.alertThenReloadInfo(alert)
+    );
+  }
+
+  openRemoveUser(user: User) {
+    const modalRef = this.modalService.open(ConfirmRemoveUserModalComponent);
+    modalRef.componentInstance.user = user;
+    modalRef.componentInstance.alertEmitter.subscribe((alert: AlertMessage) =>
+      this.alertThenReloadInfo(alert)
+    );
+  }
+
+  alertThenReloadInfo(alert: AlertMessage) {
+    this.showAlertMsg(alert);
+    this.loadSalonInfo();
   }
 }
