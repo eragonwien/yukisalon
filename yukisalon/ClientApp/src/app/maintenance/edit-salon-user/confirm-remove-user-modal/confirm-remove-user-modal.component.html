@@ -1,0 +1,13 @@
+<div class="modal-header">
+  <h4 class="modal-title">{{ removeUserText }}</h4>
+  <button type="button" class="close" aria-label="Close" (click)="onModalClosed()">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+  <p>Benutzer <strong>{{ user.name }}</strong> löschen ?</p>
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-light" (click)="onModalClosed()">{{ cancelText }}</button>
+  <button type="button" class="btn btn-danger" (click)="onConfirmed()">{{ removeText }}</button>
+</div>
