@@ -35,7 +35,7 @@ namespace yukisalon.Controllers
                     var claims = new List<Claim>
                     {
                         new Claim(ClaimTypes.Email, user.Email),
-                        new Claim(ClaimTypes.Name, user.Name),
+                        new Claim(ClaimTypes.Name, user.Email),
                         new Claim(ClaimTypes.Role, userRole)
                     };
 
@@ -60,10 +60,18 @@ namespace yukisalon.Controllers
             return Unauthorized();
         }
 
+        [HttpPost]
         [Authorize]
         public async Task<IActionResult> Logout()
         {
             await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+            return Ok();
+        }
+
+        [HttpPost]
+        [Authorize]
+        public IActionResult TestAuth()
+        {
             return Ok();
         }
     }
