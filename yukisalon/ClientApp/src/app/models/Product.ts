@@ -6,13 +6,14 @@ export class Product {
   isFixPrice: boolean;
   currency: string;
   image: string;
-  isFeatured: string
+  isFeatured: string;
 }
 
 export class Category {
   id: number;
+  salonId: number;
   name: string;
   image: string;
   product: Product[];
-  subCategory: Category[]
+  subCategory: Category[];
 }
