@@ -1,11 +1,14 @@
-<div class="container-fluid">
+<div class="container">
   <div class="card bg-light">
     <div class="card-body">
+      <h3 class="card-title text-center pb-2">Einstellung auswählen</h3>
       <!-- Menu auswählen-->
-      <div class="card-columns">
-        <div class="card bg-primary" *ngFor="let option of maintenanceMenu" (click)="onMenuOptionPicked(option)">
-          <div class="card-body text-center text-white">
-            <p class="card-text">{{ option.name }}</p>
+      <div class="row">
+        <div class="col-12 col-sm-6 col-md-4" *ngFor="let option of maintenanceMenu">
+          <div class="card bg-primary clickable" (click)="onMenuOptionPicked(option)">
+            <div class="card-body text-center text-white">
+              <p class="card-text">{{ option.name }}</p>
+            </div>
           </div>
         </div>
       </div>

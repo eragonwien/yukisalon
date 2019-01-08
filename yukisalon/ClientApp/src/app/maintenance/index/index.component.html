@@ -1,13 +1,15 @@
-<div class="container-fluid">
+<div class="container">
   <div *ngIf="salonList">
     <div class="card bg-light">
       <div class="card-body">
-        <h3 class="card-title text-center">Salon auswählen</h3>
+        <h3 class="card-title text-center pb-2">Salon auswählen</h3>
         <!-- Salon auswählen-->
-        <div class="card-columns" *ngIf="salonList.length > 0">
-          <div class="card bg-primary" *ngFor="let salon of salonList" (click)="onSalonPicked(salon)" style="cursor: pointer;">
-            <div class="card-body text-center text-white">
-              <p class="card-text">{{ salon.name }}</p>
+        <div class="row" *ngIf="salonList.length > 0">
+          <div class="col-12 col-sm-6 col-md-4" *ngFor="let salon of salonList">
+            <div class="card bg-primary clickable" (click)="onSalonPicked(salon)">
+              <div class="card-body text-center text-white">
+                <p class="card-text">{{ salon.name }}</p>
+              </div>
             </div>
           </div>
         </div>
