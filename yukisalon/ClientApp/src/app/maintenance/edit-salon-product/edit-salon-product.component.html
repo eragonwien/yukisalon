@@ -1,3 +1,14 @@
-<p>
-  edit-salon-product works!
-</p>
+<div class="container">
+  <app-alert [alerts]="alerts"></app-alert>
+  <ul class="list-group" *ngIf="categories">
+    <!-- Edit User -->
+    <li class="list-group-item d-flex justify-content-between align-items-center" *ngFor="let category of categories">
+      <span>{{ category.name }}</span>
+      <div class="btn-group">
+        <button type="button" class="btn btn-primary" (click)="openEditCategory(category)">
+          <fa-icon [icon]="editIcon"></fa-icon>
+        </button>
+      </div>
+    </li>
+  </ul>
+</div>

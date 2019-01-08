@@ -16,7 +16,7 @@
     <div class="row row-hoverable" *ngFor="let product of category.product">
       <div class="col-7 col-sm-8">{{product.name}}</div>
       <div class="col-5 col-sm-4 text-right">
-        <span *ngIf="!product.isFixPrice">ab </span>{{product.price}}{{ product.currency }}      
+        <span *ngIf="!product.isFixPrice">ab </span>{{product.price}}{{ product.currency }}
       </div>
     </div>
   </div>

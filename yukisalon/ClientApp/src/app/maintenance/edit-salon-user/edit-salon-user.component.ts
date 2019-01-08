@@ -58,9 +58,4 @@ export class EditSalonUserComponent extends MaintenanceBaseFormComponent
       this.alertThenReloadInfo(alert)
     );
   }
-
-  alertThenReloadInfo(alert: AlertMessage) {
-    this.showAlertMsg(alert);
-    this.loadSalonInfo();
-  }
 }

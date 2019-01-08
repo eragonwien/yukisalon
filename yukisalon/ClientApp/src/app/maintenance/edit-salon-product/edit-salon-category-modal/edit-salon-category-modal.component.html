@@ -1,0 +1,76 @@
+<div class="modal-header">
+  <h4 class="modal-title">{{ isCreate ? createCategoryText : editCategoryText }}</h4>
+  <button type="button" class="close" aria-label="Close" (click)="onModalClosed()">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+  <form [formGroup]="form" id="edit-salon-category-modal-form">
+    <fieldset>
+      <div class="form-row">
+        <!-- Name -->
+        <div class="form-group col-12">
+          <label class="control-label" for="salon-category-name">
+            Name <small class="text-muted">erforderlich</small>
+          </label>
+          <input type="text" class="form-control" id="salon-category-name" formControlName="name" [ngClass]="{ 'is-invalid': submitted && fields.name.errors }" />
+          <div *ngIf="submitted && fields.name.errors" class="invalid-feedback">
+            <div *ngIf="fields.name.required">Name ist erforderlich</div>
+          </div>
+        </div>
+
+        <!-- Salon -->
+        <div class="form-group col-12">
+          <label class="control-label" for="salon-category-salonId">
+            Salon
+          </label>
+          <select class="form-control custom-select" id="salon-category-salonId" formControlName="salonId" [ngClass]="{ 'is-invalid': submitted && fields.salonId.errors }">
+            <option *ngFor="let salon of salonList" [value]="salon.id">{{ salon.name }}</option>
+          </select>
+        </div>
+
+        <!-- Bild -->
+        <div class="form-group col-12">
+          <label class="control-label" for="salon-category-image">
+            Bild
+          </label>
+          <input type="text" class="form-control" id="salon-category-image" formControlName="image" [ngClass]="{ 'is-invalid': submitted && fields.image.errors }" />
+        </div>
+
+        <!-- SubCategory -->
+        <div class="form-group col-12">
+          <label class="control-label" for="salon-subcategory-image">
+            Unterkategorie
+          </label>
+          <select class="form-control custom-select" id="salon-subcategory-salonId" formControlName="subCategory"
+            [ngClass]="{ 'is-invalid': submitted && fields.subCategory.errors }">
+            <option *ngFor="let subcategory of subcategoryList" [value]="subcategory.id">{{ subcategory.name }}</option>
+          </select>
+          <div class="py-2">
+            <button type="button" class="btn btn-info mx-1" *ngFor="let subcategory of category.subCategory" (click)="onRemoveSubCategory(subcategory)">
+              {{ subcategory.name }}
+              <span>
+                <fa-icon [icon]="closeIcon"></fa-icon>
+              </span>
+            </button>
+
+            <div class="card" *ngIf="removeSubCategory">
+              <div class="card-body">
+                Subkategorie {{ removeSubCategory.name }} entfernen ?
+              </div>
+              <div class="card-footer">
+                <button type="button" class="btn btn-danger" (click)="confirmRemoveSubCategory()"></button>
+                <button type="button" class="btn btn-light" (click)="cancelRemoveSubCategory()"></button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </fieldset>
+    <pre>{{form.value | json}}</pre>
+  </form>
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-light" (click)="onModalClosed()">{{ closeText }}</button>
+  <button type="button" class="btn btn-primary" (click)="onSubmit()">{{ saveText }} <app-loading-spinner *ngIf="loading"></app-loading-spinner></button>
+</div>

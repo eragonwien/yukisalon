@@ -1,6 +1,6 @@
+import { MaintenanceBaseFormModalComponent } from "./../../../shared/maintenance-base-form-modal/maintenance-base-form-modal.component";
 import { SalonService } from "./../../../services/salon.service";
 import { FormBuilder, Validators, FormControl } from "@angular/forms";
-import { MaintenanceBaseFormComponent } from "./../../../shared/maintenance-base-form/maintenance-base-form.component";
 import { User } from "./../../../models/User";
 import { Component, OnInit, Input, Output, EventEmitter } from "@angular/core";
 import { NgbActiveModal } from "@ng-bootstrap/ng-bootstrap";
@@ -12,35 +12,20 @@ import { faEye, faEyeSlash, faTrash } from "@fortawesome/free-solid-svg-icons";
   templateUrl: "./edit-salon-user-modal.component.html",
   styleUrls: ["./edit-salon-user-modal.component.css"]
 })
-export class EditSalonUserModalComponent extends MaintenanceBaseFormComponent
+export class EditSalonUserModalComponent
+  extends MaintenanceBaseFormModalComponent
   implements OnInit {
   @Input() user: User;
-  @Output() alertEmitter: EventEmitter<AlertMessage> = new EventEmitter();
 
-  activeText: string = this.salonService.activeText;
-  inactiveText: string = this.salonService.inactiveText;
-  displayedText: string = this.salonService.displayedText;
-  createUserText: string = this.salonService.createUserText;
-  editUserText: string = this.salonService.editUserText;
-  closeText: string = this.salonService.closeText;
-  removeText: string = this.salonService.removeText;
-  saveText: string = this.salonService.saveText;
   isCreate: boolean = false;
   showPassword: boolean = false;
-  showPasswordIcon = faEye;
-  hidePasswordIcon = faEyeSlash;
-  removeIcon = faTrash;
 
   constructor(
     public salonService: SalonService,
     public formBuilder: FormBuilder,
     public activeModal: NgbActiveModal
   ) {
-    super(salonService, formBuilder);
-  }
-
-  get values() {
-    return this.form.value;
+    super(salonService, formBuilder, activeModal);
   }
 
   ngOnInit() {
@@ -73,14 +58,13 @@ export class EditSalonUserModalComponent extends MaintenanceBaseFormComponent
   onSubmit() {
     this.submitted = true;
     if (this.form.valid) {
-      this.loading = true;
+      this.enableLoading();
       if (this.isCreate) {
         this.sendCreateForm();
       } else {
         this.sendEditForm();
       }
     }
-    this.loading = false;
   }
 
   sendEditForm() {
@@ -88,7 +72,7 @@ export class EditSalonUserModalComponent extends MaintenanceBaseFormComponent
       .editSalonUser(this.form.value)
       .subscribe(() => this.handleSuccess(), error => this.handleError(error))
       .add(() => this.emitAlert())
-      .add(() => (this.loading = false));
+      .add(() => this.disableLoading());
   }
 
   sendCreateForm() {
@@ -96,16 +80,7 @@ export class EditSalonUserModalComponent extends MaintenanceBaseFormComponent
       .createSalonUser(this.form.value)
       .subscribe(() => this.handleSuccess(), error => this.handleError(error))
       .add(() => this.emitAlert())
-      .add(() => (this.loading = false));
-  }
-
-  onModalClosed() {
-    this.activeModal.close();
-  }
-
-  emitAlert() {
-    this.alertEmitter.emit(this.alerts[this.alerts.length - 1]);
-    this.onModalClosed();
+      .add(() => this.disableLoading());
   }
 
   toggleShowPassword() {
