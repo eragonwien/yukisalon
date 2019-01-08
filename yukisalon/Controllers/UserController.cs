@@ -79,7 +79,7 @@ namespace yukisalon.Controllers
                 }
             }
 
-            return Ok();
+            return NoContent();
         }
 
         private void SetUserModified(User user)
@@ -122,8 +122,6 @@ namespace yukisalon.Controllers
                     return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
                 }
             }
-
-            
 
             return CreatedAtAction("GetUser", new { id = user.Id }, user);
         }

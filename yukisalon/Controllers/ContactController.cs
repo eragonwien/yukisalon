@@ -87,7 +87,7 @@ namespace yukisalon.Controllers
                 context.UpdateRange(contact.OpenHour);
                 await context.SaveChangesAsync();
             }
-            catch (DbUpdateConcurrencyException)
+            catch (Exception ex)
             {
                 if (!SalonContactExists(contact.Id))
                 {
@@ -95,15 +95,11 @@ namespace yukisalon.Controllers
                 }
                 else
                 {
-                    throw;
+                    return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
                 }
             }
-            catch (Exception ex)
-            {
-                return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
-            }
 
-            return Ok();
+            return NoContent();
         }
 
         private void RemoveOpenHour(Contact contact)

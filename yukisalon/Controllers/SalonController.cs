@@ -93,7 +93,6 @@ namespace yukisalon.Controllers
                 return BadRequest();
             }
 
-
             try
             {
                 context.Update(salon);
@@ -116,7 +115,7 @@ namespace yukisalon.Controllers
                 return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
             }
 
-            return Ok();
+            return NoContent();
         }
 
         private void SetModelForModification(Salon salon)
