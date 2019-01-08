@@ -1,3 +1,6 @@
+import { Category } from "./../../models/Product";
+import { Contact } from "./../../models/Contact";
+import { User } from "./../../models/User";
 import { Component } from "@angular/core";
 import { Salon } from "../../models/Salon";
 import { AlertMessage } from "../../models/alertMessage";
@@ -12,6 +15,9 @@ import { HttpErrorResponse } from "@angular/common/http";
 })
 export class MaintenanceBaseFormComponent {
   salon: Salon;
+  contacts: Contact[];
+  categories: Category[];
+  users: User[];
 
   formDivId: string;
   form: FormGroup;
@@ -29,20 +35,22 @@ export class MaintenanceBaseFormComponent {
     let salonId = this.salonService.currentSalonId;
     this.salonService.getSalonById(salonId).subscribe((salon: Salon) => {
       this.salon = salon;
+      this.contacts = this.salon.contact;
+      this.categories = this.salon.category;
+      this.users = this.salon.user;
     }, this.handleError);
   }
 
   onSubmit() {
     this.submitted = true;
     if (this.form.valid) {
-      this.loading = true;
+      this.enableLoading();
       this.mergeSalon();
       this.salonService
         .editSalonInfo(this.salon)
         .subscribe(() => this.handleSuccess(), error => this.handleError(error))
-        .add(() => (this.loading = false));
+        .add(() => this.disableLoading());
     }
-    this.loading = false;
   }
 
   onClose() {
@@ -119,5 +127,18 @@ export class MaintenanceBaseFormComponent {
 
   get fields() {
     return this.form.controls;
+  }
+
+  alertThenReloadInfo(alert: AlertMessage) {
+    this.showAlertMsg(alert);
+    this.loadSalonInfo();
+  }
+
+  enableLoading() {
+    this.loading = true;
+  }
+
+  disableLoading() {
+    this.loading = false;
   }
 }
