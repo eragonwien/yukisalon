@@ -44,6 +44,8 @@ import { AlertComponent } from "./shared/alert/alert.component";
 import { LoadingSpinnerComponent } from "./shared/loading-spinner/loading-spinner.component";
 import { EditSalonUserModalComponent } from "./maintenance/edit-salon-user/edit-salon-user-modal/edit-salon-user-modal.component";
 import { ConfirmRemoveUserModalComponent } from "./maintenance/edit-salon-user/confirm-remove-user-modal/confirm-remove-user-modal.component";
+import { EditSalonCategoryModalComponent } from "./maintenance/edit-salon-product/edit-salon-category-modal/edit-salon-category-modal.component";
+import { MaintenanceBaseFormModalComponent } from './shared/maintenance-base-form-modal/maintenance-base-form-modal.component';
 
 @NgModule({
   declarations: [
@@ -76,7 +78,9 @@ import { ConfirmRemoveUserModalComponent } from "./maintenance/edit-salon-user/c
     AlertComponent,
     LoadingSpinnerComponent,
     EditSalonUserModalComponent,
-    ConfirmRemoveUserModalComponent
+    ConfirmRemoveUserModalComponent,
+    EditSalonCategoryModalComponent,
+    MaintenanceBaseFormModalComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: "ng-cli-universal" }),
@@ -115,7 +119,8 @@ import { ConfirmRemoveUserModalComponent } from "./maintenance/edit-salon-user/c
   bootstrap: [AppComponent],
   entryComponents: [
     EditSalonUserModalComponent,
-    ConfirmRemoveUserModalComponent
+    ConfirmRemoveUserModalComponent,
+    EditSalonCategoryModalComponent
   ]
 })
 export class AppModule {}
