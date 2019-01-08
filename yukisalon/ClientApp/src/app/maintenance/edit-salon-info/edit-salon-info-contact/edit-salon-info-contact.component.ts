@@ -1,5 +1,4 @@
 import { Component, OnInit, Input, ChangeDetectorRef } from "@angular/core";
-import { Salon } from "../../../models/Salon";
 import { MaintenanceBaseFormComponent } from "../../../shared/maintenance-base-form/maintenance-base-form.component";
 import { SalonService } from "../../../services/salon.service";
 import { Contact, OpenHour } from "../../../models/Contact";
@@ -13,7 +12,7 @@ import { faPlusCircle, faTrash } from "@fortawesome/free-solid-svg-icons";
 })
 export class EditSalonInfoContactComponent extends MaintenanceBaseFormComponent
   implements OnInit {
-  @Input() salon: Salon;
+  @Input() contacts: Contact[];
 
   isTabOpen: boolean;
   pickedContact: Contact;
@@ -38,7 +37,7 @@ export class EditSalonInfoContactComponent extends MaintenanceBaseFormComponent
   }
 
   canRemove() {
-    return !this.createContact && this.salon.contact.length > 1;
+    return !this.createContact && this.contacts.length > 1;
   }
 
   createOpenHourForm(openHour: OpenHour): FormGroup {

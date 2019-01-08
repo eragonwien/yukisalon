@@ -1,7 +1,7 @@
 <app-alert [alerts]="alerts"></app-alert>
-<div *ngIf="salon && salon.contact && !pickedContact">
+<div *ngIf="contacts && !pickedContact">
   <div class="list-group">
-    <p *ngFor="let contact of salon.contact" class="list-group-item list-group-item-action" (click)="onContactPicked(contact)">
+    <p *ngFor="let contact of contacts" class="list-group-item list-group-item-action" (click)="onContactPicked(contact)">
       {{ contact.address1 }}, {{ contact.plz }} {{ contact.city }}
     </p>
     <p class="list-group-item list-group-item-action" (click)="openCreateNewContact()">
@@ -9,7 +9,7 @@
     </p>
   </div>
 </div>
-<div *ngIf="salon && salon.contact && pickedContact">
+<div *ngIf="contacts && pickedContact">
   <!-- Addresse bearbeitung -->
   <form [formGroup]="form" (ngSubmit)="onSubmit()" id="edit-salon-contact-form">
     <fieldset>
@@ -89,16 +89,17 @@
                 </div>
                 <div class="col-6 col-lg-1">
                   <div class="form-check">
-                    <label class="form-check-label">
+                    <label class="form-check-label clickable">
                       <input type="checkbox" class="form-check-input" formControlName="isOpen" />
                       <span class="text-success" *ngIf="openHour.value.isOpen">{{ openText }}</span>
                       <span class="text-danger" *ngIf="!openHour.value.isOpen">{{ closedText }}</span>
                     </label>
                   </div>
                 </div>
-                <div class="col-6 col-lg-2">
+                <div class="col-6 col-lg-2 d-flex justify-content-end">
                   <button type="button" class="btn btn-danger" (click)="removeOpenHour(openHour, i)">
-                    {{ removeText }} <fa-icon [icon]="removeIcon"></fa-icon>
+                    <!-- {{ removeText }} -->
+                    <fa-icon [icon]="removeIcon"></fa-icon>
                   </button>
                 </div>
               </div>
