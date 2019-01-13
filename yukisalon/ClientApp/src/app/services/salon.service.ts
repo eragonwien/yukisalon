@@ -18,7 +18,12 @@ export class SalonService {
   activeText: string = "Aktiviert";
   cancelText: string = "Abbrechen";
   closeText: string = "Schließen";
+  saveText: string = "Speichern";
+  chooseText: string = "Auswählen";
+  createText: string = "Neu";
+  chooseSubcategoryText = "Unterkategorie auswählen";
   createCategoryText: string = "Neue Kategorie anlegen";
+  createSubcategoryText: string = "Neue Unterkategorie anlegen";
   createUserText: string = "Benutzer anlegen";
   displayedText: string = "Anzeigen";
   editCategoryText: string = "Kategorie bearbeiten";
@@ -29,7 +34,6 @@ export class SalonService {
   removeText: string = "Löschen";
   removeCategoryText: string = "Kategorie löschen";
   removeUserText: string = "Benutzer löschen";
-  saveText: string = "Speichern";
 
   constructor(private http: HttpClient, private router: Router) {}
 
@@ -96,10 +100,8 @@ export class SalonService {
   }
 
   set currentSalonId(id: number) {
-    if (id) {
-      this.currentId = id;
-      localStorage.setItem("currentSalonId", id.toString());
-    }
+    this.currentId = id;
+    localStorage.setItem("currentSalonId", String(id));
   }
 
   /**
@@ -139,6 +141,12 @@ export class SalonService {
   removeSalonCategory(category: Category) {
     let url = this.BaseUrl + "/api/Category/" + category.id;
     return this.http.delete(url, { observe: "response" });
+  }
+
+  getSubcategories(salonId: number) {
+    return this.http.get(
+      this.BaseUrl + "/api/Salon/" + salonId + "/Subcategories"
+    );
   }
   /////////// CONTACT ///////////////////
 
