@@ -40,7 +40,7 @@ export class EditSalonInfoContactComponent extends MaintenanceBaseFormComponent
     return !this.createContact && this.contacts.length > 1;
   }
 
-  createOpenHourForm(openHour: OpenHour): FormGroup {
+  initOpenHourForm(openHour: OpenHour): FormGroup {
     return this.formBuilder.group({
       id: [openHour.id],
       day: [openHour.day, [Validators.required]],
@@ -59,7 +59,7 @@ export class EditSalonInfoContactComponent extends MaintenanceBaseFormComponent
       facebook: [this.pickedContact.facebook],
       email: [this.pickedContact.email],
       openHour: this.formBuilder.array(
-        this.pickedContact.openHour.map(hour => this.createOpenHourForm(hour))
+        this.pickedContact.openHour.map(hour => this.initOpenHourForm(hour))
       ),
       formType: "contact"
     });
@@ -132,7 +132,7 @@ export class EditSalonInfoContactComponent extends MaintenanceBaseFormComponent
   }
 
   addOpenHour() {
-    this.openHourGroup.push(this.createOpenHourForm(new OpenHour()));
+    this.openHourGroup.push(this.initOpenHourForm(new OpenHour()));
   }
 
   removeOpenHour(openHour: OpenHour, index: number) {

@@ -18,7 +18,7 @@
         <div class="form-group col-12 col-md-6">
           <label class="control-label required" for="address-1-input">Addresse <small class="text-muted">erforderlich</small></label>
           <input type="text" class="form-control" name="address" id="address-1-input" formControlName="address1"
-            [ngClass]="{ 'is-invalid': submitted && fields.address1.errors }" />
+                 [ngClass]="{ 'is-invalid': submitted && fields.address1.errors }" />
           <div *ngIf="submitted && fields.address1.errors" class="invalid-feedback">
             <div *ngIf="fields.address1.errors.required">
               Addresse ist erforderlich
@@ -64,7 +64,7 @@
         <div class="form-group col-12 col-md-6">
           <label for="facebook-input">Facebook</label>
           <input type="text" class="form-control" name="facebook" id="facebook-input" formControlName="facebook"
-            [ngClass]="{ 'is-invalid': submitted && fields.facebook.errors }" />
+                 [ngClass]="{ 'is-invalid': submitted && fields.facebook.errors }" />
         </div>
       </div>
 
@@ -72,8 +72,7 @@
       <div class="form-row" formArrayName="openHour">
         <div class="form-group col-12">
           <div class="list-group">
-            <div class="list-group-item list-group-item-action" *ngFor="let openHour of openHourGroup.controls; let i = index"
-              [formGroupName]="i">
+            <div class="list-group-item list-group-item-action" *ngFor="let openHour of openHourGroup.controls; let i = index" [formGroupName]="i">
               <div class="row">
                 <div class="form-group col-12 col-lg-3">
                   <input type="text" class="form-control" formControlName="day" [ngClass]="{ 'is-invalid': submitted && openHour.controls.day.errors }" />
