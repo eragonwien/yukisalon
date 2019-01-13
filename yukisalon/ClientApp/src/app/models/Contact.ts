@@ -17,6 +17,7 @@ export class Contact {
   facebook: string;
   email: string;
   openHour: OpenHour[];
+  isActive: boolean;
 
   constructor(salonId: number) {
     this.salonId = salonId;
