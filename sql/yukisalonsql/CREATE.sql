@@ -25,6 +25,7 @@ CREATE TABLE [Contact] (
     [Phone] nvarchar(20),
     [Facebook] nvarchar(50),
     [Email] nvarchar(50),
+	[IsActive] bit,
     CONSTRAINT [PK_Contact] PRIMARY KEY ([Id]),
 	CONSTRAINT [FK_Contact_Salon_SalonId] FOREIGN KEY ([SalonId]) REFERENCES [Salon] ([Id])
 );
@@ -48,6 +49,7 @@ CREATE TABLE [Welcome] (
     [Title] nvarchar(max),
     [Text1] nvarchar(max),
     [Text2] nvarchar(max),
+	[IsActive] bit,
     CONSTRAINT [PK_Welcome] PRIMARY KEY ([Id]),
 	CONSTRAINT [FK_Welcome_Salon_SalonId] FOREIGN KEY ([SalonId]) REFERENCES [Salon] ([Id])
 );
@@ -56,6 +58,7 @@ GO
 CREATE TABLE [Role] (
     [Id] int NOT NULL IDENTITY,
     [Title] nvarchar(max),
+	[IsActive] bit,
     [Description] nvarchar(max),
     CONSTRAINT [PK_Role] PRIMARY KEY ([Id])
 );
@@ -87,6 +90,8 @@ CREATE TABLE [Category] (
     [ParentId] int,
 	[Name] nvarchar(max),
 	[Image] nvarchar(max),
+	[IsSubcategory] bit,
+	[IsActive] bit,
     CONSTRAINT [PK_Category] PRIMARY KEY ([Id]),
 	CONSTRAINT [FK_Category_Parent_ParentId] FOREIGN KEY ([ParentId]) REFERENCES [Category] ([Id]),
 	CONSTRAINT [FK_Category_Salon_SalonId] FOREIGN KEY ([SalonId]) REFERENCES [Salon] ([Id])
@@ -103,6 +108,7 @@ CREATE TABLE [Product] (
     [Currency] nvarchar(10) NOT NULL,
     [Image] nvarchar(max),
     [IsFeatured] bit,
+	[IsActive] bit,
     CONSTRAINT [PK_Product] PRIMARY KEY ([Id]),
 	CONSTRAINT [FK_Product_Category_CategoryId] FOREIGN KEY ([CategoryId]) REFERENCES [Category] ([Id])
 );

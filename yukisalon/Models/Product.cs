@@ -19,6 +19,7 @@ namespace yukisalon.Models
         public string Currency { get; set; }
         public string Image { get; set; }
         public bool? IsFeatured { get; set; }
+        public bool? IsActive { get; set; }
 
         public Category Category { get; set; }
     }

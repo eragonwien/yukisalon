@@ -22,6 +22,7 @@ namespace yukisalon.Models
         public string Phone { get; set; }
         public string Facebook { get; set; }
         public string Email { get; set; }
+        public bool? IsActive { get; set; }
 
         public Salon Salon { get; set; }
         public ICollection<OpenHour> OpenHour { get; set; }

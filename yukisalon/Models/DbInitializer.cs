@@ -46,8 +46,8 @@ namespace yukisalon.Models
         {
             var roles = new List<Role>()
             {
-                new Role { Title = "Client", Description = "Client who can only view" },
-                new Role { Title = "Admin", Description = "Admin who can modify salon settings" },
+                new Role { Title = "Client", Description = "Client who can only view", IsActive = true },
+                new Role { Title = "Admin", Description = "Admin who can modify salon settings", IsActive = true },
             };
             roles.ForEach(role => {
                 context.Role.Add(role);
@@ -97,7 +97,8 @@ namespace yukisalon.Models
                 City = "Wien",
                 Email = "tuyetvienna@gmail.com",
                 Phone = "0699 10019541",
-                Facebook = ""
+                Facebook = "",
+                IsActive = true
             };
             context.Contact.Add(contact);
             context.SaveChanges();
@@ -137,7 +138,8 @@ namespace yukisalon.Models
             Category friseur = new Category()
             {
                 Name = "Friseur",
-                SalonId = salon.Id
+                SalonId = salon.Id,
+                IsActive = true
             };
             context.Category.Add(friseur);
             context.SaveChanges();
@@ -156,7 +158,9 @@ namespace yukisalon.Models
             {
                 Name = "Herren",
                 ParentId = parentCategory.Id,
-                SalonId = parentCategory.SalonId
+                SalonId = parentCategory.SalonId,
+                IsActive = true,
+                IsSubcategory = true
             };
 
             context.Category.Add(friseurHerren);
@@ -179,6 +183,7 @@ namespace yukisalon.Models
                 IsFixPrice = false,
                 Currency = "€",
                 IsFeatured = true,
+                IsActive = true,
                 CategoryId = category.Id
             };
 
@@ -198,7 +203,8 @@ namespace yukisalon.Models
                 SalonId = salon.Id,
                 Title = "Welcome",
                 Text1 = "TEXT1",
-                Text2 = "TEXT2"
+                Text2 = "TEXT2",
+                IsActive = true
             };
             context.Welcome.Add(welcome);
             context.SaveChanges();
