@@ -9,7 +9,8 @@ import {
   NgbAccordionModule,
   NgbModalModule,
   NgbButtonsModule,
-  NgbTimepickerModule
+  NgbTimepickerModule,
+  NgbDropdownModule
 } from "@ng-bootstrap/ng-bootstrap";
 import { FontAwesomeModule } from "@fortawesome/angular-fontawesome";
 
@@ -45,7 +46,7 @@ import { LoadingSpinnerComponent } from "./shared/loading-spinner/loading-spinne
 import { EditSalonUserModalComponent } from "./maintenance/edit-salon-user/edit-salon-user-modal/edit-salon-user-modal.component";
 import { ConfirmRemoveUserModalComponent } from "./maintenance/edit-salon-user/confirm-remove-user-modal/confirm-remove-user-modal.component";
 import { EditSalonCategoryModalComponent } from "./maintenance/edit-salon-product/edit-salon-category-modal/edit-salon-category-modal.component";
-import { MaintenanceBaseFormModalComponent } from './shared/maintenance-base-form-modal/maintenance-base-form-modal.component';
+import { MaintenanceBaseFormModalComponent } from "./shared/maintenance-base-form-modal/maintenance-base-form-modal.component";
 
 @NgModule({
   declarations: [
@@ -113,6 +114,7 @@ import { MaintenanceBaseFormModalComponent } from './shared/maintenance-base-for
     NgbButtonsModule,
     NgbTimepickerModule,
     NgbModalModule,
+    NgbDropdownModule,
     FontAwesomeModule
   ],
   providers: [],
