@@ -63,7 +63,7 @@ namespace yukisalon.Controllers
                .FirstOrDefaultAsync();
 
             salon.Category = salon.Category
-                .Where(c => c.ParentId == null)
+                .Where(c => !c.IsSubcategory.HasValue || !c.IsSubcategory.Value)
                 .ToList();
 
             foreach (var user in salon.User)
@@ -116,6 +116,19 @@ namespace yukisalon.Controllers
             }
 
             return NoContent();
+        }
+
+        // GET: api/Salon/5/Subcategories
+        [HttpGet("{id}/Subcategories")]
+        public async Task<IActionResult> GetSalonSubCategories([FromRoute] int id)
+        {
+            var subcategories = await context.Category
+                .Where(c => c.SalonId == id && (c.IsSubcategory == true))
+                .Include(c => c.Product)
+                .OrderBy(c => c.Name)
+                .ToListAsync();
+
+            return Ok(subcategories);
         }
 
         private void SetModelForModification(Salon salon)
