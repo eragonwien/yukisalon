@@ -18,7 +18,7 @@ export class MaintenanceIndexComponent implements OnInit {
     private salonService: SalonService,
     private router: Router,
     private accountService: AccountService
-  ) {}
+  ) { }
 
   ngOnInit() {
     this.accountService
@@ -45,6 +45,6 @@ export class MaintenanceIndexComponent implements OnInit {
   }
 
   resetPickedSalon() {
-    this.salonService.currentSalonId = undefined;
+    this.salonService.currentSalonId = null;
   }
 }
