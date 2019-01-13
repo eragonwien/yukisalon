@@ -1,3 +1,19 @@
 #body .control-label small.text-muted {
   font-size: 10px;
 }
+
+#body .clickable {
+  cursor: pointer;
+}
+
+#body .btn-group-block {
+  display: flex;
+}
+
+#body .btn-group-block .btn {
+  flex: 1
+}
+
+#body .btn-group-block .btn-group {
+  flex: 1
+}
