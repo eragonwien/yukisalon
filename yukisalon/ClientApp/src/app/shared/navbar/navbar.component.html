@@ -6,18 +6,18 @@
       </a>
     </div>
     <div class="nav-scroller col-12 col-md-8 text-center">
-      <div class="nav d-flex justify-content-center align-self-stretch" *ngIf="!isMaintenance()">
+      <div class="nav d-flex justify-content-center align-self-stretch" *ngIf="!isMaintenance">
         <a class="nav-link" routerLink="services" routerLinkActive="active">Services</a>
         <a class="nav-link" routerLink="contact" routerLinkActive="active">Kontakt</a>
         <a class="nav-link" routerLink="maintenance" routerLinkActive="active">Maintenance</a>
       </div>
-      <div class="nav d-flex justify-content-center align-self-stretch" *ngIf="isMaintenance()">
-        <a class="nav-link" routerLink="maintenance/home" routerLinkActive="active"  *ngIf="isUserLoggedIn()">Home</a>
-        <!-- <a class="nav-link" routerLink="maintenance/salon" routerLinkActive="active" *ngIf="isUserLoggedIn()">Salon</a>
-        <a class="nav-link" routerLink="maintenance/contact" routerLinkActive="active" *ngIf="isUserLoggedIn()">Kontakt</a>
-        <a class="nav-link" routerLink="maintenance/user" routerLinkActive="active" *ngIf="isUserLoggedIn()">Benutzer</a> -->
-        <a class="nav-link" routerLink="maintenance/login" routerLinkActive="active" *ngIf="!isUserLoggedIn()">Einloggen</a>
-        <a class="nav-link" routerLink="maintenance/logout" routerLinkActive="active" *ngIf="isUserLoggedIn()">Ausloggen</a>
+      <div class="nav d-flex justify-content-center align-self-stretch" *ngIf="isMaintenance">
+        <a class="nav-link" routerLink="maintenance/home" routerLinkActive="active"  *ngIf="isUserLoggedIn">Home</a>
+        <a class="nav-link" routerLink="maintenance/salon" routerLinkActive="active" *ngIf="isUserLoggedIn && isSalonPicked">Salon</a>
+        <a class="nav-link" routerLink="maintenance/product" routerLinkActive="active" *ngIf="isUserLoggedIn && isSalonPicked">Produkt</a>
+        <a class="nav-link" routerLink="maintenance/user" routerLinkActive="active" *ngIf="isUserLoggedIn && isSalonPicked">Benutzer</a> 
+        <a class="nav-link" routerLink="maintenance/login" routerLinkActive="active" *ngIf="!isUserLoggedIn">Einloggen</a>
+        <a class="nav-link" routerLink="maintenance/logout" routerLinkActive="active" *ngIf="isUserLoggedIn">Ausloggen</a>
       </div>
     </div>
   </div>

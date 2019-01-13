@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, NavigationEnd, Event } from '@angular/router';
 import { AccountService } from '../../services/account.service';
+import { SalonService } from '../../services/salon.service';
 
 @Component({
   selector: 'app-navbar',
@@ -8,16 +9,36 @@ import { AccountService } from '../../services/account.service';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit {
-  constructor(private router:Router, private accountService: AccountService) { }
+
+  isSalonPicked: boolean = false;  
+  isUserLoggedIn: boolean = false;
+  isMaintenance: boolean = false;
+
+  constructor(private router:Router, private accountService: AccountService, private salonService: SalonService) { }
 
   ngOnInit() {
+    this.subscribeRouteChange();
   }
 
-  isMaintenance() {
-    return this.router.url.startsWith('/maintenance');
+  checkSalonPicked() {
+    this.isSalonPicked = this.salonService.currentSalonId != null && !isNaN(this.salonService.currentSalonId);
   }
 
-  isUserLoggedIn() {
-    return this.accountService.isUserLoggedIn;
+  checkUserLoggedIn() {
+    this.isUserLoggedIn = (this.accountService.isUserLoggedIn);
+  }
+
+  checkInMaintenance() {
+    this.isMaintenance = (this.router.url.startsWith('/maintenance'));
+  }
+
+  subscribeRouteChange() {
+    this.router.events.subscribe((event: Event) => {
+      if (event instanceof NavigationEnd) {
+        this.checkSalonPicked();
+        this.checkUserLoggedIn();
+        this.checkInMaintenance();
+      }
+    });
   }
 }
