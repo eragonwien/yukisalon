@@ -18,8 +18,9 @@
             <div *ngIf="fields.name.required">Name ist erforderlich</div>
           </div>
         </div>
-
-        <!-- Salon -->
+      </div>
+      <!-- Salon -->
+      <div class="form-row">
         <div class="form-group col-12">
           <label class="control-label" for="salon-category-salonId">
             Salon
@@ -28,47 +29,50 @@
             <option *ngFor="let salon of salonList" [value]="salon.id">{{ salon.name }}</option>
           </select>
         </div>
-
-        <!-- Bild -->
+      </div>
+      <!-- Bild -->
+      <div class="form-row">
         <div class="form-group col-12">
           <label class="control-label" for="salon-category-image">
             Bild
           </label>
           <input type="text" class="form-control" id="salon-category-image" formControlName="image" [ngClass]="{ 'is-invalid': submitted && fields.image.errors }" />
         </div>
-
-        <!-- SubCategory -->
+      </div>
+      <!-- SubCategory -->
+      <div class="form-row">
         <div class="form-group col-12">
           <label class="control-label" for="salon-subcategory-image">
             Unterkategorie
           </label>
-          <select class="form-control custom-select" id="salon-subcategory-salonId" formControlName="subCategory"
-            [ngClass]="{ 'is-invalid': submitted && fields.subCategory.errors }">
-            <option *ngFor="let subcategory of subcategoryList" [value]="subcategory.id">{{ subcategory.name }}</option>
-          </select>
-          <div class="py-2">
-            <button type="button" class="btn btn-info mx-1" *ngFor="let subcategory of category.subCategory" (click)="onRemoveSubCategory(subcategory)">
-              {{ subcategory.name }}
-              <span>
-                <fa-icon [icon]="closeIcon"></fa-icon>
-              </span>
-            </button>
+          <div id="edit-salon-category-modal-subcategories-input">
+            <div class="btn-group d-flex">
+              <button type="button" class="btn btn-outline-primary w-100" (click)="toggleCreateSubcategory()">
+                {{ createText }}
+              </button>
+              <div class="btn-group w-100" ngbDropdown>
+                <button type="button" class="btn btn-primary w-100" ngbDropdownToggle>
+                  {{ chooseText }}
+                </button>
+                <div class="dropdown-menu" ngbDropdownMenu>
+                  <button type="button" class="dropdown-item" *ngFor="let subcategory of subcategories" (click)="onAddingSubcategory(subcategory)">
+                    {{ subcategory.name }}
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
 
-            <div class="card" *ngIf="removeSubCategory">
-              <div class="card-body">
-                Subkategorie {{ removeSubCategory.name }} entfernen ?
-              </div>
-              <div class="card-footer">
-                <button type="button" class="btn btn-danger" (click)="confirmRemoveSubCategory()"></button>
-                <button type="button" class="btn btn-light" (click)="cancelRemoveSubCategory()"></button>
-              </div>
+          <div class="py-2" id="edit-salon-category-modal-added-subcategories">
+            <div class="list-group-item list-group-item-action" *ngFor="let subcategory of subCategoryGroup.controls; let i = index" [formGroupName]="i">
+              {{ subcategory | json }}
             </div>
           </div>
         </div>
       </div>
     </fieldset>
-    <pre>{{form.value | json}}</pre>
   </form>
+<pre>{{form.value | json}}</pre>
 </div>
 <div class="modal-footer">
   <button type="button" class="btn btn-light" (click)="onModalClosed()">{{ closeText }}</button>
