@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27703.2047
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YukiSalonApi", "YukiSalonApi\YukiSalonApi.csproj", "{EC160AC8-86F8-4D73-AF64-1DA7727C173A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{EC160AC8-86F8-4D73-AF64-1DA7727C173A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EC160AC8-86F8-4D73-AF64-1DA7727C173A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EC160AC8-86F8-4D73-AF64-1DA7727C173A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EC160AC8-86F8-4D73-AF64-1DA7727C173A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {30943042-9CE3-4CB6-ABDB-6C205EEEE8DE}
+	EndGlobalSection
+EndGlobal

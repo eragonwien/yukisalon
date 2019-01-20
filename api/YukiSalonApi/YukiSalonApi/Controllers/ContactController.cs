@@ -2,17 +2,15 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using yukisalon.Models;
+using YukiSalonApi.Models;
 
-namespace yukisalon.Controllers
+namespace YukiSalonApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize]
     public class ContactController : ControllerBase
     {
         private readonly YUKISALONDEVContext context;
@@ -97,7 +95,7 @@ namespace yukisalon.Controllers
                 var removedHours = currentOpenHours.Except(submittedOpenHours).ToList();
                 context.OpenHour.RemoveRange(removedHours);
                 context.SaveChanges();
-            }   
+            }
         }
 
         private void AddNewOpenHour(Contact contact)
