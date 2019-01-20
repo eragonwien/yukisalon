@@ -64,8 +64,8 @@
           </div>
 
           <div class="py-2" id="edit-salon-category-modal-added-subcategories">
-            <div class="list-group-item list-group-item-action" *ngFor="let subcategory of subCategoryGroup.controls; let i = index" [formGroupName]="i">
-              {{ subcategory | json }}
+            <div class="list-group-item list-group-item-action" *ngFor="let subcategory of subCategoryGroup.value">
+              {{ subcategory.name }}
             </div>
           </div>
         </div>
