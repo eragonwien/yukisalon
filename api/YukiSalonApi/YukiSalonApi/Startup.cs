@@ -1,20 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data.Common;
-using System.Data.SqlClient;
-using System.Linq;
+﻿using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
-using Microsoft.IdentityModel.Protocols;
 using Newtonsoft.Json;
 using YukiSalonApi.Models;
 
@@ -72,6 +64,9 @@ namespace YukiSalonApi
                     .WithOrigins(allowedOrigins)
                     .AllowCredentials());
             });
+
+            // Health check
+            //services.AddHealthChecks();
         }
 
         private string[] GetAllowedOrigins()
@@ -96,12 +91,7 @@ namespace YukiSalonApi
 
             app.UseHttpsRedirection();
             app.UseAuthentication();
-            app.UseMvc(routes =>
-            {
-                routes.MapRoute(
-                    name: "default",
-                    template: "{controller=Home}/{action=Index}/{id?}");
-            });
+            app.UseMvc();
         }
     }
 }
