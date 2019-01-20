@@ -1,1 +1,7 @@
 Scaffold-DbContext "Server=DESKTOP-A6CA4U0;Database=YUKISALONDEV;Trusted_Connection=True;" Microsoft.EntityFrameworkCore.SqlServer -OutputDir Models -force
+
+Server=db757410676.db.1and1.com;Database=db757410676;Trusted_Connection=True;User Id=dbo757410676;Password=son1990;
+
+"server=db757410676.db.1and1.com;Initial Catalog=db757410676; User ID=dbo757410676;Password=son1990"
+
+Provider=sqloledb;Data Source=db757410676.db.1and1.com,1433;Initial Catalog=db757410676;User Id=dbo757410676;Password=son1990;

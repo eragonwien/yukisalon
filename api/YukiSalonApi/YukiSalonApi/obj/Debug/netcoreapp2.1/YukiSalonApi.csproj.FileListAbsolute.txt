@@ -3,7 +3,6 @@ C:\Users\erago\Projects\yukifriseur\api\YukiSalonApi\YukiSalonApi\bin\Debug\netc
 C:\Users\erago\Projects\yukifriseur\api\YukiSalonApi\YukiSalonApi\bin\Debug\netcoreapp2.1\YukiSalonApi.runtimeconfig.dev.json
 C:\Users\erago\Projects\yukifriseur\api\YukiSalonApi\YukiSalonApi\bin\Debug\netcoreapp2.1\YukiSalonApi.dll
 C:\Users\erago\Projects\yukifriseur\api\YukiSalonApi\YukiSalonApi\bin\Debug\netcoreapp2.1\YukiSalonApi.pdb
-C:\Users\erago\Projects\yukifriseur\api\YukiSalonApi\YukiSalonApi\obj\Debug\netcoreapp2.1\YukiSalonApi.csprojAssemblyReference.cache
 C:\Users\erago\Projects\yukifriseur\api\YukiSalonApi\YukiSalonApi\obj\Debug\netcoreapp2.1\YukiSalonApi.csproj.CoreCompileInputs.cache
 C:\Users\erago\Projects\yukifriseur\api\YukiSalonApi\YukiSalonApi\obj\Debug\netcoreapp2.1\YukiSalonApi.RazorAssemblyInfo.cache
 C:\Users\erago\Projects\yukifriseur\api\YukiSalonApi\YukiSalonApi\obj\Debug\netcoreapp2.1\YukiSalonApi.RazorAssemblyInfo.cs
@@ -14,3 +13,4 @@ C:\Users\erago\Projects\yukifriseur\api\YukiSalonApi\YukiSalonApi\obj\Debug\netc
 C:\Users\erago\Projects\yukifriseur\api\YukiSalonApi\YukiSalonApi\obj\Debug\netcoreapp2.1\YukiSalonApi.pdb
 C:\Users\erago\Projects\yukifriseur\api\YukiSalonApi\YukiSalonApi\obj\Debug\netcoreapp2.1\YukiSalonApi.Properties.Resources.resources
 C:\Users\erago\Projects\yukifriseur\api\YukiSalonApi\YukiSalonApi\obj\Debug\netcoreapp2.1\YukiSalonApi.csproj.GenerateResource.cache
+C:\Users\erago\Projects\yukifriseur\api\YukiSalonApi\YukiSalonApi\obj\Debug\netcoreapp2.1\YukiSalonApi.csprojAssemblyReference.cache
