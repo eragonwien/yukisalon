@@ -29,13 +29,13 @@ namespace YukiSalonApi
             
 
             services.AddMvc()
-                .SetCompatibilityVersion(CompatibilityVersion.Version_2_1)
+                .SetCompatibilityVersion(CompatibilityVersion.Version_2_2)
                 .AddJsonOptions(options =>
                 {
                     options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
                 });
 
-            services.AddDbContext<YUKISALONDEVContext>(options => options.UseSqlServer(Configuration.GetConnectionString("YUKISALONDEV")));
+            services.AddDbContext<YUKISALONDEVContext>(options => options.UseSqlServer(Configuration.GetConnectionString("YUKISALON")));
 
             // Authentication
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie(option =>
@@ -66,7 +66,7 @@ namespace YukiSalonApi
             });
 
             // Health check
-            //services.AddHealthChecks();
+            services.AddHealthChecks();
         }
 
         private string[] GetAllowedOrigins()
@@ -92,6 +92,7 @@ namespace YukiSalonApi
             app.UseHttpsRedirection();
             app.UseAuthentication();
             app.UseMvc();
+            app.UseHealthChecks("/hc");
         }
     }
 }

@@ -1,3 +1,11 @@
 .vs
 obj
 bin
+api/YukiSalonApi/YukiSalonApi/obj/YukiSalonApi.csproj.nuget.cache
+api/YukiSalonApi/YukiSalonApi/obj/YukiSalonApi.csproj.nuget.cache
+api/YukiSalonApi/YukiSalonApi/obj/YukiSalonApi.csproj.nuget.g.props
+api/YukiSalonApi/YukiSalonApi/obj/YukiSalonApi.csproj.nuget.g.targets
+api/YukiSalonApi/YukiSalonApi/obj/project.assets.json
+api/YukiSalonApi/YukiSalonApi/obj/project.assets.json
+/api/YukiSalonApi/YukiSalonApi/obj
+/api/YukiSalonApi/YukiSalonApi/bin
