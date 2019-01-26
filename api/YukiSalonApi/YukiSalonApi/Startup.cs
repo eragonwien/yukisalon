@@ -27,7 +27,6 @@ namespace YukiSalonApi
             // AppSettings
             services.Configure<CorsSettings>(Configuration.GetSection(nameof(CorsSettings)));
             
-
             services.AddMvc()
                 .SetCompatibilityVersion(CompatibilityVersion.Version_2_2)
                 .AddJsonOptions(options =>
@@ -36,6 +35,7 @@ namespace YukiSalonApi
                 });
 
             services.AddDbContext<YUKISALONDEVContext>(options => options.UseSqlServer(Configuration.GetConnectionString("YUKISALON")));
+            services.AddTransient<ISalonService, SalonService>();
 
             // Authentication
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie(option =>
@@ -53,16 +53,7 @@ namespace YukiSalonApi
             // CORS Policy
             services.AddCors(options =>
             {
-                options.AddPolicy("AllowAny", b => b
-                    .AllowAnyHeader()
-                    .AllowAnyMethod()
-                    .AllowAnyOrigin()
-                    .AllowCredentials());
-                options.AddPolicy("AllowSpecificOrigin", b => b
-                    .AllowAnyHeader()
-                    .AllowAnyMethod()
-                    .WithOrigins(allowedOrigins)
-                    .AllowCredentials());
+                options.AddPolicy("AllowSpecificOrigin", b => b.WithOrigins(allowedOrigins).AllowCredentials());
             });
 
             // Health check
@@ -81,7 +72,7 @@ namespace YukiSalonApi
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-                app.UseCors("AllowAny");
+                app.UseCors();
             }
             else
             {
