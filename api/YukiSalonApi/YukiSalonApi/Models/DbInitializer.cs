@@ -2,12 +2,14 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using YukiSalonApi;
 using YukiSalonApi.Models;
 
-namespace yukisalon.Models
+namespace YukiSalonApi.Models
 {
     public class DbInitializer
     {
+
         public static void Initalize(YUKISALONDEVContext context)
         {
             if (context.Salon.Any())
@@ -64,6 +66,9 @@ namespace yukisalon.Models
                 return;
             }
 
+            // Salon service
+            SalonService salonService = new SalonService();
+
             Salon salon = context.Salon.First();
             Role adminRole = context.Role.Where(r => r.Title.Equals("Admin")).Single();
             User owner = new User()
@@ -72,7 +77,7 @@ namespace yukisalon.Models
                 SalonId = salon.Id,
                 RoleId = adminRole.Id,
                 Email = "tuyetvienna@gmail.com",
-                Password = "1212",
+                Password = salonService.GetEncodedPassword("1212"),
                 ExtraInfo = "",
                 IsActive = true,
                 IsDisplayed = true,
