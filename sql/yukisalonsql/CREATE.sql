@@ -2,7 +2,7 @@
 use [YUKISALONDEV];
 GO
 
-drop table if exists [Product], [Category], [User], [Role], [Welcome], [OpenHour], [Contact], [Salon];
+drop table if exists [Product], [Category], [Image], [User], [Role], [Welcome], [OpenHour], [Contact], [Salon];
 GO
 
 CREATE TABLE [Salon] (
@@ -84,6 +84,7 @@ GO
 
 CREATE TABLE [Image] (
     [Id] int NOT NULL IDENTITY,
+	[Data] nvarchar(max),
 	[IsActive] bit,
     CONSTRAINT [PK_Image] PRIMARY KEY ([Id])
 );
@@ -99,7 +100,8 @@ CREATE TABLE [Category] (
 	[IsActive] bit,
     CONSTRAINT [PK_Category] PRIMARY KEY ([Id]),
 	CONSTRAINT [FK_Category_Parent_ParentId] FOREIGN KEY ([ParentId]) REFERENCES [Category] ([Id]),
-	CONSTRAINT [FK_Category_Salon_SalonId] FOREIGN KEY ([SalonId]) REFERENCES [Salon] ([Id])
+	CONSTRAINT [FK_Category_Salon_SalonId] FOREIGN KEY ([SalonId]) REFERENCES [Salon] ([Id]),
+	CONSTRAINT [FK_Category_Image_ImageId] FOREIGN KEY ([ImageId]) REFERENCES [Image] ([Id])
 );
 GO
 
@@ -115,7 +117,8 @@ CREATE TABLE [Product] (
     [IsFeatured] bit,
 	[IsActive] bit,
     CONSTRAINT [PK_Product] PRIMARY KEY ([Id]),
-	CONSTRAINT [FK_Product_Category_CategoryId] FOREIGN KEY ([CategoryId]) REFERENCES [Category] ([Id])
+	CONSTRAINT [FK_Product_Category_CategoryId] FOREIGN KEY ([CategoryId]) REFERENCES [Category] ([Id]),
+	CONSTRAINT [FK_Product_Image_ImageId] FOREIGN KEY ([ImageId]) REFERENCES [Image] ([Id])
 );
 GO
 
