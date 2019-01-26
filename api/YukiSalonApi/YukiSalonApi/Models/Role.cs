@@ -15,6 +15,6 @@ namespace YukiSalonApi.Models
         public bool? IsActive { get; set; }
         public string Description { get; set; }
 
-        public ICollection<User> User { get; set; }
+        public virtual ICollection<User> User { get; set; }
     }
 }

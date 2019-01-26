@@ -21,7 +21,7 @@ namespace YukiSalonApi.Models
         public string Email { get; set; }
         public bool? IsActive { get; set; }
 
-        public Salon Salon { get; set; }
-        public ICollection<OpenHour> OpenHour { get; set; }
+        public virtual Salon Salon { get; set; }
+        public virtual ICollection<OpenHour> OpenHour { get; set; }
     }
 }

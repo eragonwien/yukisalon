@@ -12,6 +12,6 @@ namespace YukiSalonApi.Models
         public string Text2 { get; set; }
         public bool? IsActive { get; set; }
 
-        public Salon Salon { get; set; }
+        public virtual Salon Salon { get; set; }
     }
 }

@@ -12,6 +12,6 @@ namespace YukiSalonApi.Models
         public string Open { get; set; }
         public string Close { get; set; }
 
-        public Contact Contact { get; set; }
+        public virtual Contact Contact { get; set; }
     }
 }
