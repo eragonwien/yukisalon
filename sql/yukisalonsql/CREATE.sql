@@ -82,14 +82,19 @@ CREATE TABLE [User] (
 );
 GO
 
-
+CREATE TABLE [Image] (
+    [Id] int NOT NULL IDENTITY,
+	[IsActive] bit,
+    CONSTRAINT [PK_Image] PRIMARY KEY ([Id])
+);
+GO
 
 CREATE TABLE [Category] (
     [Id] int NOT NULL IDENTITY,
     [SalonId] int,
     [ParentId] int,
+	[ImageId] int,
 	[Name] nvarchar(max),
-	[Image] nvarchar(max),
 	[IsSubcategory] bit,
 	[IsActive] bit,
     CONSTRAINT [PK_Category] PRIMARY KEY ([Id]),
@@ -101,12 +106,12 @@ GO
 CREATE TABLE [Product] (
     [Id] int NOT NULL IDENTITY,
 	[CategoryId] int NOT NULL,
+	[ImageId] int,
     [Name] nvarchar(max),
     [Description] nvarchar(max),
     [Price] money NOT NULL,
 	[IsFixPrice] bit,
     [Currency] nvarchar(10) NOT NULL,
-    [Image] nvarchar(max),
     [IsFeatured] bit,
 	[IsActive] bit,
     CONSTRAINT [PK_Product] PRIMARY KEY ([Id]),
