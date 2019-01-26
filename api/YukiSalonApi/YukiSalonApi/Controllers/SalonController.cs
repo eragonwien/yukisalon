@@ -24,7 +24,7 @@ namespace YukiSalonApi.Controllers
 
         // GET: api/Salon
         [HttpGet]
-        public async Task<IActionResult> GetSalon()
+        public async Task<IActionResult> Get()
         {
             var salonList = await context.Salon.ToListAsync();
 
@@ -34,7 +34,7 @@ namespace YukiSalonApi.Controllers
         // GET: api/Salon/5
         [HttpGet("{id}")]
         [AllowAnonymous]
-        public async Task<IActionResult> GetSalon([FromRoute] int id)
+        public async Task<IActionResult> Get([FromRoute] int id)
         {
             if (!ModelState.IsValid)
             {
@@ -81,7 +81,7 @@ namespace YukiSalonApi.Controllers
 
         // PUT: api/Salon/5
         [HttpPut("{id}")]
-        public async Task<IActionResult> UpdateSalon([FromRoute] int id, [FromBody] Salon salon)
+        public async Task<IActionResult> Update([FromRoute] int id, [FromBody] Salon salon)
         {
             if (!ModelState.IsValid)
             {
@@ -120,7 +120,7 @@ namespace YukiSalonApi.Controllers
 
         // GET: api/Salon/5/Subcategories
         [HttpGet("{id}/Subcategories")]
-        public async Task<IActionResult> GetSalonSubCategories([FromRoute] int id)
+        public async Task<IActionResult> GetSubCategories([FromRoute] int id)
         {
             var subcategories = await context.Category
                 .Where(c => c.SalonId == id && (c.IsSubcategory == true))
