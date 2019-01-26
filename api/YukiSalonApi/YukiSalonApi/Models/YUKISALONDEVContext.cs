@@ -17,6 +17,7 @@ namespace YukiSalonApi.Models
 
         public virtual DbSet<Category> Category { get; set; }
         public virtual DbSet<Contact> Contact { get; set; }
+        public virtual DbSet<Image> Image { get; set; }
         public virtual DbSet<OpenHour> OpenHour { get; set; }
         public virtual DbSet<Product> Product { get; set; }
         public virtual DbSet<Role> Role { get; set; }
@@ -34,8 +35,14 @@ namespace YukiSalonApi.Models
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.HasAnnotation("ProductVersion", "2.2.1-servicing-10028");
+
             modelBuilder.Entity<Category>(entity =>
             {
+                entity.HasOne(d => d.Image)
+                    .WithMany(p => p.Category)
+                    .HasForeignKey(d => d.ImageId);
+
                 entity.HasOne(d => d.Parent)
                     .WithMany(p => p.Subcategory)
                     .HasForeignKey(d => d.ParentId)
@@ -96,12 +103,16 @@ namespace YukiSalonApi.Models
                     .WithMany(p => p.Product)
                     .HasForeignKey(d => d.CategoryId)
                     .OnDelete(DeleteBehavior.ClientSetNull);
+
+                entity.HasOne(d => d.Image)
+                    .WithMany(p => p.Product)
+                    .HasForeignKey(d => d.ImageId);
             });
 
             modelBuilder.Entity<Salon>(entity =>
             {
                 entity.HasIndex(e => e.Name)
-                    .HasName("UQ__Salon__737584F63CA5C971")
+                    .HasName("UQ__Salon__737584F681077EEF")
                     .IsUnique();
 
                 entity.Property(e => e.Name)
@@ -112,7 +123,7 @@ namespace YukiSalonApi.Models
             modelBuilder.Entity<User>(entity =>
             {
                 entity.HasIndex(e => e.Email)
-                    .HasName("UQ__User__A9D1053441DCE0FB")
+                    .HasName("UQ__User__A9D10534C954C72A")
                     .IsUnique();
 
                 entity.Property(e => e.Email)
