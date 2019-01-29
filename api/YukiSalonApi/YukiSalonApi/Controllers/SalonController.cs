@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using YukiSalonApi.Models;
+using YukiSalonApi.Services;
 
 namespace YukiSalonApi.Controllers
 {
@@ -15,18 +16,18 @@ namespace YukiSalonApi.Controllers
     [Authorize]
     public class SalonController : ControllerBase
     {
-        private readonly YUKISALONDEVContext context;
+        private readonly ISalonRepository<Salon> salonRepository;
 
-        public SalonController(YUKISALONDEVContext context)
+        public SalonController(ISalonRepository<Salon> salonRepository)
         {
-            this.context = context;
+            this.salonRepository = salonRepository;
         }
 
         // GET: api/Salon
         [HttpGet]
         public async Task<IActionResult> Get()
         {
-            var salonList = await context.Salon.ToListAsync();
+            var salonList = await salonRepository.GetAll();
 
             return Ok(salonList);
         }
@@ -34,7 +35,7 @@ namespace YukiSalonApi.Controllers
         // GET: api/Salon/5
         [HttpGet("{id}")]
         [AllowAnonymous]
-        public async Task<IActionResult> Get([FromRoute] int id)
+        public IActionResult GetOne([FromRoute] int id)
         {
             if (!ModelState.IsValid)
             {
@@ -45,7 +46,7 @@ namespace YukiSalonApi.Controllers
             {
                 try
                 {
-                    id = context.Salon.Where(s => s.IsActive.HasValue && s.IsActive.Value).Single().Id;
+                    id = salonRepository.GetFirstId();
                 }
                 catch (Exception)
                 {
@@ -53,23 +54,7 @@ namespace YukiSalonApi.Controllers
                 };
             }
 
-            var salon = await context.Salon
-               .Include(s => s.Welcome)
-               .Include(s => s.Contact).ThenInclude(c => c.OpenHour)
-               .Include(s => s.User)
-               .Include(s => s.Category).ThenInclude(c => c.Subcategory).ThenInclude(sc => sc.Product)
-               .Include(s => s.Category).ThenInclude(c => c.Product)
-               .Where(s => s.Id == id)
-               .FirstOrDefaultAsync();
-
-            salon.Category = salon.Category
-                .Where(c => !c.IsSubcategory.HasValue || !c.IsSubcategory.Value)
-                .ToList();
-
-            foreach (var user in salon.User)
-            {
-                user.Password = string.Empty;
-            }
+            var salon = salonRepository.GetOne(id);
 
             if (salon == null)
             {
@@ -77,6 +62,28 @@ namespace YukiSalonApi.Controllers
             }
 
             return Ok(salon);
+        }
+
+        // POST: api/Salon
+        [HttpPost]
+        public async Task<IActionResult> Add([FromBody] Salon salon)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            try
+            {
+                salonRepository.Add(salon);
+                await salonRepository.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
+            }
+
+            return CreatedAtAction(nameof(GetOne), new { id = salon.Id }, salon);
         }
 
         // PUT: api/Salon/5
@@ -95,13 +102,12 @@ namespace YukiSalonApi.Controllers
 
             try
             {
-                context.Update(salon);
-                context.Update(salon.Welcome);
-                await context.SaveChangesAsync();
+                salonRepository.Update(salon);
+                await salonRepository.SaveChanges();
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!SalonExists(id))
+                if (!salonRepository.Exist(id))
                 {
                     return NotFound();
                 }
@@ -118,22 +124,28 @@ namespace YukiSalonApi.Controllers
             return NoContent();
         }
 
+        // DELETE: api/Salon/5
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> Remove([FromRoute] int id)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            salonRepository.Remove(id);
+            await salonRepository.SaveChanges();
+
+            return Ok(id);
+        }
+
         // GET: api/Salon/5/Subcategories
         [HttpGet("{id}/Subcategories")]
         public async Task<IActionResult> GetSubCategories([FromRoute] int id)
         {
-            var subcategories = await context.Category
-                .Where(c => c.SalonId == id && (c.IsSubcategory == true))
-                .Include(c => c.Product)
-                .OrderBy(c => c.Name)
-                .ToListAsync();
+            var subcategories = await salonRepository.GetSubcategories(id);
 
             return Ok(subcategories);
-        }
-
-        private bool SalonExists(int id)
-        {
-            return context.Salon.Any(e => e.Id == id);
         }
     }
 }
