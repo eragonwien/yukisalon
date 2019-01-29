@@ -9,6 +9,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Newtonsoft.Json;
 using YukiSalonApi.Models;
+using YukiSalonApi.Services;
 
 namespace YukiSalonApi
 {
@@ -26,7 +27,12 @@ namespace YukiSalonApi
         {
             // AppSettings
             services.Configure<CorsSettings>(Configuration.GetSection(nameof(CorsSettings)));
-            
+
+            // Services
+            services.AddDbContext<YUKISALONDEVContext>(options => options.UseSqlServer(Configuration.GetConnectionString("YUKISALON")));
+            services.AddScoped<ISalonService, SalonService>();
+            services.AddScoped<ISalonRepository<Salon>, SalonRepository>();
+
             services.AddMvc()
                 .SetCompatibilityVersion(CompatibilityVersion.Version_2_2)
                 .AddJsonOptions(options =>
@@ -34,8 +40,7 @@ namespace YukiSalonApi
                     options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
                 });
 
-            services.AddDbContext<YUKISALONDEVContext>(options => options.UseSqlServer(Configuration.GetConnectionString("YUKISALON")));
-            services.AddTransient<ISalonService, SalonService>();
+            
 
             // Authentication
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie(option =>
