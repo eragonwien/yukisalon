@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using YukiSalonApi;
+using YukiSalonApi.Services;
 using YukiSalonApi.Models;
 
 namespace YukiSalonApi.Models
