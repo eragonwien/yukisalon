@@ -1,5 +1,5 @@
 ﻿using Xunit;
-using YukiSalonApi;
+using YukiSalonApi.Services;
 
 namespace XUnitTestProject
 {
