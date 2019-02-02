@@ -10,7 +10,6 @@ namespace YukiSalonApi.Models
             Category = new HashSet<Category>();
             Contact = new HashSet<Contact>();
             User = new HashSet<User>();
-            Welcome = new HashSet<Welcome>();
         }
 
         public int Id { get; set; }
@@ -18,10 +17,11 @@ namespace YukiSalonApi.Models
         public string Description { get; set; }
         public string ExtraInfo { get; set; }
         public bool? IsActive { get; set; }
+        public string WelcomeTitle { get; set; }
+        public string WelcomeText { get; set; }
 
         public virtual ICollection<Category> Category { get; set; }
         public virtual ICollection<Contact> Contact { get; set; }
         public virtual ICollection<User> User { get; set; }
-        public virtual ICollection<Welcome> Welcome { get; set; }
     }
 }
