@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
 
 namespace YukiSalonApi.Models
 {
@@ -10,8 +9,6 @@ namespace YukiSalonApi.Models
         public int SalonId { get; set; }
         public string Email { get; set; }
         public string Name { get; set; }
-
-        [NotMapped]
         public string Password { get; set; }
         public string Description { get; set; }
         public string ExtraInfo { get; set; }
