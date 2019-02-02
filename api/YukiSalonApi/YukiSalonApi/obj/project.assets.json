@@ -2865,6 +2865,18 @@
           }
         }
       },
+      "MimeTypesMap/1.0.3": {
+        "type": "package",
+        "dependencies": {
+          "NETStandard.Library": "1.6.1"
+        },
+        "compile": {
+          "lib/netstandard1.3/MimeTypesMap.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard1.3/MimeTypesMap.dll": {}
+        }
+      },
       "Moq/4.10.1": {
         "type": "package",
         "dependencies": {
@@ -8053,6 +8065,20 @@
         "version.txt"
       ]
     },
+    "MimeTypesMap/1.0.3": {
+      "sha512": "VBXKGmvlsm8VxFDvwNwx75UCIJVRl/mJHq9li9F/FppdLO3RobEGUwW0gkseggTkvvyoKJhQqmQyqawMq99sdQ==",
+      "type": "package",
+      "path": "mimetypesmap/1.0.3",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/net40/MimeTypesMap.dll",
+        "lib/net45/MimeTypesMap.dll",
+        "lib/netstandard1.3/MimeTypesMap.dll",
+        "mimetypesmap.1.0.3.nupkg.sha512",
+        "mimetypesmap.nuspec"
+      ]
+    },
     "Moq/4.10.1": {
       "sha512": "bhIH9jS8Fuy5r+p7+y0M5wRbJkbhPbsacOAFd7hWwjV8/e71zZOfg33FVF3R7H/qOTV1vErIg+zSnGlzJn1sPA==",
       "type": "package",
@@ -13205,6 +13231,7 @@
       "Microsoft.AspNetCore.App >= 2.2.1",
       "Microsoft.NETCore.App >= 2.2.0",
       "Microsoft.VisualStudio.Web.CodeGeneration.Design >= 2.2.1",
+      "MimeTypesMap >= 1.0.3",
       "Moq >= 4.10.1"
     ]
   },
@@ -13262,6 +13289,10 @@
           "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
             "target": "Package",
             "version": "[2.2.1, )"
+          },
+          "MimeTypesMap": {
+            "target": "Package",
+            "version": "[1.0.3, )"
           },
           "Moq": {
             "target": "Package",

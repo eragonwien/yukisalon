@@ -23,7 +23,6 @@ namespace YukiSalonApi.Models
         public virtual DbSet<Role> Role { get; set; }
         public virtual DbSet<Salon> Salon { get; set; }
         public virtual DbSet<User> User { get; set; }
-        public virtual DbSet<Welcome> Welcome { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -112,7 +111,7 @@ namespace YukiSalonApi.Models
             modelBuilder.Entity<Salon>(entity =>
             {
                 entity.HasIndex(e => e.Name)
-                    .HasName("UQ__Salon__737584F681077EEF")
+                    .HasName("UQ__Salon__737584F6CE3BCBD4")
                     .IsUnique();
 
                 entity.Property(e => e.Name)
@@ -123,7 +122,7 @@ namespace YukiSalonApi.Models
             modelBuilder.Entity<User>(entity =>
             {
                 entity.HasIndex(e => e.Email)
-                    .HasName("UQ__User__A9D10534C954C72A")
+                    .HasName("UQ__User__A9D105343AFEB39A")
                     .IsUnique();
 
                 entity.Property(e => e.Email)
@@ -137,14 +136,6 @@ namespace YukiSalonApi.Models
 
                 entity.HasOne(d => d.Salon)
                     .WithMany(p => p.User)
-                    .HasForeignKey(d => d.SalonId)
-                    .OnDelete(DeleteBehavior.ClientSetNull);
-            });
-
-            modelBuilder.Entity<Welcome>(entity =>
-            {
-                entity.HasOne(d => d.Salon)
-                    .WithMany(p => p.Welcome)
                     .HasForeignKey(d => d.SalonId)
                     .OnDelete(DeleteBehavior.ClientSetNull);
             });
