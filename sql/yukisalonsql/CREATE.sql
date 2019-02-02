@@ -11,6 +11,8 @@ CREATE TABLE [Salon] (
     [Description] nvarchar(max),
     [ExtraInfo] nvarchar(max),
 	[IsActive] bit,
+	[WelcomeTitle] nvarchar(max),
+    [WelcomeText] nvarchar(max),
     CONSTRAINT [PK_Salon] PRIMARY KEY ([Id])
 );
 GO
@@ -43,17 +45,17 @@ CREATE TABLE [OpenHour] (
 );
 GO
 
-CREATE TABLE [Welcome] (
-    [Id] int NOT NULL IDENTITY,
-	[SalonId] INT NOT NULL,
-    [Title] nvarchar(max),
-    [Text1] nvarchar(max),
-    [Text2] nvarchar(max),
-	[IsActive] bit,
-    CONSTRAINT [PK_Welcome] PRIMARY KEY ([Id]),
-	CONSTRAINT [FK_Welcome_Salon_SalonId] FOREIGN KEY ([SalonId]) REFERENCES [Salon] ([Id])
-);
-GO
+--CREATE TABLE [Welcome] (
+--    [Id] int NOT NULL IDENTITY,
+--	[SalonId] INT NOT NULL,
+--    [Title] nvarchar(max),
+--    [Text1] nvarchar(max),
+--    [Text2] nvarchar(max),
+--	[IsActive] bit,
+--    CONSTRAINT [PK_Welcome] PRIMARY KEY ([Id]),
+--	CONSTRAINT [FK_Welcome_Salon_SalonId] FOREIGN KEY ([SalonId]) REFERENCES [Salon] ([Id])
+--);
+--GO
 
 CREATE TABLE [Role] (
     [Id] int NOT NULL IDENTITY,
@@ -85,6 +87,8 @@ GO
 CREATE TABLE [Image] (
     [Id] int NOT NULL IDENTITY,
 	[Data] nvarchar(max),
+	[Name] nvarchar(max),
+	[MimeType] nvarchar(64),
 	[IsActive] bit,
     CONSTRAINT [PK_Image] PRIMARY KEY ([Id])
 );
