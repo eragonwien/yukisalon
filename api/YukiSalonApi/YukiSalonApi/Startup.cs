@@ -31,7 +31,7 @@ namespace YukiSalonApi
             // Services
             services.AddDbContext<YUKISALONDEVContext>(options => options.UseSqlServer(Configuration.GetConnectionString("YUKISALON")));
             services.AddScoped<ISalonService, SalonService>();
-            services.AddScoped<ISalonRepository<Salon>, SalonRepository>();
+            services.AddScoped<ISalonRepository, SalonRepository>();
 
             services.AddMvc()
                 .SetCompatibilityVersion(CompatibilityVersion.Version_2_2)

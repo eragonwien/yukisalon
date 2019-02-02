@@ -13,12 +13,12 @@ namespace XUnitTestProject
 {
     public class SalonControllerTest
     {
-        private readonly Mock<ISalonRepository<Salon>> salonRepoMock;
+        private readonly Mock<ISalonRepository> salonRepoMock;
         private readonly SalonController controller;
 
         public SalonControllerTest()
         {
-            salonRepoMock = new Mock<ISalonRepository<Salon>>();
+            salonRepoMock = new Mock<ISalonRepository>();
             controller = new SalonController(salonRepoMock.Object);
         }
 
@@ -145,7 +145,7 @@ namespace XUnitTestProject
             var result = await controller.Update(fakeId, mockSalon);
 
             // Assert
-            var actionResult = Assert.IsType<BadRequestResult>(result);
+            var actionResult = Assert.IsType<BadRequestObjectResult>(result);
         }
 
         [Fact]
