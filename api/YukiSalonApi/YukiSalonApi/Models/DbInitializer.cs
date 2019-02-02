@@ -29,7 +29,6 @@ namespace YukiSalonApi.Models
             CreateSubCategories(context);
             CreateProducts(context);
 
-            CreateWelcome(context);
         }
 
         private static void CreateSalon(YUKISALONDEVContext context)
@@ -39,7 +38,9 @@ namespace YukiSalonApi.Models
                 Name = "Yuki Tuyet's Spa",
                 Description = "Yuki Tuyet Spa's Description",
                 IsActive = true,
-                ExtraInfo = ""
+                ExtraInfo = "",
+                WelcomeTitle = "Welcome",
+                WelcomeText = "Welcome text"
             };
             context.Salon.Add(salon);
             context.SaveChanges();
@@ -195,25 +196,6 @@ namespace YukiSalonApi.Models
             };
 
             context.Product.Add(haareSchneiden);
-            context.SaveChanges();
-        }
-
-        private static void CreateWelcome(YUKISALONDEVContext context)
-        {
-            if (!context.Salon.Any())
-            {
-                return;
-            }
-            Salon salon = context.Salon.First();
-            Welcome welcome = new Welcome
-            {
-                SalonId = salon.Id,
-                Title = "Welcome",
-                Text1 = "TEXT1",
-                Text2 = "TEXT2",
-                IsActive = true
-            };
-            context.Welcome.Add(welcome);
             context.SaveChanges();
         }
     }
