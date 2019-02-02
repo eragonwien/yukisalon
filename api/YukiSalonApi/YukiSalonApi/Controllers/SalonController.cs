@@ -16,9 +16,9 @@ namespace YukiSalonApi.Controllers
     [Authorize]
     public class SalonController : ControllerBase
     {
-        private readonly ISalonRepository<Salon> salonRepository;
+        private readonly ISalonRepository salonRepository;
 
-        public SalonController(ISalonRepository<Salon> salonRepository)
+        public SalonController(ISalonRepository salonRepository)
         {
             this.salonRepository = salonRepository;
         }
@@ -97,7 +97,8 @@ namespace YukiSalonApi.Controllers
 
             if (id != salon.Id)
             {
-                return BadRequest();
+                ModelState.AddModelError(nameof(salon.Id), "Id mismatch");
+                return BadRequest(ModelState);
             }
 
             try
@@ -105,19 +106,12 @@ namespace YukiSalonApi.Controllers
                 salonRepository.Update(salon);
                 await salonRepository.SaveChanges();
             }
-            catch (DbUpdateConcurrencyException)
+            catch (Exception ex)
             {
                 if (!salonRepository.Exist(id))
                 {
                     return NotFound();
                 }
-                else
-                {
-                    throw;
-                }
-            }
-            catch (Exception ex)
-            {
                 return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
             }
 

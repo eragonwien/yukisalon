@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using YukiSalonApi.Models;
+using YukiSalonApi.Services;
 
 namespace YukiSalonApi.Controllers
 {
@@ -13,11 +14,11 @@ namespace YukiSalonApi.Controllers
     [ApiController]
     public class ContactController : ControllerBase
     {
-        private readonly YUKISALONDEVContext context;
+        private readonly ContactRepository repository;
 
-        public ContactController(YUKISALONDEVContext context)
+        public ContactController(ContactRepository repository)
         {
-            this.context = context;
+            this.repository = repository;
         }
 
         // POST: api/Contact
@@ -31,8 +32,8 @@ namespace YukiSalonApi.Controllers
 
             try
             {
-                context.Contact.Add(contact);
-                await context.SaveChangesAsync();
+                repository.Add(contact);
+                await repository.SaveChanges();
             }
             catch (Exception ex)
             {
@@ -52,28 +53,18 @@ namespace YukiSalonApi.Controllers
 
             if (id != contact.Id)
             {
-                return BadRequest();
+                ModelState.AddModelError(nameof(contact.Id), "Id mismatch");
+                return BadRequest(ModelState);
             }
 
             try
             {
-                context.Update(contact);
-
-                // Creates new open hour
-                if (contact.OpenHour.Any(h => h.Id <= 0))
-                {
-                    AddNewOpenHour(contact);
-                }
-
-                // Removes open hour
-                RemoveOpenHour(contact);
-
-                context.UpdateRange(contact.OpenHour);
-                await context.SaveChangesAsync();
+                repository.Update(contact);
+                await repository.SaveChanges();
             }
             catch (Exception ex)
             {
-                if (!SalonContactExists(contact.Id))
+                if (!repository.Exist(contact.Id))
                 {
                     return NotFound();
                 }
@@ -84,28 +75,6 @@ namespace YukiSalonApi.Controllers
             }
 
             return NoContent();
-        }
-
-        private void RemoveOpenHour(Contact contact)
-        {
-            var submittedOpenHours = contact.OpenHour.ToList();
-            var currentOpenHours = context.OpenHour.Where(h => h.ContactId == contact.Id).ToList();
-            if (currentOpenHours.Count > submittedOpenHours.Count)
-            {
-                var removedHours = currentOpenHours.Except(submittedOpenHours).ToList();
-                context.OpenHour.RemoveRange(removedHours);
-                context.SaveChanges();
-            }
-        }
-
-        private void AddNewOpenHour(Contact contact)
-        {
-            // Create new openhour
-            contact.OpenHour.Where(h => h.Id <= 0).ToList().ForEach(hour =>
-            {
-                context.Add(hour);
-            });
-            context.SaveChanges();
         }
 
         // DELETE: api/Delete/5
@@ -119,19 +88,15 @@ namespace YukiSalonApi.Controllers
 
             try
             {
-                Contact removeContact = await context.Contact.Where(c => c.Id == id).SingleOrDefaultAsync();
-                int salonContactCount = await context.Contact.Where(c => c.SalonId == removeContact.SalonId).CountAsync();
+                string errMsg = repository.Remove(id);
 
-                if (salonContactCount == 1)
+                if (!string.IsNullOrEmpty(errMsg))
                 {
-                    return BadRequest("Ein Salon muss mindesten ein Kontakt haben.");
+                    ModelState.AddModelError("", errMsg);
+                    return BadRequest(ModelState);    
                 }
 
-                if (removeContact != null)
-                {
-                    context.Remove(removeContact);
-                    await context.SaveChangesAsync();
-                }
+                await repository.SaveChanges();
             }
             catch (Exception ex)
             {
@@ -139,16 +104,6 @@ namespace YukiSalonApi.Controllers
             }
 
             return Ok();
-        }
-
-        private bool SalonContactExists(int id)
-        {
-            return context.Contact.Any(c => c.Id == id);
-        }
-
-        private bool SalonContactExists(Contact contact)
-        {
-            return context.Contact.Any(c => c.Address1 == contact.Address1 && c.Address2 == contact.Address2 && c.Plz == contact.Plz && c.City == contact.City);
         }
     }
 }
