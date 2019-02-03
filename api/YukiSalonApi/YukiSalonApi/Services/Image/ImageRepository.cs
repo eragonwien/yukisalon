@@ -27,23 +27,23 @@ namespace YukiSalonApi.Services
 
         public bool Exist(int id)
         {
-            return context.Image.Any(i => i.Id == id && i.IsActive == true);
+            return context.Image.Any(i => i.Id == id && i.IsActive);
         }
 
         public Task<List<Image>> GetAll()
         {
-            return context.Image.Where(i => i.IsActive == true).ToListAsync();
+            return context.Image.Where(i => i.IsActive).ToListAsync();
         }
 
         public Task<Image> GetOne(int id)
         {
-            return context.Image.Where(i => i.Id == id && i.IsActive == true).SingleAsync();
+            return context.Image.Where(i => i.Id == id && i.IsActive).SingleAsync();
         }
 
         public string GetImagePath(Image image)
         {
-            string fileName = salonService.GetFileName(image);
-            string path = Path.Combine(salonService.GetImagesDirectory(), fileName);
+            string filename = salonService.GetFileName(image);
+            string path = Path.Combine(salonService.GetImagesDirectory(), filename);
             return path;
         }
 

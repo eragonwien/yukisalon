@@ -54,7 +54,7 @@ namespace YukiSalonApi.Services
 
         public int GetFirstId()
         {
-            return context.Salon.Where(s => s.IsActive.HasValue && s.IsActive.Value).Select(s => s.Id).First();
+            return context.Salon.Where(s => s.IsActive && s.IsActive).Select(s => s.Id).First();
         }
 
         public void Update(Salon salon)

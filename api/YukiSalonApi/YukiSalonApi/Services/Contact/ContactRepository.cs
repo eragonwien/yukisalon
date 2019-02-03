@@ -23,22 +23,22 @@ namespace YukiSalonApi.Services
 
         public bool Exist(int id)
         {
-            return context.Contact.Any(c => c.Id == id && c.IsActive == true);
+            return context.Contact.Any(c => c.Id == id && c.IsActive);
         }
 
         public bool Exist(Contact contact)
         {
-            return context.Contact.Any(c => c.Address1 == contact.Address1 && c.Address2 == contact.Address2 && c.Plz == contact.Plz && c.City == contact.City && c.IsActive == true);
+            return context.Contact.Any(c => c.Address1 == contact.Address1 && c.Address2 == contact.Address2 && c.Plz == contact.Plz && c.City == contact.City && c.IsActive);
         }
 
         public Task<List<Contact>> GetAll()
         {
-            return context.Contact.Where(c => c.IsActive == true).ToListAsync();
+            return context.Contact.Where(c => c.IsActive).ToListAsync();
         }
 
         public Task<Contact> GetOne(int id)
         {
-            return context.Contact.Where(c => c.Id == id && c.IsActive == true).SingleAsync();
+            return context.Contact.Where(c => c.Id == id && c.IsActive).SingleAsync();
         }
 
         public string Remove(int id)

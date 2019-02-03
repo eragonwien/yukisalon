@@ -74,7 +74,7 @@ namespace YukiSalonApi.Services
 
         public string GetImagesDirectory()
         {
-            return Path.Combine(Directory.GetCurrentDirectory(), "images");
+            return Path.Combine(Directory.GetCurrentDirectory(), Constant.IMAGES_DIRECTORY);
         }
 
         public string GetMimeType(string filename)
