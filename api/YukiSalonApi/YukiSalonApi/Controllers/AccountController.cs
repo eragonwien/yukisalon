@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using YukiSalonApi.Models;
+using YukiSalonApi.Services;
 
 namespace YukiSalonApi.Controllers
 {
@@ -46,7 +47,7 @@ namespace YukiSalonApi.Controllers
                     var authProperties = new AuthenticationProperties
                     {
                         IsPersistent = false,
-                        ExpiresUtc = DateTime.Now.AddMinutes(Convert.ToDouble(Properties.Resources.CookieMaxAgeMinutes))
+                        ExpiresUtc = DateTime.Now.AddMinutes(Convert.ToDouble(Constant.COOKIE_MAX_AGE_MINUTE))
                     };
 
                     await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, principal, authProperties);
