@@ -12,7 +12,7 @@ namespace YukiSalonApi.Models
         public string Password { get; set; }
         public string Description { get; set; }
         public string ExtraInfo { get; set; }
-        public bool? IsActive { get; set; }
+        public bool IsActive { get; set; }
         public bool? IsDisplayed { get; set; }
         public int RoleId { get; set; }
 

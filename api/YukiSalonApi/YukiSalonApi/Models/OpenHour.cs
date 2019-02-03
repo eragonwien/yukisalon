@@ -11,6 +11,7 @@ namespace YukiSalonApi.Models
         public bool? IsOpen { get; set; }
         public string Open { get; set; }
         public string Close { get; set; }
+        public bool IsActive { get; set; }
 
         public virtual Contact Contact { get; set; }
     }

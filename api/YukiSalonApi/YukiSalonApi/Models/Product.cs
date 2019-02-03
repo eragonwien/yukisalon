@@ -14,7 +14,7 @@ namespace YukiSalonApi.Models
         public bool? IsFixPrice { get; set; }
         public string Currency { get; set; }
         public bool? IsFeatured { get; set; }
-        public bool? IsActive { get; set; }
+        public bool IsActive { get; set; }
 
         public virtual Category Category { get; set; }
         public virtual Image Image { get; set; }

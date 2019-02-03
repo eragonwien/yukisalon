@@ -76,6 +76,11 @@ namespace YukiSalonApi.Models
                     .OnDelete(DeleteBehavior.ClientSetNull);
             });
 
+            modelBuilder.Entity<Image>(entity =>
+            {
+                entity.Property(e => e.MimeType).HasMaxLength(64);
+            });
+
             modelBuilder.Entity<OpenHour>(entity =>
             {
                 entity.Property(e => e.Close).HasMaxLength(5);
@@ -111,7 +116,7 @@ namespace YukiSalonApi.Models
             modelBuilder.Entity<Salon>(entity =>
             {
                 entity.HasIndex(e => e.Name)
-                    .HasName("UQ__Salon__737584F6CE3BCBD4")
+                    .HasName("UQ__Salon__737584F6F6DCC462")
                     .IsUnique();
 
                 entity.Property(e => e.Name)
@@ -122,7 +127,7 @@ namespace YukiSalonApi.Models
             modelBuilder.Entity<User>(entity =>
             {
                 entity.HasIndex(e => e.Email)
-                    .HasName("UQ__User__A9D105343AFEB39A")
+                    .HasName("UQ__User__A9D10534C1C5AB99")
                     .IsUnique();
 
                 entity.Property(e => e.Email)

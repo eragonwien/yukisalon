@@ -12,7 +12,7 @@ namespace YukiSalonApi.Models
 
         public int Id { get; set; }
         public string Title { get; set; }
-        public bool? IsActive { get; set; }
+        public bool IsActive { get; set; }
         public string Description { get; set; }
 
         public virtual ICollection<User> User { get; set; }

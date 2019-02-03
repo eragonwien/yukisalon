@@ -12,10 +12,10 @@ namespace YukiSalonApi.Models
         }
 
         public int Id { get; set; }
-        public string Name { get; set; }
         public string Data { get; set; }
+        public string Name { get; set; }
         public string MimeType { get; set; }
-        public bool? IsActive { get; set; }
+        public bool IsActive { get; set; }
 
         public virtual ICollection<Category> Category { get; set; }
         public virtual ICollection<Product> Product { get; set; }

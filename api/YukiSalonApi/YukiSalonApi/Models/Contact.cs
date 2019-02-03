@@ -19,7 +19,7 @@ namespace YukiSalonApi.Models
         public string Phone { get; set; }
         public string Facebook { get; set; }
         public string Email { get; set; }
-        public bool? IsActive { get; set; }
+        public bool IsActive { get; set; }
 
         public virtual Salon Salon { get; set; }
         public virtual ICollection<OpenHour> OpenHour { get; set; }

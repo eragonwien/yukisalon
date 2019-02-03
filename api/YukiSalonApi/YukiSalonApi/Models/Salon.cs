@@ -16,7 +16,7 @@ namespace YukiSalonApi.Models
         public string Name { get; set; }
         public string Description { get; set; }
         public string ExtraInfo { get; set; }
-        public bool? IsActive { get; set; }
+        public bool IsActive { get; set; }
         public string WelcomeTitle { get; set; }
         public string WelcomeText { get; set; }
 
