@@ -10,7 +10,7 @@ CREATE TABLE [Salon] (
 	[Name] nvarchar(50) UNIQUE NOT NULL,
     [Description] nvarchar(max),
     [ExtraInfo] nvarchar(max),
-	[IsActive] bit,
+	[IsActive] bit NOT NULL,
 	[WelcomeTitle] nvarchar(max),
     [WelcomeText] nvarchar(max),
     CONSTRAINT [PK_Salon] PRIMARY KEY ([Id])
@@ -27,7 +27,7 @@ CREATE TABLE [Contact] (
     [Phone] nvarchar(20),
     [Facebook] nvarchar(50),
     [Email] nvarchar(50),
-	[IsActive] bit,
+	[IsActive] bit NOT NULL,
     CONSTRAINT [PK_Contact] PRIMARY KEY ([Id]),
 	CONSTRAINT [FK_Contact_Salon_SalonId] FOREIGN KEY ([SalonId]) REFERENCES [Salon] ([Id])
 );
@@ -40,27 +40,16 @@ CREATE TABLE [OpenHour] (
 	[IsOpen] bit,
     [Open] nvarchar(5),
     [Close] nvarchar(5),
+	[IsActive] bit NOT NULL,
     CONSTRAINT [PK_OpenHour] PRIMARY KEY ([Id]),
 	CONSTRAINT [FK_OpenHour_Contact_ContactId] FOREIGN KEY ([ContactId]) REFERENCES [Contact] ([Id])
 );
 GO
 
---CREATE TABLE [Welcome] (
---    [Id] int NOT NULL IDENTITY,
---	[SalonId] INT NOT NULL,
---    [Title] nvarchar(max),
---    [Text1] nvarchar(max),
---    [Text2] nvarchar(max),
---	[IsActive] bit,
---    CONSTRAINT [PK_Welcome] PRIMARY KEY ([Id]),
---	CONSTRAINT [FK_Welcome_Salon_SalonId] FOREIGN KEY ([SalonId]) REFERENCES [Salon] ([Id])
---);
---GO
-
 CREATE TABLE [Role] (
     [Id] int NOT NULL IDENTITY,
     [Title] nvarchar(max),
-	[IsActive] bit,
+	[IsActive] bit NOT NULL,
     [Description] nvarchar(max),
     CONSTRAINT [PK_Role] PRIMARY KEY ([Id])
 );
@@ -75,7 +64,7 @@ CREATE TABLE [User] (
     [Password] nvarchar(max),
     [Description] nvarchar(max),
     [ExtraInfo] nvarchar(max),
-    [IsActive] bit,
+    [IsActive] bit NOT NULL,
     [IsDisplayed] bit,
     [RoleId] int NOT NULL,
     CONSTRAINT [PK_User] PRIMARY KEY ([Id]),
@@ -89,7 +78,7 @@ CREATE TABLE [Image] (
 	[Data] nvarchar(max),
 	[Name] nvarchar(max),
 	[MimeType] nvarchar(64),
-	[IsActive] bit,
+	[IsActive] bit NOT NULL,
     CONSTRAINT [PK_Image] PRIMARY KEY ([Id])
 );
 GO
@@ -101,7 +90,7 @@ CREATE TABLE [Category] (
 	[ImageId] int,
 	[Name] nvarchar(max),
 	[IsSubcategory] bit,
-	[IsActive] bit,
+	[IsActive] bit NOT NULL,
     CONSTRAINT [PK_Category] PRIMARY KEY ([Id]),
 	CONSTRAINT [FK_Category_Parent_ParentId] FOREIGN KEY ([ParentId]) REFERENCES [Category] ([Id]),
 	CONSTRAINT [FK_Category_Salon_SalonId] FOREIGN KEY ([SalonId]) REFERENCES [Salon] ([Id]),
@@ -119,7 +108,7 @@ CREATE TABLE [Product] (
 	[IsFixPrice] bit,
     [Currency] nvarchar(10) NOT NULL,
     [IsFeatured] bit,
-	[IsActive] bit,
+	[IsActive] bit NOT NULL,
     CONSTRAINT [PK_Product] PRIMARY KEY ([Id]),
 	CONSTRAINT [FK_Product_Category_CategoryId] FOREIGN KEY ([CategoryId]) REFERENCES [Category] ([Id]),
 	CONSTRAINT [FK_Product_Image_ImageId] FOREIGN KEY ([ImageId]) REFERENCES [Image] ([Id])
