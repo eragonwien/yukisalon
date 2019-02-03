@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -11,6 +12,7 @@ namespace YukiSalonApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class UserController : ControllerBase
     {
         private readonly YUKISALONDEVContext context;
@@ -50,6 +52,7 @@ namespace YukiSalonApi.Controllers
 
             if (id != user.Id)
             {
+                ModelState.AddModelError(nameof(user.Id), "Id mismatch");
                 return BadRequest();
             }
 
