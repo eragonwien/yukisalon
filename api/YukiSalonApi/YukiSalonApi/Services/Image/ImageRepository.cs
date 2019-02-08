@@ -62,7 +62,7 @@ namespace YukiSalonApi.Services
             return context.SaveChangesAsync();
         }
 
-        public Task SaveImage(Image image)
+        public Task SaveInDisk(Image image)
         {
             if (image == null || string.IsNullOrEmpty(image.Data))
             {
@@ -78,7 +78,44 @@ namespace YukiSalonApi.Services
             }
 
             string imagePath = Path.Combine(imagesDirectory, imageName);
+            if (File.Exists(imagePath))
+            {
+                File.Delete(imagePath);
+            }
             return File.WriteAllBytesAsync(imagePath, imageBytes);
+        }
+
+        public Task RemoveFromDisk(int id, bool isArchived = true)
+        {
+            Image image = context.Image.SingleOrDefault(i => i.Id == id);
+            if (image == null || string.IsNullOrEmpty(image.Data))
+            {
+                throw new Exception("Image is empty");
+            }
+            string imageName = salonService.GetFileName(image);
+            string imagesDirectory = salonService.GetImagesDirectory();
+            if (Directory.Exists(imagesDirectory))
+            {
+                string imagePath = Path.Combine(imagesDirectory, imageName);
+
+                if (isArchived)
+                {
+                    string archivePath = Path.Combine(salonService.GetArchiveDirectory(Constant.IMAGES_DIRECTORY), imageName);
+
+                    if (File.Exists(archivePath))
+                    {
+                        File.Delete(archivePath);
+                    }
+
+                    File.Move(imagePath, archivePath);
+                }
+                else
+                {
+                    File.Delete(imagePath);
+                }
+                
+            }
+            return Task.CompletedTask;
         }
 
         public void Update(Image image)

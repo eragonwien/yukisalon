@@ -60,6 +60,7 @@ namespace YukiSalonApi.Controllers
             {
                 repository.Update(image);
                 await repository.SaveChanges();
+                await repository.SaveInDisk(image);
             }
             catch (Exception ex)
             {
@@ -84,6 +85,7 @@ namespace YukiSalonApi.Controllers
             {
                 repository.Add(image);
                 await repository.SaveChanges();
+                await repository.SaveInDisk(image);
             }
             catch (Exception ex)
             {
@@ -101,6 +103,7 @@ namespace YukiSalonApi.Controllers
             {
                 repository.Remove(id);
                 await repository.SaveChanges();
+                await repository.RemoveFromDisk(id, true);
             }
             catch (Exception ex)
             {

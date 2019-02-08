@@ -15,7 +15,8 @@ namespace YukiSalonApi.Services
         void Remove(int id);
         Task SaveChanges();
         bool Exist(int id);
-        Task SaveImage(Image image);
+        Task SaveInDisk(Image image);
+        Task RemoveFromDisk(int id, bool isArchived);
         string GetImagePath(Image image);
     }
 }

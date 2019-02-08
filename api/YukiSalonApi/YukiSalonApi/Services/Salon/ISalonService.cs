@@ -12,6 +12,7 @@ namespace YukiSalonApi.Services
         bool IsPasswordValid(string password, string storedHash);
         string GetFileName(Image image);
         string GetImagesDirectory();
+        string GetArchiveDirectory(string childDirectory);
         string GetMimeType(string filename);
     }
 }

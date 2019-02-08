@@ -11,5 +11,6 @@ namespace YukiSalonApi.Services
         public const int COOKIE_MAX_AGE_MONTH = 6;
         public const string LOGIN_CLAIM_IDENTITY = "ClamSheell";
         public const string IMAGES_DIRECTORY = "images";
+        public const string ARCHIVE_DIRECTORY = "archive";
     }
 }

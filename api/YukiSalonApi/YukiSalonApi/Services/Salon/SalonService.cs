@@ -92,5 +92,10 @@ namespace YukiSalonApi.Services
 
             return MimeTypesMap.GetMimeType(extension);
         }
+
+        public string GetArchiveDirectory(string childDirectory)
+        {
+            return Path.Combine(Directory.GetCurrentDirectory(), Constant.ARCHIVE_DIRECTORY, childDirectory);
+        }
     }
 }
