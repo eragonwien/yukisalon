@@ -6,7 +6,9 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 using YukiSalonApi.Models;
+using YukiSalonApi.Resources;
 using YukiSalonApi.Services;
 
 namespace YukiSalonApi.Controllers
@@ -17,10 +19,12 @@ namespace YukiSalonApi.Controllers
     public class SalonController : ControllerBase
     {
         private readonly ISalonRepository salonRepository;
+        private readonly ILogger<SalonController> log;
 
-        public SalonController(ISalonRepository salonRepository)
+        public SalonController(ISalonRepository salonRepository, ILogger<SalonController> logger)
         {
             this.salonRepository = salonRepository;
+            this.log = logger;
         }
 
         // GET: api/Salon
@@ -37,6 +41,7 @@ namespace YukiSalonApi.Controllers
         [AllowAnonymous]
         public IActionResult GetOne([FromRoute] int id)
         {
+            log.LogInformation(nameof(GetOne));
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
@@ -97,7 +102,7 @@ namespace YukiSalonApi.Controllers
 
             if (id != salon.Id)
             {
-                ModelState.AddModelError(nameof(salon.Id), "Id mismatch");
+                ModelState.AddModelError(nameof(salon.Id), Translation.IdMismatch);
                 return BadRequest(ModelState);
             }
 

@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using YukiSalonApi.Models;
+using YukiSalonApi.Resources;
 using YukiSalonApi.Services;
 
 namespace YukiSalonApi.Controllers
@@ -51,7 +52,7 @@ namespace YukiSalonApi.Controllers
         {
             if (id != image.Id)
             {
-                ModelState.AddModelError(nameof(image.Id), "Id mismatch");
+                ModelState.AddModelError(nameof(image.Id), Translation.IdMismatch);
                 return BadRequest(ModelState);
             }
 

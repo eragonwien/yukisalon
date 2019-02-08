@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using YukiSalonApi.Models;
+using YukiSalonApi.Resources;
 using YukiSalonApi.Services;
 
 namespace YukiSalonApi.Controllers
@@ -55,7 +56,7 @@ namespace YukiSalonApi.Controllers
 
             if (id != contact.Id)
             {
-                ModelState.AddModelError(nameof(contact.Id), "Id mismatch");
+                ModelState.AddModelError(nameof(contact.Id), Translation.IdMismatch);
                 return BadRequest(ModelState);
             }
 

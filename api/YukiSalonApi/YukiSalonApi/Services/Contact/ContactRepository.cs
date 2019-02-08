@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using YukiSalonApi.Models;
+using YukiSalonApi.Resources;
 
 namespace YukiSalonApi.Services
 {
@@ -48,7 +49,7 @@ namespace YukiSalonApi.Services
 
             if (salonContactCount == 1)
             {
-                return "Removing Salon not allowed";
+                return Translation.RemoveNotAllowed;
             }
 
             if (removeContact != null)

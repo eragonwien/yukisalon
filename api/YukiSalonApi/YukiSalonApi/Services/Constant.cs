@@ -8,7 +8,7 @@ namespace YukiSalonApi.Services
     public static class Constant
     {
         public const string ALLOWED_ORIGINS = "";
-        public const int COOKIE_MAX_AGE_MINUTE = 20;
+        public const int COOKIE_MAX_AGE_MONTH = 6;
         public const string LOGIN_CLAIM_IDENTITY = "ClamSheell";
         public const string IMAGES_DIRECTORY = "images";
     }

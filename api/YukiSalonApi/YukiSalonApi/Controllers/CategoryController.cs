@@ -6,7 +6,9 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Localization;
 using YukiSalonApi.Models;
+using YukiSalonApi.Resources;
 
 namespace YukiSalonApi.Controllers
 {
@@ -22,6 +24,11 @@ namespace YukiSalonApi.Controllers
             this.context = context;
         }
 
+        public async Task<IActionResult> GetOne([FromRoute] int id)
+        {
+            return Ok();
+        }
+
         // PUT: api/Category/5
         [HttpPut("{id}")]
         public async Task<IActionResult> UpdateCategory([FromRoute] int id, [FromBody] Category category)
@@ -33,7 +40,7 @@ namespace YukiSalonApi.Controllers
 
             if (id != category.Id)
             {
-                ModelState.AddModelError(nameof(category.Id), "Id mismatch");
+                ModelState.AddModelError(nameof(category.Id), Translation.IdMismatch);
                 return BadRequest();
             }
 
@@ -75,7 +82,7 @@ namespace YukiSalonApi.Controllers
             {
                 if (CategoryExists(category.Name))
                 {
-                    ModelState.AddModelError("Name", "Diese Name existiert bereits");
+                    ModelState.AddModelError("Name", Translation.NameAlreadyExists);
                     return BadRequest(ModelState);
                 }
                 else
@@ -84,7 +91,7 @@ namespace YukiSalonApi.Controllers
                 }
             }
 
-            return CreatedAtAction("GetCategory", new { id = category.Id }, category);
+            return CreatedAtAction(nameof(GetOne), new { id = category.Id }, category);
         }
 
         // DELETE: api/Category/5

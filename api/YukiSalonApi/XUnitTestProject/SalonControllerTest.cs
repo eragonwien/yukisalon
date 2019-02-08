@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 using Moq;
 using Xunit;
 using YukiSalonApi.Controllers;
@@ -14,12 +15,14 @@ namespace XUnitTestProject
     public class SalonControllerTest
     {
         private readonly Mock<ISalonRepository> salonRepoMock;
+        private readonly Mock<ILogger<SalonController>> salonLogger;
         private readonly SalonController controller;
 
         public SalonControllerTest()
         {
             salonRepoMock = new Mock<ISalonRepository>();
-            controller = new SalonController(salonRepoMock.Object);
+            salonLogger = new Mock<ILogger<SalonController>>();
+            controller = new SalonController(salonRepoMock.Object, salonLogger.Object);
         }
 
         [Fact]

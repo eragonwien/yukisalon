@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using YukiSalonApi.Models;
+using YukiSalonApi.Resources;
 
 namespace YukiSalonApi.Controllers
 {
@@ -52,7 +53,7 @@ namespace YukiSalonApi.Controllers
 
             if (id != user.Id)
             {
-                ModelState.AddModelError(nameof(user.Id), "Id mismatch");
+                ModelState.AddModelError(nameof(user.Id), Translation.IdMismatch);
                 return BadRequest();
             }
 
@@ -108,7 +109,7 @@ namespace YukiSalonApi.Controllers
             {
                 if (UserExists(user.Email))
                 {
-                    ModelState.AddModelError("Email", "Benutzer existiert bereits");
+                    ModelState.AddModelError(nameof(user.Email), Translation.EmailAlreadyExists);
                     return BadRequest(ModelState);
                 }
                 else
@@ -117,7 +118,7 @@ namespace YukiSalonApi.Controllers
                 }
             }
 
-            return CreatedAtAction("GetUser", new { id = user.Id }, user);
+            return CreatedAtAction(nameof(GetUser), new { id = user.Id }, user);
         }
 
         // DELETE: api/User/5
@@ -137,14 +138,14 @@ namespace YukiSalonApi.Controllers
 
             if (User.Identity.Name.Equals(user.Email))
             {
-                ModelState.AddModelError("", string.Format("{0} kann sich selbst nicht löschen", user.Name));
+                ModelState.AddModelError("", Translation.RemoveSelfNotAllowed);
                 return BadRequest(ModelState);
             }
 
             int userCount = await context.User.CountAsync(u => u.SalonId == user.SalonId);
             if (userCount <= 1)
             {
-                ModelState.AddModelError("", string.Format("{0} ist der einzige Benutzer und darf daher nicht gelöscht werden.", user.Name));
+                ModelState.AddModelError("", Translation.RemoveNotAllowedLastUser);
                 return BadRequest(ModelState);
             }
 

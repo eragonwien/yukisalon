@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using YukiSalonApi.Models;
@@ -26,7 +27,7 @@ namespace YukiSalonApi.Controllers
         // POST: account/login
         [HttpPost]
         [AllowAnonymous]
-        public async Task<IActionResult> Login(string email, string password)
+        public async Task<IActionResult> Login(string email, string password, string language = "de")
         {
             try
             {
@@ -47,8 +48,9 @@ namespace YukiSalonApi.Controllers
                     var authProperties = new AuthenticationProperties
                     {
                         IsPersistent = false,
-                        ExpiresUtc = DateTime.Now.AddMinutes(Convert.ToDouble(Constant.COOKIE_MAX_AGE_MINUTE))
+                        ExpiresUtc = DateTime.Now.AddMonths(Constant.COOKIE_MAX_AGE_MONTH)
                     };
+                    SetLanguage(language);
 
                     await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, principal, authProperties);
 
@@ -63,20 +65,20 @@ namespace YukiSalonApi.Controllers
             return Unauthorized();
         }
 
+        private void SetLanguage(string language)
+        {
+            Response.Cookies.Append(
+                CookieRequestCultureProvider.DefaultCookieName,
+                CookieRequestCultureProvider.MakeCookieValue(new RequestCulture(language)),
+                new CookieOptions { Expires = DateTimeOffset.Now.AddMonths(Constant.COOKIE_MAX_AGE_MONTH) });
+        }
+
         // POST: account/logout
         [HttpPost]
         [Authorize]
         public async Task<IActionResult> Logout()
         {
             await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
-            return Ok();
-        }
-
-        // POST: account/testauth
-        [HttpPost]
-        [Authorize]
-        public IActionResult TestAuth()
-        {
             return Ok();
         }
     }

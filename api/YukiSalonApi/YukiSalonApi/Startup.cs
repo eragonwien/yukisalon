@@ -1,13 +1,16 @@
-﻿using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authentication.Cookies;
+﻿using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
+using System.Globalization;
+using System.Linq;
+using System.Threading.Tasks;
 using YukiSalonApi.Models;
 using YukiSalonApi.Services;
 
@@ -33,15 +36,6 @@ namespace YukiSalonApi
             services.AddScoped<ISalonService, SalonService>();
             services.AddScoped<ISalonRepository, SalonRepository>();
 
-            services.AddMvc()
-                .SetCompatibilityVersion(CompatibilityVersion.Version_2_2)
-                .AddJsonOptions(options =>
-                {
-                    options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
-                });
-
-            
-
             // Authentication
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie(option =>
             {
@@ -63,6 +57,11 @@ namespace YukiSalonApi
 
             // Health check
             services.AddHealthChecks();
+
+            // MVC
+            services.AddMvc()
+                .SetCompatibilityVersion(CompatibilityVersion.Version_2_2)
+                .AddJsonOptions(options => options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore);
         }
 
         private string[] GetAllowedOrigins()
@@ -72,7 +71,7 @@ namespace YukiSalonApi
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
             if (env.IsDevelopment())
             {
@@ -84,6 +83,20 @@ namespace YukiSalonApi
                 app.UseHsts();
                 app.UseCors("AllowSpecificOrigin");
             }
+
+            // Localzitation
+            var supportedCultures = new CultureInfo[]
+            {
+                new CultureInfo("en"),
+                new CultureInfo("de")
+            };
+
+            app.UseRequestLocalization(new RequestLocalizationOptions
+            {
+                DefaultRequestCulture = new RequestCulture("en"),
+                SupportedCultures = supportedCultures,
+                SupportedUICultures = supportedCultures
+            });
 
             app.UseHttpsRedirection();
             app.UseAuthentication();
