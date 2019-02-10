@@ -15,5 +15,6 @@ namespace YukiSalonApi.Services
         void Remove(int id);
         Task SaveChanges();
         bool Exist(int id);
+        bool Exist(string name);
     }
 }

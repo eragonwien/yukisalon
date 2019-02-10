@@ -1,18 +1,21 @@
-﻿using System;
+﻿using HeyRed.Mime;
+using System;
+using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Security.Cryptography;
+using System.Threading.Tasks;
 using YukiSalonApi.Models;
-using HeyRed.Mime;
 
 namespace YukiSalonApi.Services
 {
-    public class SalonService : ISalonService
+    public static class Common
     {
         private const int iterlation = 10000;
         private const int saltBytesLength = 17;
         private const int passwordBytesLength = 25;
 
-        public string GetEncodedPassword(string password)
+        public static string GetEncodedPassword(string password)
         {
             // Creates new salt
             byte[] salt;
@@ -31,7 +34,7 @@ namespace YukiSalonApi.Services
             return hashedPassword;
         }
 
-        public bool IsPasswordValid(string password, string storedHash)
+        public static bool IsPasswordValid(string password, string storedHash)
         {
             // Extracts stored Hash
             byte[] storedHashBytes = Convert.FromBase64String(storedHash);
@@ -46,7 +49,7 @@ namespace YukiSalonApi.Services
             // Compares result
             for (int i = 0; i < passwordBytesLength; i++)
             {
-                if (storedHashBytes[i+saltBytesLength] != inputHashBytes[i])
+                if (storedHashBytes[i + saltBytesLength] != inputHashBytes[i])
                 {
                     return false;
                 }
@@ -55,7 +58,7 @@ namespace YukiSalonApi.Services
             return true;
         }
 
-        public string GetFileName(Image image)
+        public static string GetFileName(Image image)
         {
             if (image.Id < 0)
             {
@@ -72,12 +75,12 @@ namespace YukiSalonApi.Services
             return image.Id + "." + extension;
         }
 
-        public string GetImagesDirectory()
+        public static string GetImagesDirectory()
         {
             return Path.Combine(Directory.GetCurrentDirectory(), Constant.IMAGES_DIRECTORY);
         }
 
-        public string GetMimeType(string filename)
+        public static string GetMimeType(string filename)
         {
             if (string.IsNullOrWhiteSpace(filename))
             {
@@ -93,7 +96,7 @@ namespace YukiSalonApi.Services
             return MimeTypesMap.GetMimeType(extension);
         }
 
-        public string GetArchiveDirectory(string childDirectory)
+        public static string GetArchiveDirectory(string childDirectory)
         {
             return Path.Combine(Directory.GetCurrentDirectory(), Constant.ARCHIVE_DIRECTORY, childDirectory);
         }

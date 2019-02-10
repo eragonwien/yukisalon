@@ -1,18 +1,16 @@
-﻿using System;
+﻿using HeyRed.Mime;
+using System;
 using Xunit;
 using YukiSalonApi.Models;
 using YukiSalonApi.Services;
-using HeyRed.Mime;
 
 namespace XUnitTestProject
 {
-    public class SalonServiceTest
+    public class CommonServiceTest
     {
-        private readonly SalonService service;
 
-        public SalonServiceTest()
+        public CommonServiceTest()
         {
-            service = new SalonService();
         }
 
         [Fact]
@@ -20,10 +18,10 @@ namespace XUnitTestProject
         {
             // Arrange
             const string password = "passowrd";
-            string hashedPassword = service.GetEncodedPassword(password);
+            string hashedPassword = Common.GetEncodedPassword(password);
 
             // Act
-            bool result = service.IsPasswordValid(password, hashedPassword);
+            bool result = Common.IsPasswordValid(password, hashedPassword);
 
             // Assert
             Assert.True(result, "Password should be valid");
@@ -35,10 +33,10 @@ namespace XUnitTestProject
             // Arrange
             const string correctPassword = "passowrd";
             const string wrongPassword = "Password";
-            string hashedCorrectPassword = service.GetEncodedPassword(correctPassword);
+            string hashedCorrectPassword = Common.GetEncodedPassword(correctPassword);
 
             // Act
-            bool result = service.IsPasswordValid(wrongPassword, hashedCorrectPassword);
+            bool result = Common.IsPasswordValid(wrongPassword, hashedCorrectPassword);
 
             // Assert
             Assert.False(result, "Password should not be valid");
@@ -57,7 +55,7 @@ namespace XUnitTestProject
             string expected = image.Id + "." + JPEG;
 
             // Act 
-            string result = service.GetFileName(image);
+            string result = Common.GetFileName(image);
 
             // Assert
             Assert.Equal(expected, result);
@@ -70,7 +68,7 @@ namespace XUnitTestProject
             Image image = new Image();
 
             // Act & Assert
-            Assert.Throws<Exception>(() => service.GetFileName(image));
+            Assert.Throws<Exception>(() => Common.GetFileName(image));
         }
 
         [Fact]
@@ -80,7 +78,7 @@ namespace XUnitTestProject
             Image image = new Image() { Id = 1 };
 
             // Act & Assert
-            Assert.Throws<Exception>(() => service.GetFileName(image));
+            Assert.Throws<Exception>(() => Common.GetFileName(image));
         }
 
         [Fact]
@@ -91,7 +89,7 @@ namespace XUnitTestProject
             string expected = MimeTypesMap.GetMimeType("pdf");
 
             // Act
-            string result = service.GetMimeType(filename);
+            string result = Common.GetMimeType(filename);
 
             // Assert
             Assert.Equal(expected, result);
@@ -104,7 +102,7 @@ namespace XUnitTestProject
             string filename = "test.test.test";
 
             // Act
-            string result = service.GetMimeType(filename);
+            string result = Common.GetMimeType(filename);
 
             // Assert
             Assert.NotNull(result);

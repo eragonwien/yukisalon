@@ -50,7 +50,7 @@ namespace XUnitTestProject
         }
 
         [Fact]
-        public void GetOne_ReturnsOneSalon()
+        public void GetOne_ReturnsOk()
         {
             // Arrange
             Salon salon = new Salon() { Id = 1 };

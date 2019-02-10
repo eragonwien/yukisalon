@@ -6,8 +6,10 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 using YukiSalonApi.Models;
 using YukiSalonApi.Resources;
+using YukiSalonApi.Services;
 
 namespace YukiSalonApi.Controllers
 {
@@ -16,35 +18,39 @@ namespace YukiSalonApi.Controllers
     [Authorize]
     public class UserController : ControllerBase
     {
-        private readonly YUKISALONDEVContext context;
+        private readonly IUserRepository repository;
+        private readonly ILogger<UserController> log;
 
-        public UserController(YUKISALONDEVContext context)
+        public UserController(IUserRepository repository, ILogger<UserController> log)
         {
-            this.context = context;
+            this.repository = repository;
+            this.log = log;
         }
 
         // GET: api/User/5
         [HttpGet("{id}")]
-        public async Task<IActionResult> GetUser([FromRoute] int id)
+        public async Task<IActionResult> GetOne([FromRoute] int id)
         {
-            if (!ModelState.IsValid)
+            try
             {
-                return BadRequest(ModelState);
+                User user = await repository.GetOne(id);
+
+                if (user == null)
+                {
+                    return NoContent();
+                }
+
+                return Ok(user);
             }
-
-            var user = await context.User.FindAsync(id);
-
-            if (user == null)
+            catch (Exception ex)
             {
-                return NotFound();
+                return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
             }
-
-            return Ok(user);
         }
 
         // PUT: api/User/5
         [HttpPut("{id}")]
-        public async Task<IActionResult> UpdateUser([FromRoute] int id, [FromBody] User user)
+        public async Task<IActionResult> Update([FromRoute] int id, [FromBody] User user)
         {
             if (!ModelState.IsValid)
             {
@@ -59,12 +65,12 @@ namespace YukiSalonApi.Controllers
 
             try
             {
-                SetUserModified(user);
-                await context.SaveChangesAsync();
+                repository.Update(user);
+                await repository.SaveChanges();
             }
             catch (Exception ex)
             {
-                if (!UserExists(id))
+                if (!repository.Exist(id))
                 {
                     return NotFound();
                 }
@@ -77,37 +83,23 @@ namespace YukiSalonApi.Controllers
             return NoContent();
         }
 
-        private void SetUserModified(User user)
-        {
-            context.Entry(user).Property(u => u.Name).IsModified = true;
-            context.Entry(user).Property(u => u.Description).IsModified = true;
-            context.Entry(user).Property(u => u.IsDisplayed).IsModified = true;
-            context.Entry(user).Property(u => u.IsActive).IsModified = true;
-            context.Entry(user).Property(u => u.Email).IsModified = true;
-        }
-
         // POST: api/User
         [HttpPost]
-        public async Task<IActionResult> CreateUser([FromBody] User user)
+        public async Task<IActionResult> Create([FromBody] User user)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            if (user.RoleId < 0)
-            {
-                user.RoleId = context.Role.First().Id;
-            }
-
             try
             {
-                context.User.Add(user);
-                await context.SaveChangesAsync();
+                repository.Add(user);
+                await repository.SaveChanges();
             }
             catch (Exception ex)
             {
-                if (UserExists(user.Email))
+                if (repository.Exist(user))
                 {
                     ModelState.AddModelError(nameof(user.Email), Translation.EmailAlreadyExists);
                     return BadRequest(ModelState);
@@ -118,51 +110,35 @@ namespace YukiSalonApi.Controllers
                 }
             }
 
-            return CreatedAtAction(nameof(GetUser), new { id = user.Id }, user);
+            return CreatedAtAction(nameof(GetOne), new { id = user.Id }, user);
         }
 
         // DELETE: api/User/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteUser([FromRoute] int id)
+        public async Task<IActionResult> Delete([FromRoute] int id)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
-
-            var user = await context.User.FindAsync(id);
-            if (user == null)
+            try
             {
-                return NotFound();
-            }
+                string errorMessage = repository.Remove(id);
 
-            if (User.Identity.Name.Equals(user.Email))
+                if (!string.IsNullOrEmpty(errorMessage))
+                {
+                    ModelState.AddModelError("", errorMessage);
+                    return BadRequest(ModelState);
+                }
+
+                await repository.SaveChanges();
+            }
+            catch (Exception ex)
             {
-                ModelState.AddModelError("", Translation.RemoveSelfNotAllowed);
-                return BadRequest(ModelState);
+                return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
             }
-
-            int userCount = await context.User.CountAsync(u => u.SalonId == user.SalonId);
-            if (userCount <= 1)
-            {
-                ModelState.AddModelError("", Translation.RemoveNotAllowedLastUser);
-                return BadRequest(ModelState);
-            }
-
-            context.User.Remove(user);
-            await context.SaveChangesAsync();
-
-            return Ok(user);
-        }
-
-        private bool UserExists(int id)
-        {
-            return context.User.Any(e => e.Id == id);
-        }
-
-        private bool UserExists(string email)
-        {
-            return context.User.Any(e => e.Email.Equals(email));
+            
+            return Ok(id);
         }
     }
 }

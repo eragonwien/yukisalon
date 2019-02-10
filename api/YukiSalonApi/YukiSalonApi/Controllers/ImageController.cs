@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 using YukiSalonApi.Models;
 using YukiSalonApi.Resources;
 using YukiSalonApi.Services;
@@ -18,10 +19,12 @@ namespace YukiSalonApi.Controllers
     public class ImageController : ControllerBase
     {
         private readonly IImageRepository repository;
+        private readonly ILogger<ImageController> log;
 
-        public ImageController(IImageRepository imageRepository)
+        public ImageController(IImageRepository repository, ILogger<ImageController> log)
         {
-            this.repository = imageRepository;
+            this.repository = repository;
+            this.log = log;
         }
 
         // GET: api/Image
@@ -29,21 +32,27 @@ namespace YukiSalonApi.Controllers
         public async Task<IActionResult> GetAll()
         {
             var imageList = await repository.GetAll();
+
+            if (imageList == null || imageList.Count == 0)
+            {
+                return NoContent();
+            }
+
             return Ok(imageList);
         }
 
         // GET: api/Image/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Image>> GetOne(int id)
+        public async Task<IActionResult> GetOne(int id)
         {
             var image = await repository.GetOne(id);
 
             if (image == null)
             {
-                return NotFound();
+                return NoContent();
             }
 
-            return image;
+            return Ok(image);
         }
 
         // PUT: api/Image/5

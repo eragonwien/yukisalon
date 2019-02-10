@@ -67,9 +67,6 @@ namespace YukiSalonApi.Models
                 return;
             }
 
-            // Salon service
-            SalonService salonService = new SalonService();
-
             Salon salon = context.Salon.First();
             Role adminRole = context.Role.Where(r => r.Title.Equals("Admin")).Single();
             User owner = new User()
@@ -78,7 +75,7 @@ namespace YukiSalonApi.Models
                 SalonId = salon.Id,
                 RoleId = adminRole.Id,
                 Email = "tuyetvienna@gmail.com",
-                Password = salonService.GetEncodedPassword("1212"),
+                Password = Common.GetEncodedPassword("1212"),
                 ExtraInfo = "",
                 IsActive = true,
                 IsDisplayed = true,

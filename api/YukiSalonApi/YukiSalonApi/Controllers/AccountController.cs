@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 using YukiSalonApi.Models;
 using YukiSalonApi.Services;
 
@@ -17,11 +18,13 @@ namespace YukiSalonApi.Controllers
 {
     public class AccountController : ControllerBase
     {
-        private readonly YUKISALONDEVContext context;
+        private readonly IUserRepository repository;
+        private readonly ILogger<AccountController> log;
 
-        public AccountController(YUKISALONDEVContext context)
+        public AccountController(IUserRepository repository, ILogger<AccountController> log)
         {
-            this.context = context;
+            this.repository = repository;
+            this.log = log;
         }
 
         // POST: account/login
@@ -33,14 +36,15 @@ namespace YukiSalonApi.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    var user = context.User.Where(u => u.Email.Equals(email) && u.Password.Equals(password)).Single();
-                    var userRole = context.Role.Where(r => r.Id.Equals(user.RoleId)).Single().Title;
+                    User user = await repository.Authenticate(email, password);
+
+                    Role role = await repository.GetRole(user);
 
                     var claims = new List<Claim>
                     {
                         new Claim(ClaimTypes.Email, user.Email),
                         new Claim(ClaimTypes.Name, user.Email),
-                        new Claim(ClaimTypes.Role, userRole)
+                        new Claim(ClaimTypes.Role, role.Title)
                     };
 
                     var userIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
@@ -57,8 +61,9 @@ namespace YukiSalonApi.Controllers
                     return Ok();
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                log.LogError("[Login] Login failed. Email: {0}, Password: {1}, Message: {2}", email, password, ex.Message);
                 return Unauthorized();
             }
 

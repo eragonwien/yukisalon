@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 using YukiSalonApi.Models;
 using YukiSalonApi.Resources;
 using YukiSalonApi.Services;
@@ -17,16 +18,32 @@ namespace YukiSalonApi.Controllers
     [Authorize]
     public class ContactController : ControllerBase
     {
-        private readonly ContactRepository repository;
+        private readonly IContactRepository repository;
+        private readonly ILogger<ContactController> log;
 
-        public ContactController(ContactRepository repository)
+        public ContactController(IContactRepository repository, ILogger<ContactController> log)
         {
             this.repository = repository;
+            this.log = log;
+        }
+
+        // GET: api/Contact/5
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetOne(int id)
+        {
+            Contact contact = await repository.GetOne(id);
+
+            if (contact == null)
+            {
+                return NoContent();
+            }
+
+            return Ok(contact);
         }
 
         // POST: api/Contact
         [HttpPost]
-        public async Task<IActionResult> CreateNewContact([FromBody] Contact contact)
+        public async Task<IActionResult> Create([FromBody] Contact contact)
         {
             if (!ModelState.IsValid)
             {
@@ -42,12 +59,12 @@ namespace YukiSalonApi.Controllers
             {
                 return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
             }
-            return StatusCode(StatusCodes.Status201Created);
+            return CreatedAtAction(nameof(GetOne), new { id = contact.Id }, contact);
         }
 
         // PUT: api/Contact/5
         [HttpPut("{id}")]
-        public async Task<IActionResult> UpdateContactById([FromRoute] int id, [FromBody] Contact contact)
+        public async Task<IActionResult> Update([FromRoute] int id, [FromBody] Contact contact)
         {
             if (!ModelState.IsValid)
             {

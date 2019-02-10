@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using YukiSalonApi.Models;
+using YukiSalonApi.Resources;
 
 namespace YukiSalonApi.Services
 {
@@ -31,6 +32,23 @@ namespace YukiSalonApi.Services
             context.User.Add(user);
         }
 
+        public async Task<User> Authenticate(string email, string password)
+        {
+            User user = await GetOne(email);
+
+            if (user == null)
+            {
+                throw new Exception(Translation.UserNotFound);
+            }
+
+            if (!Common.IsPasswordValid(password, user.Password))
+            {
+                throw new Exception(Translation.WrongPassword);
+            }
+
+            return user;
+        }
+
         public bool Exist(int id)
         {
             return context.User.Any(u => u.Id == id);
@@ -46,12 +64,22 @@ namespace YukiSalonApi.Services
             return context.User.ToListAsync();
         }
 
+        public Task<User> GetOne(string email)
+        {
+            return context.User.SingleOrDefaultAsync(u => u.Email.Equals(email));
+        }
+
         public Task<User> GetOne(int id)
         {
             return context.User.Where(u => u.Id == id).SingleAsync();
         }
 
-        public string Remove(int id, string login)
+        public Task<Role> GetRole(User user)
+        {
+            return context.Role.SingleAsync(r => r.IsActive && r.Id == user.RoleId);
+        }
+
+        public string Remove(int id)
         {
             User removeUser = context.User.SingleOrDefault(u => u.Id == id);
 
@@ -60,15 +88,13 @@ namespace YukiSalonApi.Services
                 return string.Empty;
             }
 
-            if (removeUser.Email.Equals(login))
-            {
-                return "cannot remove self";
-            }
-
             if (context.User.Count(u => u.SalonId == removeUser.SalonId) == 1)
             {
-                return "cannot remove last User of Salon " + removeUser.Salon.Name;
+                return Translation.RemoveNotAllowedLastSalon;
             }
+
+            removeUser.IsActive = false;
+            Update(removeUser);
 
             return string.Empty;
         }

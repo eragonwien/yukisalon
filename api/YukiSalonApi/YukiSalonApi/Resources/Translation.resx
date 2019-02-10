@@ -120,8 +120,14 @@
   <data name="EmailAlreadyExists" xml:space="preserve">
     <value>This Email Adress is already taken</value>
   </data>
+  <data name="EmailNotFound" xml:space="preserve">
+    <value>Email not found</value>
+  </data>
   <data name="IdMismatch" xml:space="preserve">
     <value>ID does not match</value>
+  </data>
+  <data name="ImageEmpty" xml:space="preserve">
+    <value>Image is empty</value>
   </data>
   <data name="NameAlreadyExists" xml:space="preserve">
     <value>This Name is already taken</value>
@@ -137,5 +143,11 @@
   </data>
   <data name="RemoveSelfNotAllowed" xml:space="preserve">
     <value>You cannot remove yourself</value>
+  </data>
+  <data name="UserNotFound" xml:space="preserve">
+    <value>User not found</value>
+  </data>
+  <data name="WrongPassword" xml:space="preserve">
+    <value>Wrong Password</value>
   </data>
 </root>

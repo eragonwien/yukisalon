@@ -33,7 +33,6 @@ namespace YukiSalonApi
 
             // Services
             services.AddDbContext<YUKISALONDEVContext>(options => options.UseSqlServer(Configuration.GetConnectionString("YUKISALON")));
-            services.AddScoped<ISalonService, SalonService>();
             services.AddScoped<ISalonRepository, SalonRepository>();
 
             // Authentication

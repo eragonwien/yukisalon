@@ -70,11 +70,29 @@ namespace YukiSalonApi.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Email not found.
+        /// </summary>
+        public static string EmailNotFound {
+            get {
+                return ResourceManager.GetString("EmailNotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to ID does not match.
         /// </summary>
         public static string IdMismatch {
             get {
                 return ResourceManager.GetString("IdMismatch", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Image is empty.
+        /// </summary>
+        public static string ImageEmpty {
+            get {
+                return ResourceManager.GetString("ImageEmpty", resourceCulture);
             }
         }
         
@@ -120,6 +138,24 @@ namespace YukiSalonApi.Resources {
         public static string RemoveSelfNotAllowed {
             get {
                 return ResourceManager.GetString("RemoveSelfNotAllowed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to User not found.
+        /// </summary>
+        public static string UserNotFound {
+            get {
+                return ResourceManager.GetString("UserNotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Wrong Password.
+        /// </summary>
+        public static string WrongPassword {
+            get {
+                return ResourceManager.GetString("WrongPassword", resourceCulture);
             }
         }
     }

@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authorization;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
+using System;
+using System.Threading.Tasks;
 using YukiSalonApi.Models;
 using YukiSalonApi.Resources;
 using YukiSalonApi.Services;
@@ -33,6 +30,11 @@ namespace YukiSalonApi.Controllers
         {
             var salonList = await salonRepository.GetAll();
 
+            if (salonList == null || salonList.Count == 0)
+            {
+                return NoContent();
+            }
+
             return Ok(salonList);
         }
 
@@ -41,7 +43,6 @@ namespace YukiSalonApi.Controllers
         [AllowAnonymous]
         public IActionResult GetOne([FromRoute] int id)
         {
-            log.LogInformation(nameof(GetOne));
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
@@ -53,9 +54,10 @@ namespace YukiSalonApi.Controllers
                 {
                     id = salonRepository.GetFirstId();
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
-                    return NotFound();
+                    log.LogError("[GET: api/Salon/{0}] {1}", id, ex.Message);
+                    return NoContent();
                 };
             }
 
@@ -63,7 +65,7 @@ namespace YukiSalonApi.Controllers
 
             if (salon == null)
             {
-                return NotFound();
+                return NoContent();
             }
 
             return Ok(salon);
@@ -85,6 +87,7 @@ namespace YukiSalonApi.Controllers
             }
             catch (Exception ex)
             {
+                log.LogError("[POST: api/Salon] {0}", ex.Message);
                 return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
             }
 
@@ -117,6 +120,7 @@ namespace YukiSalonApi.Controllers
                 {
                     return NotFound();
                 }
+                log.LogError("[POST: PUT: api/Salon/{0}] {1}", id, ex.Message);
                 return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
             }
 
@@ -143,7 +147,6 @@ namespace YukiSalonApi.Controllers
         public async Task<IActionResult> GetSubCategories([FromRoute] int id)
         {
             var subcategories = await salonRepository.GetSubcategories(id);
-
             return Ok(subcategories);
         }
     }

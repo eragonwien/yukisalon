@@ -7,8 +7,10 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Localization;
+using Microsoft.Extensions.Logging;
 using YukiSalonApi.Models;
 using YukiSalonApi.Resources;
+using YukiSalonApi.Services;
 
 namespace YukiSalonApi.Controllers
 {
@@ -17,21 +19,30 @@ namespace YukiSalonApi.Controllers
     [Authorize]
     public class CategoryController : ControllerBase
     {
-        private readonly YUKISALONDEVContext context;
+        private readonly ICategoryRepository repository;
+        private readonly ILogger<CategoryController> log;
 
-        public CategoryController(YUKISALONDEVContext context)
+        public CategoryController(ICategoryRepository repository, ILogger<CategoryController> log)
         {
-            this.context = context;
+            this.repository = repository;
+            this.log = log;
         }
 
         public async Task<IActionResult> GetOne([FromRoute] int id)
         {
-            return Ok();
+            Category category = await repository.GetOne(id);
+
+            if (category == null)
+            {
+                return NoContent();
+            }
+
+            return Ok(category);
         }
 
         // PUT: api/Category/5
         [HttpPut("{id}")]
-        public async Task<IActionResult> UpdateCategory([FromRoute] int id, [FromBody] Category category)
+        public async Task<IActionResult> Update([FromRoute] int id, [FromBody] Category category)
         {
             if (!ModelState.IsValid)
             {
@@ -46,12 +57,12 @@ namespace YukiSalonApi.Controllers
 
             try
             {
-                context.Entry(category).Property(c => c.Name).IsModified = true;
-                await context.SaveChangesAsync();
+                repository.Update(category);
+                await repository.SaveChanges();
             }
             catch (Exception ex)
             {
-                if (!CategoryExists(id))
+                if (!repository.Exist(id))
                 {
                     return NotFound();
                 }
@@ -61,12 +72,12 @@ namespace YukiSalonApi.Controllers
                 }
             }
 
-            return NoContent();
+            return Ok();
         }
 
         // POST: api/Category
         [HttpPost]
-        public async Task<IActionResult> PostCategory([FromBody] Category category)
+        public async Task<IActionResult> Create([FromBody] Category category)
         {
             if (!ModelState.IsValid)
             {
@@ -75,14 +86,14 @@ namespace YukiSalonApi.Controllers
 
             try
             {
-                context.Category.Add(category);
-                await context.SaveChangesAsync();
+                repository.Add(category);
+                await repository.SaveChanges();
             }
             catch (Exception ex)
             {
-                if (CategoryExists(category.Name))
+                if (repository.Exist(category.Name))
                 {
-                    ModelState.AddModelError("Name", Translation.NameAlreadyExists);
+                    ModelState.AddModelError(nameof(category.Name), Translation.NameAlreadyExists);
                     return BadRequest(ModelState);
                 }
                 else
@@ -103,26 +114,17 @@ namespace YukiSalonApi.Controllers
                 return BadRequest(ModelState);
             }
 
-            var category = await context.Category.FindAsync(id);
-            if (category == null)
+            try
             {
-                return NotFound();
+                repository.Remove(id);
+                await repository.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
             }
 
-            context.Category.Remove(category);
-            await context.SaveChangesAsync();
-
-            return Ok(category);
-        }
-
-        private bool CategoryExists(int id)
-        {
-            return context.Category.Any(e => e.Id == id);
-        }
-
-        private bool CategoryExists(string name)
-        {
-            return context.Category.Any(e => e.Name == name);
+            return Ok(id);
         }
     }
 }

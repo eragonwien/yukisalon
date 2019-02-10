@@ -5,23 +5,23 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using YukiSalonApi.Models;
+using YukiSalonApi.Resources;
+using YukiSalonApi.Services;
 
 namespace YukiSalonApi.Services
 {
     public class ImageRepository : IImageRepository
     {
         private readonly YUKISALONDEVContext context;
-        private readonly SalonService salonService;
 
-        public ImageRepository(YUKISALONDEVContext context, SalonService salonService)
+        public ImageRepository(YUKISALONDEVContext context)
         {
             this.context = context;
-            this.salonService = salonService;
         }
 
         public void Add(Image image)
         {
-            image.MimeType = salonService.GetMimeType(image.Name);
+            image.MimeType = Common.GetMimeType(image.Name);
             context.Image.Add(image);
         }
 
@@ -42,8 +42,8 @@ namespace YukiSalonApi.Services
 
         public string GetImagePath(Image image)
         {
-            string filename = salonService.GetFileName(image);
-            string path = Path.Combine(salonService.GetImagesDirectory(), filename);
+            string filename = Common.GetFileName(image);
+            string path = Path.Combine(Common.GetImagesDirectory(), filename);
             return path;
         }
 
@@ -66,12 +66,12 @@ namespace YukiSalonApi.Services
         {
             if (image == null || string.IsNullOrEmpty(image.Data))
             {
-                throw new Exception("Image is empty");
+                throw new Exception(Translation.ImageEmpty);
             }
             byte[] imageBytes = Convert.FromBase64String(image.Data);
-            string imageName = salonService.GetFileName(image);
+            string imageName = Common.GetFileName(image);
 
-            string imagesDirectory = salonService.GetImagesDirectory();
+            string imagesDirectory = Common.GetImagesDirectory();
             if (!Directory.Exists(imagesDirectory))
             {
                 Directory.CreateDirectory(imagesDirectory);
@@ -90,17 +90,17 @@ namespace YukiSalonApi.Services
             Image image = context.Image.SingleOrDefault(i => i.Id == id);
             if (image == null || string.IsNullOrEmpty(image.Data))
             {
-                throw new Exception("Image is empty");
+                throw new Exception(Translation.ImageEmpty);
             }
-            string imageName = salonService.GetFileName(image);
-            string imagesDirectory = salonService.GetImagesDirectory();
+            string imageName = Common.GetFileName(image);
+            string imagesDirectory = Common.GetImagesDirectory();
             if (Directory.Exists(imagesDirectory))
             {
                 string imagePath = Path.Combine(imagesDirectory, imageName);
 
                 if (isArchived)
                 {
-                    string archivePath = Path.Combine(salonService.GetArchiveDirectory(Constant.IMAGES_DIRECTORY), imageName);
+                    string archivePath = Path.Combine(Common.GetArchiveDirectory(Constant.IMAGES_DIRECTORY), imageName);
 
                     if (File.Exists(archivePath))
                     {
