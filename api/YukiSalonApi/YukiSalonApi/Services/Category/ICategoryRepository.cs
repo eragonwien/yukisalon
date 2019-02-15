@@ -8,11 +8,11 @@ namespace YukiSalonApi.Services
 {
     public interface ICategoryRepository
     {
-        Task<List<Category>> GetAll();
+        Task<List<Category>> GetAll(int salonId, bool subcategoryOnly);
         Task<Category> GetOne(int id);
-        void Add(Category catgory);
-        void Update(Category category);
-        void Remove(int id);
+        Task Add(Category category);
+        Task Update(Category category);
+        Task Remove(int id);
         Task SaveChanges();
         bool Exist(int id);
         bool Exist(string name);

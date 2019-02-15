@@ -116,7 +116,7 @@ namespace YukiSalonApi.Controllers
 
             try
             {
-                repository.Remove(id);
+                await repository.Remove(id);
                 await repository.SaveChanges();
             }
             catch (Exception ex)

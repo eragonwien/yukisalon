@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -8,44 +10,70 @@ namespace YukiSalonApi.Services
 {
     public class CategoryRepository : ICategoryRepository
     {
-        public void Add(Category catgory)
+        private readonly YUKISALONDEVContext context;
+
+        public CategoryRepository(YUKISALONDEVContext context)
         {
-            throw new NotImplementedException();
+            this.context = context;
+        }
+
+        public Task Add(Category category)
+        {
+            context.Category.Add(category);
+            return Task.CompletedTask;
         }
 
         public bool Exist(int id)
         {
-            throw new NotImplementedException();
+            return context.Category.Any(c => c.Id == id && c.IsActive);
         }
 
         public bool Exist(string name)
         {
-            throw new NotImplementedException();
+            return context.Category.Any(c => c.Name.Equals(name) && c.IsActive);
         }
 
-        public Task<List<Category>> GetAll()
+        public Task<List<Category>> GetAll(int salonId = -1, bool subcategoryOnly = false)
         {
-            throw new NotImplementedException();
+            var categories = context.Category
+                .Where(c => c.IsActive && (salonId < 0 || c.SalonId == salonId) && (subcategoryOnly || c.IsSubcategory));
+
+            return categories.ToListAsync();
         }
 
         public Task<Category> GetOne(int id)
         {
-            throw new NotImplementedException();
+            return context.Category.SingleOrDefaultAsync(c => c.Id == id && c.IsActive);
         }
 
-        public void Remove(int id)
+        public async Task Remove(int id)
         {
-            throw new NotImplementedException();
+            Category category = await GetOne(id);
+            if (category != null)
+            {
+                category.IsActive = false;
+                await Update(category);
+            }
         }
 
         public Task SaveChanges()
         {
-            throw new NotImplementedException();
+            return context.SaveChangesAsync();
         }
 
-        public void Update(Category category)
+        public Task Update(Category category)
         {
-            throw new NotImplementedException();
+            context.Update(category);
+            return Task.CompletedTask;
+        }
+
+        public Task<List<Category>> GetSubcategories(int salonId)
+        {
+            return context.Category
+                .Where(c => c.SalonId == salonId && (c.IsSubcategory == true))
+                .Include(c => c.Product)
+                .OrderBy(c => c.Name)
+                .ToListAsync();
         }
     }
 }

@@ -82,7 +82,7 @@ namespace YukiSalonApi.Controllers
 
             try
             {
-                salonRepository.Add(salon);
+                await salonRepository.Add(salon);
                 await salonRepository.SaveChanges();
             }
             catch (Exception ex)
@@ -111,7 +111,7 @@ namespace YukiSalonApi.Controllers
 
             try
             {
-                salonRepository.Update(salon);
+                await salonRepository.Update(salon);
                 await salonRepository.SaveChanges();
             }
             catch (Exception ex)
@@ -136,18 +136,10 @@ namespace YukiSalonApi.Controllers
                 return BadRequest(ModelState);
             }
 
-            salonRepository.Remove(id);
+            await salonRepository.Remove(id);
             await salonRepository.SaveChanges();
 
             return Ok(id);
-        }
-
-        // GET: api/Salon/5/Subcategories
-        [HttpGet("{id}/Subcategories")]
-        public async Task<IActionResult> GetSubCategories([FromRoute] int id)
-        {
-            var subcategories = await salonRepository.GetSubcategories(id);
-            return Ok(subcategories);
         }
     }
 }

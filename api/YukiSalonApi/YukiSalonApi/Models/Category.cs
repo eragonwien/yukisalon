@@ -16,7 +16,7 @@ namespace YukiSalonApi.Models
         public int? ParentId { get; set; }
         public int? ImageId { get; set; }
         public string Name { get; set; }
-        public bool? IsSubcategory { get; set; }
+        public bool IsSubcategory { get; set; }
         public bool IsActive { get; set; }
 
         public virtual Image Image { get; set; }

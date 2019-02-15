@@ -16,9 +16,10 @@ namespace YukiSalonApi.Services
             this.context = context;
         }
 
-        public void Add(Salon salon)
+        public Task Add(Salon salon)
         {
             context.Salon.Add(salon);
+            return Task.CompletedTask;
         }
 
         public Task<List<Salon>> GetAll()
@@ -37,19 +38,10 @@ namespace YukiSalonApi.Services
                .FirstOrDefault();
 
             salon.Category = salon.Category
-                .Where(c => !c.IsSubcategory.HasValue || !c.IsSubcategory.Value)
+                .Where(c => !c.IsSubcategory || !c.IsSubcategory)
                 .ToList();
 
             return salon;
-        }
-
-        public Task<List<Category>> GetSubcategories(int salonId)
-        {
-            return context.Category
-                .Where(c => c.SalonId == salonId && (c.IsSubcategory == true))
-                .Include(c => c.Product)
-                .OrderBy(c => c.Name)
-                .ToListAsync();
         }
 
         public int GetFirstId()
@@ -57,16 +49,21 @@ namespace YukiSalonApi.Services
             return context.Salon.Where(s => s.IsActive && s.IsActive).Select(s => s.Id).First();
         }
 
-        public void Update(Salon salon)
+        public Task Update(Salon salon)
         {
             context.Update(salon);
+            return Task.CompletedTask;
         }
 
-        public void Remove(int salonId)
+        public Task Remove(int salonId)
         {
-            var salon = new Salon() { Id = salonId };
-            context.Salon.Attach(salon);
-            context.Salon.Remove(salon);
+            Salon salon = GetOne(salonId);
+            if (salon != null)
+            {
+                salon.IsActive = false;
+                Update(salon);
+            }
+            return Task.CompletedTask;
         }
 
         public Task SaveChanges()

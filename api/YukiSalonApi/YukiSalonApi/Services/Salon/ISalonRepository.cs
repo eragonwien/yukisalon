@@ -9,11 +9,10 @@ namespace YukiSalonApi.Services
         Task<List<Salon>> GetAll();
         Salon GetOne(int id);
         int GetFirstId();
-        void Add(Salon salon);
-        void Update(Salon salon);
-        void Remove(int id);
+        Task Add(Salon salon);
+        Task Update(Salon salon);
+        Task Remove(int id);
         Task SaveChanges();
         bool Exist(int id);
-        Task<List<Category>> GetSubcategories(int id);
     }
 }

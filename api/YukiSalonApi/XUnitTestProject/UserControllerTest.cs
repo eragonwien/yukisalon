@@ -72,15 +72,35 @@ namespace XUnitTestProject
         }
 
         [Fact]
-        public Task Add_Returns400_WhenEmailAlreadyTaken()
+        public async Task Add_Returns400_WhenEmailAlreadyTaken()
         {
-            throw new NotImplementedException();
+            // Arrange
+            User user = new User { Id = 1, Email = "test@mail.com" };
+            repoMock.Setup(r => r.Add(user)).Throws(new Exception());
+            repoMock.Setup(r => r.Exist(user)).Returns(true);
+
+            // Act
+            var result = await controller.Create(user);
+
+            // Assert
+            var actionResult = Assert.IsType<BadRequestObjectResult>(result);
+            Assert.Equal(new SerializableError(controller.ModelState), actionResult.Value);
         }
 
         [Fact]
-        public Task Update_ReturnsOk_WhenUpdateSuccessfully()
+        public void Update_ReturnsOk_WhenUpdateSuccessfully()
         {
-            throw new NotImplementedException();
+            // Arrange
+            User user = new User { Id = 1 };
+            repoMock.Setup(r => r.SaveChanges()).Returns(Task.CompletedTask);
+
+            // Act
+            var result = controller.Update(user.Id, user);
+
+            // Assert
+            repoMock.Verify(r => r.Update(user));
+            var actionResult = Assert.IsType<CreatedAtActionResult>(result);
+            Assert.Equal(user, actionResult.Value);
         }
 
         [Fact]

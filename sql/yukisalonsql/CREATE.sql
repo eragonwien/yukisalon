@@ -89,7 +89,7 @@ CREATE TABLE [Category] (
     [ParentId] int,
 	[ImageId] int,
 	[Name] nvarchar(max),
-	[IsSubcategory] bit,
+	[IsSubcategory] bit NOT NULL DEFAULT 0,
 	[IsActive] bit NOT NULL,
     CONSTRAINT [PK_Category] PRIMARY KEY ([Id]),
 	CONSTRAINT [FK_Category_Parent_ParentId] FOREIGN KEY ([ParentId]) REFERENCES [Category] ([Id]),

@@ -46,3 +46,13 @@
 2019-02-04 08:51:50.3631 Info Found 45 configuration items
 2019-02-04 08:51:50.3855 Info Configuration initialized.
 2019-02-04 08:51:50.3855 Info NLog, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 4.5.11.8645. Product version: 4.5.11.
+2019-02-10 18:40:44.7392 Info Message Template Auto Format enabled
+2019-02-10 18:40:44.7536 Info Loading assembly: NLog.Web.AspNetCore
+2019-02-10 18:40:44.8147 Info Adding target File Target[allfile]
+2019-02-10 18:40:44.8147 Info Adding target File Target[ownFile-web]
+2019-02-10 18:40:44.8277 Info Configured from an XML element in C:\Users\erago\Projects\yukifriseur\api\YukiSalonApi\YukiSalonApi\bin\Debug\netcoreapp2.2\NLog.config...
+2019-02-10 18:40:44.8493 Info Found 45 configuration items
+2019-02-10 18:40:44.8969 Info Configuration initialized.
+2019-02-10 18:40:44.9040 Info NLog, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 4.5.11.8645. Product version: 4.5.11.
+2019-02-10 18:40:46.2856 Info Shutting down logging...
+2019-02-10 18:40:46.3054 Info Logger has been shut down.

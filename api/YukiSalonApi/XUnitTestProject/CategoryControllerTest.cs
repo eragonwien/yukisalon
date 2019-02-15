@@ -26,15 +26,27 @@ namespace XUnitTestProject
         }
 
         [Fact]
-        public Task Get_ReturnsOk_WhenExist()
+        public void Get_ReturnsOk_WhenExist()
         {
-            throw new NotImplementedException();
+            Category category = new Category { Id = 1 };
+            repoMock.Setup(r => r.GetOne(category.Id)).Returns(Task.FromResult(category));
+
+            var result = controller.GetOne(category.Id);
+
+            var actionResult = Assert.IsType<OkObjectResult>(result);
+            Category model = Assert.IsAssignableFrom<Category>(actionResult.Value);
+            Assert.Equal(category, model);
         }
 
         [Fact]
-        public Task Get_Returns204_WhenNotExist()
+        public void Get_Returns204_WhenNotExist()
         {
-            throw new NotImplementedException();
+            Category category = new Category { Id = 1 };
+            repoMock.Setup(r => r.GetOne(category.Id)).Returns(Task.FromResult<Category>(null));
+
+            var result = controller.GetOne(category.Id);
+
+            var actionResult = Assert.IsType<NoContentResult>(result);
         }
 
         [Fact]
